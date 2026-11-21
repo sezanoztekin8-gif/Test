@@ -1,5 +1,11 @@
 # Project: Reels / YouTube video studio
 
+## Memory (read first)
+- At the start of a session run `python3 .claude/memory/memory.py top 15` and follow what it says.
+- When the user corrects you, states a preference, or a decision or fix is made, append it:
+  `python3 .claude/memory/memory.py add <preference|decision|pattern|fact> <key> "<value>" "<context>" <0-1 importance>`
+  (same key = newer entry wins). Pipeline map: `.claude/memory/graph.json`. Last session summary: `.claude/sessions/`.
+
 ## Who and how
 - The user writes in Turkish. Answer in Turkish: short, plain words, no jargon.
 - The user wants finished videos, not long option lists. Make a sensible choice, build it, show it.

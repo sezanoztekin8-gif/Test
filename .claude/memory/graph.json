@@ -1,0 +1,28 @@
+{
+  "nodes": {
+    "Script": {"type": "file", "file": "video-agent/edits/<slug>/script.json", "deps": []},
+    "SceneImages": {"type": "asset", "file": "video-agent/edits/<slug>/scenes/*.jpg", "deps": ["Figma"]},
+    "Voice": {"type": "asset", "file": "video-agent/edits/<slug>/assets/tts|vo/*.mp3", "deps": ["ElevenLabs", "EdgeTTS"]},
+    "Build": {"type": "script", "file": "video-agent/edits/<slug>/build.py", "deps": ["Script", "SceneImages", "Voice", "AudioLibrary"]},
+    "Composition": {"type": "file", "file": "video-agent/edits/<slug>/index.html", "deps": ["Build", "GSAP", "Fonts"]},
+    "Render": {"type": "output", "file": "video-agent/edits/<slug>/output/*.mp4", "deps": ["Composition", "HyperFrames"]},
+    "Publish": {"type": "service", "skill": "instagram-skill", "deps": ["Render", "WoopSocial"]},
+    "AudioLibrary": {"type": "asset", "file": ".claude/skills/editing-videos/library/", "deps": []},
+    "GSAP": {"type": "asset", "file": "video-agent/edits/<slug>/lib/gsap.min.js", "deps": []},
+    "Fonts": {"type": "asset", "file": "video-agent/edits/<slug>/fonts/", "deps": []},
+    "HyperFrames": {"type": "external", "cmd": "npx --no-install hyperframes render"},
+    "Figma": {"type": "external", "tool": "Figma generate_image"},
+    "ElevenLabs": {"type": "external", "tool": "ElevenLabs connector / api.elevenlabs.io"},
+    "EdgeTTS": {"type": "external", "cmd": "edge-tts --proxy $HTTPS_PROXY"},
+    "WoopSocial": {"type": "external", "url": "https://api.woopsocial.com/mcp"}
+  },
+  "edges": [
+    {"from": "Script", "to": "Build", "rel": "read-by"},
+    {"from": "SceneImages", "to": "Build", "rel": "read-by"},
+    {"from": "Voice", "to": "Build", "rel": "mixed-by"},
+    {"from": "Build", "to": "Composition", "rel": "writes"},
+    {"from": "Composition", "to": "Render", "rel": "rendered-to"},
+    {"from": "Render", "to": "Publish", "rel": "uploaded-by"},
+    {"from": "Publish", "to": "WoopSocial", "rel": "delegates-posting-to"}
+  ]
+}
