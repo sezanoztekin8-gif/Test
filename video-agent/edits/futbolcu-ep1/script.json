@@ -1,0 +1,38 @@
+{
+ "title": "30 Günde Futbolcu — 1. Gün",
+ "voices": {
+  "anlatici": "nPczCjzI2devNBz1zQrb",
+  "emre": "TX3LPaxmHKxFdv7VOQHJ",
+  "dede": "pqHfZKP75CvOlQylNhV4",
+  "burak": "N2lVS1w4EtoT3dr4eOWO"
+ },
+ "lines": [
+  {"id": "l01", "img": "s01", "who": "anlatici", "text": "Gün bir! Seçmelere otuz gün kaldı. Ve Emre... henüz koltuktan bile kalkmadı."},
+  {"id": "l02", "img": "s02", "who": "anlatici", "text": "Dün gece bir ilan gördü: mahallenin takımı, otuz gün sonra yeni oyuncu seçecek."},
+  {"id": "l02b", "img": "s02", "who": "anlatici", "text": "Emre'nin futbol tecrübesi mi? Bilgisayarda üç kere şampiyon olmak."},
+  {"id": "l03", "img": "s02", "who": "emre", "text": "Otuz gün mü? Yeter de artar bile!"},
+  {"id": "l04", "img": "s04", "who": "anlatici", "text": "Sabah altı. Alarm çalıyor. Emre alarmı tam dört kez erteliyor."},
+  {"id": "l05", "img": "s05", "who": "dede", "text": "Kalk bakalım şampiyon! Ben senin yaşındayken sabah koşusunu çoktan bitirmiştim!"},
+  {"id": "l06", "img": "s06", "who": "emre", "text": "Dede... Forma mı küçülmüş, ben mi büyümüşüm?"},
+  {"id": "l07", "img": "s06", "who": "dede", "text": "Sen büyümüşsün evladım. Ama yana doğru."},
+  {"id": "l07b", "img": "s06", "who": "emre", "text": "Tamam, tamam! Bugün başlıyoruz. Yeni Emre geliyor!"},
+  {"id": "l08", "img": "s07", "who": "anlatici", "text": "Ve ilk antrenman başlıyor. Hedef: mahalleyi bir tur koşmak."},
+  {"id": "l09", "img": "s08", "who": "anlatici", "text": "İki yüzüncü metrede Emre'nin ciğerleri pes ediyor. Teyzeler bile onu geçiyor."},
+  {"id": "l10", "img": "s08", "who": "emre", "text": "Dede... Ben galiba ölüyorum."},
+  {"id": "l11", "img": "s09", "who": "dede", "text": "Daha fırına bile varmadık! Kanepe olmuşsun sen, kanepe!"},
+  {"id": "l11b", "img": "s09", "who": "dede", "text": "Ben senin yaşında bu sokağı on tur koşardım. Hem de lastik ayakkabıyla!"},
+  {"id": "l12", "img": "s10", "who": "anlatici", "text": "Sahada ise mahallenin yıldızı Burak var."},
+  {"id": "l13", "img": "s11", "who": "burak", "text": "Emre? Sen mi seçmelere gireceksin? Önce merdivenleri çıkmayı dene, kanka."},
+  {"id": "l13b", "img": "s11", "who": "emre", "text": "Bak sen... Otuz gün sonra görürüz."},
+  {"id": "l14", "img": "s12", "who": "anlatici", "text": "Ama tribünde biri bu konuşmayı duydu. Elif. Mahallenin kitap kurdu, her sabah burada ders çalışıyor."},
+  {"id": "l15", "img": "s13", "who": "anlatici", "text": "Emre ilk şutunu atıyor... ve topu ıskalıyor."},
+  {"id": "l16", "img": "s14", "who": "dede", "text": "Futbolcular da düşer evlat. Önemli olan, kalkmak."},
+  {"id": "l16b", "img": "s14", "who": "emre", "text": "Kalkıyorum dede. Ama bir dakika daha yatayım."},
+  {"id": "l17", "img": "s15", "who": "anlatici", "text": "Akşam. Emre hayatında ilk kez cipsi çöpe atıyor."},
+  {"id": "l18", "img": "s15", "who": "emre", "text": "Elveda dostum. Seni hiç unutmayacağım."},
+  {"id": "l19", "img": "s16", "who": "anlatici", "text": "Bacakları ağrıyor. Ama defterine tek bir şey yazıyor: yirmi dokuz gün."},
+  {"id": "l20", "img": "s17", "who": "anlatici", "text": "Tam uyuyacakken telefonuna bir mesaj geliyor... Elif yazmış."},
+  {"id": "l20b", "img": "s17", "who": "emre", "text": "Yarın sahada mısın, diyor... Dede! Yarın sabah beşte kalkıyoruz!"},
+  {"id": "l21", "img": "cta", "who": "anlatici", "text": "Peki Emre yarın ne yapsın? Sabah koşusu mu, yoksa sahada top mu? Karar senin! Yorumlara tek kelime yaz: KOŞU ya da TOP."}
+ ]
+}
