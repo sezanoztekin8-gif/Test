@@ -6,7 +6,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, '..', '..', '..'))
 SFX = os.path.join(ROOT, '.claude/skills/editing-videos/library/sfx')
 MUSIC = os.path.join(ROOT, '.claude/skills/short-editing/assets/music')
-TOTAL = 173.8
+TOTAL = None
 S = json.load(open(os.path.join(HERE, 'script.json')))
 TTS = os.path.join(HERE, 'assets', 'tts')
 
@@ -18,21 +18,20 @@ lines = S['lines']
 for l in lines:
     l['dur'] = dur(os.path.join(TTS, l['id'] + '.mp3'))
     l['al'] = json.load(open(os.path.join(TTS, l['id'] + '.json')))
-TITLE_AFTER, TITLE_LEN, TAIL = 'l03', 5.2, 6.0
+TITLE_AFTER, TITLE_LEN, TAIL = 'l03', 4.2, 9.0
 pre = {}
 for i, l in enumerate(lines):
     new_scene = i == 0 or l['img'] != lines[i - 1]['img']
-    pre[l['id']] = 0.8 if i == 0 else (1.3 if new_scene else 0.5)
+    pre[l['id']] = 0.5 if i == 0 else (0.75 if new_scene else 0.3)
 pre['l04'] += TITLE_LEN
-fixed = sum(pre.values()) + sum(l['dur'] for l in lines) + TAIL
-slack = TOTAL - fixed
-grow = [l['id'] for i, l in enumerate(lines) if i > 0 and l['img'] != lines[i - 1]['img'] and l['id'] != 'l04']
-for k in grow:
-    pre[k] += slack / len(grow)
+TOTAL = round(sum(pre.values()) + sum(l['dur'] for l in lines) + TAIL, 2)
 t = 0
 for l in lines:
     t += pre[l['id']]; l['start'] = round(t, 3); t += l['dur']
 L = {l['id']: l for l in lines}
+def wt(lid, word):
+    l = L[lid]; al = l['al']; chars = al['characters']; txt = ''.join(chars).lower(); i = txt.find(word.lower())
+    return l['start'] + (al['character_start_times_seconds'][i] if i >= 0 else 0)
 TS = L[TITLE_AFTER]['start'] + L[TITLE_AFTER]['dur'] + 0.5
 TE = TS + TITLE_LEN - 0.4
 
@@ -40,7 +39,7 @@ TE = TS + TITLE_LEN - 0.4
 scenes = []
 for i, l in enumerate(lines):
     if i == 0 or l['img'] != lines[i - 1]['img']:
-        scenes.append({'img': l['img'], 'start': 0.0 if i == 0 else round(l['start'] - min(0.9, pre[l['id']] * 0.6), 3), 'first': l['id']})
+        scenes.append({'img': l['img'], 'start': 0.0 if i == 0 else round(l['start'] - 0.45, 3), 'first': l['id']})
 for k, s in enumerate(scenes):
     s['end'] = scenes[k + 1]['start'] if k + 1 < len(scenes) else TOTAL
 # the title card sits between scene s02 and s04
@@ -58,9 +57,9 @@ def fr(sel, props, t): a(f'tl.from({json.dumps(sel)}, {props}, {round(t, 3)});')
 def st(sel, props, t): a(f'tl.set({json.dumps(sel)}, {props}, {round(t, 3)});')
 
 MOVES = [  # Ken Burns: (from scale, to scale, from x, to x, from y, to y)
-    (1.04, 1.16, 0, -30, 0, -40), (1.16, 1.04, -20, 20, -30, 10), (1.05, 1.18, 30, -10, 20, -20),
-    (1.12, 1.02, 0, 0, -40, 20), (1.03, 1.15, -30, 30, 0, -30)]
-PUNCH = {'l11': 1.0, 'l13': 0.6, 'l20b': 1.6}   # quick comic zoom-ins at line start (+offset)
+    (1.05, 1.22, 0, -40, 0, -60), (1.22, 1.06, -40, 30, -50, 10), (1.06, 1.24, 40, -20, 30, -40),
+    (1.2, 1.05, 0, 0, -60, 30), (1.05, 1.2, -45, 40, 0, -45)]
+PUNCH = {'l11': ('kanepe', 0), 'l13': ('merdiven', 0), 'l20b': ('dede!', 0)}
 scene_html = []
 for k, s in enumerate(scenes):
     sid = f'sc{k}'
@@ -68,29 +67,21 @@ for k, s in enumerate(scenes):
         bg = 'scenes/s16.jpg'
     else:
         bg = f"scenes/{s['img']}.jpg"
-    scene_html.append(f'<div class="scene clip" id="{sid}" data-start="{s["start"]}" data-duration="{round(s["end"] - s["start"] + (0.5 if k + 1 < len(scenes) else 0), 3)}" data-track-index="{1 + k % 2}" style="z-index:{10 + k}{';opacity:0' if k > 0 and k % 3 != 1 else ''}">'
+    scene_html.append(f'<div class="scene clip" id="{sid}" data-start="{s["start"]}" data-duration="{round(s["end"] - s["start"] + (0.5 if k + 1 < len(scenes) else 0), 3)}" data-track-index="{1 + k % 2}" style="z-index:{10 + k}{';opacity:0' if k > 0 else ''}">'
                       f'<div class="kb" id="{sid}-kb"><img src="{bg}" alt=""></div></div>')
     f0, f1, x0, x1, y0, y1 = MOVES[k % len(MOVES)]
     d = s['end'] - s['start'] + 0.5
     st(f'#{sid}-kb', f'{{scale:{f0}, x:{x0}, y:{y0}, transformOrigin:"50% 50%"}}', s['start'])
     to(f'#{sid}-kb', f'{{scale:{f1}, x:{x1}, y:{y1}, duration:{round(d, 2)}, ease:"sine.inOut"}}', s['start'])
     if k > 0:   # transition in: soft zoom-fade over the previous scene
-        kind = k % 3
-        if kind == 0:
-            to(f'#{sid}', '{opacity:1, duration:0.5, ease:"power1.inOut"}', s['start'])
-        elif kind == 1:
-            fr(f'#{sid}', '{clipPath:"inset(0% 0% 100% 0%)", duration:0.55, ease:"power3.inOut"}', s['start'])
-        else:
-            st(f'#{sid}', '{scale:1.12}', s['start'])
-            to(f'#{sid}', '{opacity:1, scale:1, duration:0.5, ease:"power2.out"}', s['start'])
-            to('#whiteflash', '{opacity:0.35, duration:0.08}', s['start'])
-            to('#whiteflash', '{opacity:0, duration:0.35}', s['start'] + 0.08)
-for lid, off in PUNCH.items():
-    sc = next(k for k, s in enumerate(scenes) if s['start'] <= L[lid]['start'] < s['end'])
-    to(f'#sc{sc}', '{scale:1.12, duration:0.18, ease:"power4.out"}', L[lid]['start'] + off)
-    to(f'#sc{sc}', '{scale:1, duration:0.9, ease:"power2.inOut"}', L[lid]['start'] + off + 0.9)
+        to(f'#{sid}', '{opacity:1, duration:0.6, ease:"sine.inOut"}', s['start'])
+for lid, (wd, _) in PUNCH.items():
+    tp = wt(lid, wd)
+    sc = next(k for k, s in enumerate(scenes) if s['start'] <= tp < s['end'])
+    to(f'#sc{sc}', '{scale:1.12, duration:0.18, ease:"power4.out"}', tp)
+    to(f'#sc{sc}', '{scale:1, duration:0.9, ease:"power2.inOut"}', tp + 0.9)
 # the miss: shake
-ms = L['l15']['start'] + 1.6
+ms = wt('l15', 'ıskal')
 to('#stage', '{x:14, duration:0.05, yoyo:true, repeat:9, ease:"none"}', ms)
 to('#stage', '{x:0, duration:0.05}', ms + 0.55)
 
@@ -107,11 +98,11 @@ fr('#t-sub', '{scale:0.3, opacity:0, duration:0.6, ease:"back.out(3)"}', TS + 1.
 to('#title', '{clipPath:"circle(0% at 50% 50%)", duration:0.45, ease:"power3.in"}', TE - 0.45)
 
 # phone message bubble on s17
-mt = L['l20']['start'] + 1.6
+mt = wt('l20', 'elif')
 fr('#msg', '{y:-220, opacity:0, duration:0.55, ease:"back.out(2)"}', mt)
 to('#msg', '{y:-220, opacity:0, duration:0.4, ease:"power2.in"}', L['l21']['start'] - 1.2)
 # notebook stamp on s16
-fr('#note', '{scale:2.2, rotation:-20, opacity:0, duration:0.45, ease:"back.out(2)"}', L['l19']['start'] + 3.0)
+fr('#note', '{scale:2.2, rotation:-20, opacity:0, duration:0.45, ease:"back.out(2)"}', wt('l19', 'yirmi'))
 to('#note', '{opacity:0, duration:0.3}', L['l20']['start'] - 1.0)
 
 # call to action
@@ -134,8 +125,11 @@ COL = {'anlatici': '#9fd3ff', 'emre': '#ff6b6b', 'dede': '#ffd166', 'burak': '#0
 NAME = {'anlatici': 'ANLATICI', 'emre': 'EMRE', 'dede': 'HÜSNÜ DEDE', 'burak': 'BURAK'}
 caps, cid = [], 0
 for l in lines:
-    al = l['al']; words, cur = [], ''
+    al = l['al']; words, cur, intag = [], '', False
     for ch, s, e in zip(al['characters'], al['character_start_times_seconds'], al['character_end_times_seconds']):
+        if ch == '[': intag = True; continue
+        if ch == ']': intag = False; continue
+        if intag: continue
         if ch == ' ':
             if cur: words.append((cur, cs, pe)); cur = ''
             continue
@@ -264,9 +258,9 @@ sfx = [(L['l04']['start'] + o, 'bell-ding', 0.35) for o in (0.6, 1.6, 2.6, 3.6)]
     (TS + 0.05, 'stinger-intro-bells', 0.55), (TE - 0.6, 'whoosh-reverse-1s', 0.45),
     (L['l05']['start'] - 0.9, whistle, 0.8), (L['l08']['start'] - 0.3, 'riser-short-2s', 0.4),
     (L['l09']['start'] + 0.2, 'stinger-sax-short', 0.4), (L['l11']['start'] + 1.0, 'stinger-hit-short', 0.45),
-    (L['l13']['start'] + 0.6, 'impact-soft-1', 0.5), (L['l15']['start'] + 1.4, 'whoosh-short', 0.6),
-    (L['l15']['start'] + 1.65, 'impact-soft-2', 0.8), (L['l17']['start'] + 1.6, 'impact-wood-light', 0.7),
-    (L['l19']['start'] + 3.0, 'stinger-hit-short', 0.4), (L['l20']['start'] + 1.5, 'pop-2', 0.8),
+    (L['l13']['start'] + 0.6, 'impact-soft-1', 0.5), (ms - 0.25, 'whoosh-short', 0.6),
+    (ms, 'impact-soft-2', 0.8), (wt('l17', 'çöpe'), 'paper-crumple', 0.7), (wt('l17', 'çöpe') + 0.3, 'impact-wood-light', 0.7),
+    (wt('l19', 'yirmi'), 'stinger-hit-short', 0.4), (mt - 0.1, 'notification-2', 0.8),
     (L['l20b']['start'] + 1.6, 'stinger-energetic-hit', 0.5), (L['l21']['start'] + 3.4, 'pop-2', 0.7),
     (L['l21']['start'] + 4.0, 'pop-2', 0.7), (L['l21']['start'] + L['l21']['dur'] + 0.4, 'stinger-win-vibraphone', 0.5)]
 for s in scenes[1:]:
@@ -285,12 +279,32 @@ for k, (t0, name, vol) in enumerate(sfx):
     i = add(name if name.endswith('.wav') and os.path.isabs(name) else os.path.join(SFX, name + '.wav'))
     f.append(f'[{i}]aresample=48000,volume={vol},adelay={int(t0 * 1000)}[s{k}]'); fx.append(f'[s{k}]')
 f.append(f'{"".join(fx)}amix=inputs={len(fx)}:normalize=0,apad,atrim=0:{TOTAL}[fx]')
-cut = L['l08']['start'] - 0.5
-m1, m2 = add(os.path.join(MUSIC, 'arpege.mp3')), add(os.path.join(MUSIC, 'neon.mp3'))
-f.append(f'[{m1}]aresample=48000,atrim=0:{cut + 1.5},afade=t=in:d=2,afade=t=out:st={cut - 0.5}:d=2,volume=0.28[mu1]')
-f.append(f'[{m2}]aresample=48000,atrim=0:{TOTAL - cut},afade=t=in:d=1,afade=t=out:st={TOTAL - cut - 2.5}:d=2.5,volume=0.28,adelay={int(cut * 1000)}[mu2]')
-f.append(f'[mu1][mu2]amix=inputs=2:normalize=0,apad,atrim=0:{TOTAL}[mus]')
-f.append('[mus][key]sidechaincompress=threshold=0.03:ratio=6:attack=20:release=350[duck]')
+LIB = os.path.join(ROOT, '.claude/skills/editing-videos/library')
+sec = [  # (start, end, track, volume)
+    (0, L['l08']['start'] - 0.8, 'music/music-lofi-tea.mp3', 0.55),
+    (L['l08']['start'] - 1.2, L['l16']['start'] - 0.6, 'music/music-energetic-jazz-funk.mp3', 0.5),
+    (L['l16']['start'] - 1.0, CT - 0.2, 'music/music-ambient-piano.mp3', 0.6),
+    (CT - 0.6, TOTAL, 'music/music-happy-clap-17s.mp3', 0.5)]
+mus = []
+for k, (a0, a1, trk, vol) in enumerate(sec):
+    i = add(os.path.join(LIB, trk)); d0 = a1 - a0
+    f.append(f'[{i}]aresample=48000,aloop=loop=-1:size=2e9,atrim=0:{d0:.2f},afade=t=in:d=1.2,afade=t=out:st={max(0, d0 - 1.2):.2f}:d=1.2,volume={vol},adelay={int(a0 * 1000)}[mu{k}]')
+    mus.append(f'[mu{k}]')
+amb = []
+INDOOR = {'s01', 's02', 's04', 's05', 's06', 's15', 's16', 's17'}
+PITCH = {'s10', 's11', 's12', 's13', 's14'}
+for k, sc in enumerate(scenes):
+    src = None
+    if sc['img'] in INDOOR: src, vol = 'sfx/ambience-room-tone-30s.wav', 0.5
+    elif sc['img'] in PITCH: src, vol = 'sfx/ambience-office-busy-45s.wav', 0.12
+    if not src: continue
+    i = add(os.path.join(LIB, src)); d0 = sc['end'] - sc['start'] + 0.4
+    f.append(f'[{i}]aresample=48000,aloop=loop=-1:size=2e9,atrim=0:{d0:.2f},afade=t=in:d=0.4,afade=t=out:st={max(0, d0 - 0.4):.2f}:d=0.4,volume={vol},adelay={int(sc["start"] * 1000)}[am{k}]')
+    amb.append(f'[am{k}]')
+f.append(f'{"".join(mus)}amix=inputs={len(mus)}:normalize=0,apad,atrim=0:{TOTAL}[mus]')
+f.append('[mus][key]sidechaincompress=threshold=0.06:ratio=3:attack=30:release=400[duckm]')
+f.append(f'{"".join(amb)}amix=inputs={len(amb)}:normalize=0,apad,atrim=0:{TOTAL}[ambs]')
+f.append('[duckm][ambs]amix=inputs=2:normalize=0[duck]')
 f.append(f'[vox][fx][duck]amix=inputs=3:normalize=0,afade=t=out:st={TOTAL - 1.0}:d=1.0,loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000,atrim=0:{TOTAL}[out]')
 out = os.path.join(HERE, 'assets', 'master.m4a')
 subprocess.run(['ffmpeg', '-v', 'error', '-y'] + inputs + ['-filter_complex', ';'.join(f), '-map', '[out]', '-c:a', 'aac', '-b:a', '192k', '-ac', '2', out], check=True)

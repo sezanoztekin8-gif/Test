@@ -1,112 +1,112 @@
 {
- "total": 173.8,
+ "total": 152.47,
  "title": [
-  22.238367,
-  27.038367
+  20.42702,
+  24.22702
  ],
- "cta": 158.606,
+ "cta": 133.699,
  "scenes": [
   {
    "img": "s01",
    "start": 0.0,
    "first": "l01",
-   "end": 8.449
+   "end": 6.442
   },
   {
    "img": "s02",
-   "start": 8.449,
+   "start": 6.442,
    "first": "l02",
-   "end": 27.038
+   "end": 24.227
   },
   {
    "img": "s04",
-   "start": 27.038,
+   "start": 24.227,
    "first": "l04",
-   "end": 34.345
+   "end": 30.976
   },
   {
    "img": "s05",
-   "start": 34.345,
+   "start": 30.976,
    "first": "l05",
-   "end": 42.842
+   "end": 37.212
   },
   {
    "img": "s06",
-   "start": 42.842,
+   "start": 37.212,
    "first": "l06",
-   "end": 55.969
+   "end": 49.167
   },
   {
    "img": "s07",
-   "start": 55.969,
+   "start": 49.167,
    "first": "l08",
-   "end": 62.532
+   "end": 54.828
   },
   {
    "img": "s08",
-   "start": 62.532,
+   "start": 54.828,
    "first": "l09",
-   "end": 73.252
+   "end": 63.558
   },
   {
    "img": "s09",
-   "start": 73.252,
+   "start": 63.558,
    "first": "l11",
-   "end": 85.723
+   "end": 75.162
   },
   {
    "img": "s10",
-   "start": 85.723,
+   "start": 75.162,
    "first": "l12",
-   "end": 91.059
+   "end": 78.498
   },
   {
    "img": "s11",
-   "start": 91.059,
+   "start": 78.498,
    "first": "l13",
-   "end": 102.876
+   "end": 87.385
   },
   {
    "img": "s12",
-   "start": 102.876,
+   "start": 87.385,
    "first": "l14",
-   "end": 112.496
+   "end": 95.292
   },
   {
    "img": "s13",
-   "start": 112.496,
+   "start": 95.292,
    "first": "l15",
-   "end": 118.432
+   "end": 99.203
   },
   {
    "img": "s14",
-   "start": 118.432,
+   "start": 99.203,
    "first": "l16",
-   "end": 128.969
+   "end": 107.855
   },
   {
    "img": "s15",
-   "start": 128.969,
+   "start": 107.855,
    "first": "l17",
-   "end": 138.697
+   "end": 116.741
   },
   {
    "img": "s16",
-   "start": 138.697,
+   "start": 116.741,
    "first": "l19",
-   "end": 146.122
+   "end": 123.447
   },
   {
    "img": "s17",
-   "start": 146.122,
+   "start": 123.447,
    "first": "l20",
-   "end": 158.306
+   "end": 133.849
   },
   {
    "img": "cta",
-   "start": 158.306,
+   "start": 133.849,
    "first": "l21",
-   "end": 173.8
+   "end": 152.47
   }
  ],
  "lines": [
@@ -114,216 +114,216 @@
    "id": "l01",
    "who": "anlatici",
    "img": "s01",
-   "start": 0.8,
-   "dur": 5.564082,
+   "start": 0.5,
+   "dur": 5.642449,
    "text": "Gün bir! Seçmelere otuz gün kaldı. Ve Emre... henüz koltuktan bile kalkmadı."
   },
   {
    "id": "l02",
    "who": "anlatici",
    "img": "s02",
-   "start": 9.349,
-   "dur": 4.91102,
+   "start": 6.892,
+   "dur": 5.720816,
    "text": "Dün gece bir ilan gördü: mahallenin takımı, otuz gün sonra yeni oyuncu seçecek."
   },
   {
    "id": "l02b",
    "who": "anlatici",
    "img": "s02",
-   "start": 14.76,
-   "dur": 3.84,
+   "start": 12.913,
+   "dur": 4.362449,
    "text": "Emre'nin futbol tecrübesi mi? Bilgisayarda üç kere şampiyon olmak."
   },
   {
    "id": "l03",
    "who": "emre",
    "img": "s02",
-   "start": 19.1,
-   "dur": 2.638367,
+   "start": 17.576,
+   "dur": 2.35102,
    "text": "Otuz gün mü? Yeter de artar bile!"
   },
   {
    "id": "l04",
    "who": "anlatici",
    "img": "s04",
-   "start": 28.238,
-   "dur": 4.022857,
+   "start": 24.877,
+   "dur": 5.799184,
    "text": "Sabah altı. Alarm çalıyor. Emre alarmı tam dört kez erteliyor."
   },
   {
    "id": "l05",
    "who": "dede",
    "img": "s05",
-   "start": 35.245,
-   "dur": 5.511837,
+   "start": 31.426,
+   "dur": 5.485714,
    "text": "Kalk bakalım şampiyon! Ben senin yaşındayken sabah koşusunu çoktan bitirmiştim!"
   },
   {
    "id": "l06",
    "who": "emre",
    "img": "s06",
-   "start": 43.742,
-   "dur": 3.422041,
+   "start": 37.662,
+   "dur": 2.925714,
    "text": "Dede... Forma mı küçülmüş, ben mi büyümüşüm?"
   },
   {
    "id": "l07",
    "who": "dede",
    "img": "s06",
-   "start": 47.664,
-   "dur": 2.76898,
+   "start": 40.887,
+   "dur": 4.675918,
    "text": "Sen büyümüşsün evladım. Ama yana doğru."
   },
   {
    "id": "l07b",
    "who": "emre",
    "img": "s06",
-   "start": 50.933,
-   "dur": 2.951837,
+   "start": 45.863,
+   "dur": 3.004082,
    "text": "Tamam, tamam! Bugün başlıyoruz. Yeni Emre geliyor!"
   },
   {
    "id": "l08",
    "who": "anlatici",
    "img": "s07",
-   "start": 56.869,
-   "dur": 3.578776,
+   "start": 49.617,
+   "dur": 4.91102,
    "text": "Ve ilk antrenman başlıyor. Hedef: mahalleyi bir tur koşmak."
   },
   {
    "id": "l09",
    "who": "anlatici",
    "img": "s08",
-   "start": 63.432,
-   "dur": 4.780408,
+   "start": 55.278,
+   "dur": 4.675918,
    "text": "İki yüzüncü metrede Emre'nin ciğerleri pes ediyor. Teyzeler bile onu geçiyor."
   },
   {
    "id": "l10",
    "who": "emre",
    "img": "s08",
-   "start": 68.713,
-   "dur": 2.45551,
+   "start": 60.254,
+   "dur": 3.004082,
    "text": "Dede... Ben galiba ölüyorum."
   },
   {
    "id": "l11",
    "who": "dede",
    "img": "s09",
-   "start": 74.152,
-   "dur": 3.892245,
+   "start": 64.008,
+   "dur": 4.675918,
    "text": "Daha fırına bile varmadık! Kanepe olmuşsun sen, kanepe!"
   },
   {
    "id": "l11b",
    "who": "dede",
    "img": "s09",
-   "start": 78.545,
-   "dur": 5.093878,
+   "start": 68.984,
+   "dur": 5.877551,
    "text": "Ben senin yaşında bu sokağı on tur koşardım. Hem de lastik ayakkabıyla!"
   },
   {
    "id": "l12",
    "who": "anlatici",
    "img": "s10",
-   "start": 86.623,
-   "dur": 2.35102,
+   "start": 75.612,
+   "dur": 2.586122,
    "text": "Sahada ise mahallenin yıldızı Burak var."
   },
   {
    "id": "l13",
    "who": "burak",
    "img": "s11",
-   "start": 91.959,
-   "dur": 5.877551,
+   "start": 78.948,
+   "dur": 5.067755,
    "text": "Emre? Sen mi seçmelere gireceksin? Önce merdivenleri çıkmayı dene, kanka."
   },
   {
    "id": "l13b",
    "who": "emre",
    "img": "s11",
-   "start": 98.336,
-   "dur": 2.45551,
+   "start": 84.316,
+   "dur": 2.76898,
    "text": "Bak sen... Otuz gün sonra görürüz."
   },
   {
    "id": "l14",
    "who": "anlatici",
    "img": "s12",
-   "start": 103.776,
-   "dur": 6.635102,
+   "start": 87.835,
+   "dur": 7.157551,
    "text": "Ama tribünde biri bu konuşmayı duydu. Elif. Mahallenin kitap kurdu, her sabah burada ders çalışıyor."
   },
   {
    "id": "l15",
    "who": "anlatici",
    "img": "s13",
-   "start": 113.396,
-   "dur": 2.951837,
+   "start": 95.742,
+   "dur": 3.160816,
    "text": "Emre ilk şutunu atıyor... ve topu ıskalıyor."
   },
   {
    "id": "l16",
    "who": "dede",
    "img": "s14",
-   "start": 119.332,
-   "dur": 4.127347,
+   "start": 99.653,
+   "dur": 4.362449,
    "text": "Futbolcular da düşer evlat. Önemli olan, kalkmak."
   },
   {
    "id": "l16b",
    "who": "emre",
    "img": "s14",
-   "start": 123.959,
-   "dur": 2.925714,
+   "start": 104.316,
+   "dur": 3.239184,
    "text": "Kalkıyorum dede. Ama bir dakika daha yatayım."
   },
   {
    "id": "l17",
    "who": "anlatici",
    "img": "s15",
-   "start": 129.869,
-   "dur": 3.474286,
+   "start": 108.305,
+   "dur": 4.519184,
    "text": "Akşam. Emre hayatında ilk kez cipsi çöpe atıyor."
   },
   {
    "id": "l18",
    "who": "emre",
    "img": "s15",
-   "start": 133.844,
-   "dur": 2.76898,
+   "start": 113.124,
+   "dur": 3.317551,
    "text": "Elveda dostum. Seni hiç unutmayacağım."
   },
   {
    "id": "l19",
    "who": "anlatici",
    "img": "s16",
-   "start": 139.597,
-   "dur": 4.440816,
+   "start": 117.191,
+   "dur": 5.955918,
    "text": "Bacakları ağrıyor. Ama defterine tek bir şey yazıyor: yirmi dokuz gün."
   },
   {
    "id": "l20",
    "who": "anlatici",
    "img": "s17",
-   "start": 147.022,
-   "dur": 3.604898,
+   "start": 123.897,
+   "dur": 4.675918,
    "text": "Tam uyuyacakken telefonuna bir mesaj geliyor... Elif yazmış."
   },
   {
    "id": "l20b",
    "who": "emre",
    "img": "s17",
-   "start": 151.127,
-   "dur": 5.093878,
+   "start": 128.873,
+   "dur": 4.675918,
    "text": "Yarın sahada mısın, diyor... Dede! Yarın sabah beşte kalkıyoruz!"
   },
   {
    "id": "l21",
    "who": "anlatici",
    "img": "cta",
-   "start": 159.206,
-   "dur": 8.594286,
+   "start": 134.299,
+   "dur": 9.16898,
    "text": "Peki Emre yarın ne yapsın? Sabah koşusu mu, yoksa sahada top mu? Karar senin! Yorumlara tek kelime yaz: KOŞU ya da TOP."
   }
  ]
