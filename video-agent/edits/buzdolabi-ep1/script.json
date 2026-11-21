@@ -1,0 +1,200 @@
+{
+ "title": "Buzdolabındaki Hayat — Bölüm 1: Büyük Işık",
+ "voices": {
+  "anlatici": "nPczCjzI2devNBz1zQrb",
+  "kemal": "onwK4e9ZLuTAKqWW03F9",
+  "nuri": "pqHfZKP75CvOlQylNhV4",
+  "yeliz": "cgSgspJ2msm6clMCkdW9",
+  "arda": "bIHbv24MWmeRgasZH58o",
+  "kamil": "N2lVS1w4EtoT3dr4eOWO",
+  "yumurtalar": "FGY2WhTYpPnrIDTdsKH5"
+ },
+ "lines": [
+  {
+   "id": "l01",
+   "beat": "hook",
+   "who": "anlatici",
+   "text": "Bu buzdolabında herkes bir gün... götürülür."
+  },
+  {
+   "id": "l02",
+   "beat": "sosis",
+   "who": "kamil",
+   "text": "Sosis Sinan da gitti... Daha dün burada şakalaşıyorduk."
+  },
+  {
+   "id": "l03",
+   "beat": "title",
+   "who": "anlatici",
+   "text": "Buzdolabındaki Hayat. Birinci gün: Büyük Işık."
+  },
+  {
+   "id": "l04",
+   "beat": "tour",
+   "who": "anlatici",
+   "text": "En üstte dondurucu var. Dolapta ona Sibirya derler. Oraya giden, geri dönmez."
+  },
+  {
+   "id": "l05",
+   "beat": "tour",
+   "who": "anlatici",
+   "text": "Üst raf, zenginler mahallesi. Ortada sos sokağı. En altta da sebze çekmecesi."
+  },
+  {
+   "id": "l05b",
+   "beat": "tour",
+   "who": "anlatici",
+   "text": "Ve burada yaşayanlar, koca bir pembe dizinin içinde olduklarını bilmiyorlar."
+  },
+  {
+   "id": "l06",
+   "beat": "kemal",
+   "who": "kemal",
+   "text": "Sakin olun! Bu dolapta düzen benim. Ben yıllanmış kaşarım, kimse beni götüremez!"
+  },
+  {
+   "id": "l07",
+   "beat": "kemal",
+   "who": "kamil",
+   "text": "Geçen hafta Beyaz Peynir Bey de aynen böyle diyordu."
+  },
+  {
+   "id": "l08",
+   "beat": "kemal",
+   "who": "kemal",
+   "text": "Sus, Ketçap!"
+  },
+  {
+   "id": "l09",
+   "beat": "yeliz",
+   "who": "yeliz",
+   "text": "Üç gün! Kapağımda üç gün yazıyor! Hayatım gözümün önünden geçiyor!"
+  },
+  {
+   "id": "l10",
+   "beat": "yeliz",
+   "who": "anlatici",
+   "text": "Yoğurt Yeliz'in son kullanma tarihine tam üç gün var."
+  },
+  {
+   "id": "l11",
+   "beat": "yeliz",
+   "who": "yeliz",
+   "text": "Ben daha hiçbir şey görmedim! Bir kere bile kahvaltı sofrasına çıkmadım!"
+  },
+  {
+   "id": "l12",
+   "beat": "nuri",
+   "who": "nuri",
+   "text": "Sakin ol kızım. Ben bu dolaba geldiğimde, buzdolabı daha pembeydi."
+  },
+  {
+   "id": "l13",
+   "beat": "nuri",
+   "who": "yeliz",
+   "text": "Kaç yıldır buradasın Nuri Dede?"
+  },
+  {
+   "id": "l14",
+   "beat": "nuri",
+   "who": "nuri",
+   "text": "Kimse beni almaz evladım. Ben ölümsüzüm."
+  },
+  {
+   "id": "l15",
+   "beat": "nuri",
+   "who": "kamil",
+   "text": "Ya da kimse seni sevmiyor, dede."
+  },
+  {
+   "id": "l16",
+   "beat": "nuri",
+   "who": "nuri",
+   "text": "Duymadım."
+  },
+  {
+   "id": "l17",
+   "beat": "arda",
+   "who": "arda",
+   "text": "Selam millet. Organik. Eko. Tanesi yirmi lira."
+  },
+  {
+   "id": "l18",
+   "beat": "arda",
+   "who": "yumurtalar",
+   "text": "Yirmi lira mı?!"
+  },
+  {
+   "id": "l19",
+   "beat": "arda",
+   "who": "kemal",
+   "text": "Bir sebze... benim rafımda mı?"
+  },
+  {
+   "id": "l19b",
+   "beat": "arda",
+   "who": "yumurtalar",
+   "text": "Biz de yeni geldik ama bizi kimse sormuyor!"
+  },
+  {
+   "id": "l20",
+   "beat": "arda",
+   "who": "arda",
+   "text": "Sebze değilim kanka. Meyveyim. Araştır biraz."
+  },
+  {
+   "id": "l21",
+   "beat": "gossip",
+   "who": "kamil",
+   "text": "Duydunuz mu? Pazar sabahı kahvaltı varmış. Büyük kahvaltı!"
+  },
+  {
+   "id": "l22",
+   "beat": "gossip",
+   "who": "anlatici",
+   "text": "Dolapta herkes bilir: büyük kahvaltı, kimin gideceğine karar verilen gündür."
+  },
+  {
+   "id": "l23",
+   "beat": "gossip",
+   "who": "yeliz",
+   "text": "Beni seçsinler! Hayır, seçmesinler! Bilmiyorum!"
+  },
+  {
+   "id": "l23b",
+   "beat": "gossip",
+   "who": "arda",
+   "text": "Rahat olun. Kahvaltının yıldızı belli: avokado."
+  },
+  {
+   "id": "l23c",
+   "beat": "gossip",
+   "who": "kemal",
+   "text": "Göreceğiz bakalım, yeşil şey."
+  },
+  {
+   "id": "l23d",
+   "beat": "climax",
+   "who": "anlatici",
+   "text": "Ve o gece... kapı bir kez daha açıldı."
+  },
+  {
+   "id": "l24",
+   "beat": "climax",
+   "who": "kemal",
+   "text": "Hayır... Hayır! Ben yıllanmışım! Ben değerliyim!"
+  },
+  {
+   "id": "l25",
+   "beat": "climax",
+   "who": "nuri",
+   "text": "Hepimiz öyle dedik evlat."
+  },
+  {
+   "id": "l26",
+   "beat": "cta",
+   "who": "anlatici",
+   "text": "Kaşar Kemal'in kaderi senin elinde. Tost mu olsun, kurtulsun mu? Yorumlara tek kelime yaz: TOST ya da KURTAR. Yarın, ikinci gün."
+  }
+ ]
+}
