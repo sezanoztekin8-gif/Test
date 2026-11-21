@@ -1,0 +1,13 @@
+# Core (required)
+google-api-python-client>=2.100
+google-auth>=2.23
+google-auth-oauthlib>=1.2
+requests>=2.31
+tzdata  # Pacific-time quota day on Windows
+
+# Transcripts (strongly recommended)
+youtube-transcript-api>=1.0
+
+# Optional
+yt-dlp      # transcript fallback when youtube-transcript-api is blocked
+Pillow      # thumbnail dimension checks
