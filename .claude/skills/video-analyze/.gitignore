@@ -1,0 +1,19 @@
+# Local credentials — never commit
+.env
+.env.local
+*.env
+
+# Pipeline output
+out/
+frames/
+grids/
+*.mp4
+*.mp3
+manifest.json
+transcript.json
+
+# OS / editor cruft
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
