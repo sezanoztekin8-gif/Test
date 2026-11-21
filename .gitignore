@@ -20,3 +20,4 @@ tmp/
 archives/
 CLAUDE.local.md
 video-agent/edits/**/snapshots/
+video-agent/edits/**/output/
