@@ -10,19 +10,19 @@ TOTAL = 70.0
 
 # (image, start, end, ad_section, texts[(t_abs, text, kind)])   kind: hook | line | big | ad | brand | cta
 SC = [
-    ('c01', 0.0, 7.2, False, [(0.15, 'BU KAFENİN GİZLİ REKLAMINI YAPIYORUZ', 'hook'),
-                             (2.7, 'Sahibinin hiç haberi yok...', 'line'),
-                             (4.7, 'Video tutarsa kafeyi etiketleyin, haberi olsun!', 'line')]),
-    ('c03', 7.2, 13.6, False, [(7.6, 'Saat 15:00.', 'line'), (9.8, 'İçeride tek bir müşteri yok.', 'line')]),
-    ('c02', 13.6, 22.0, False, [(14.0, 'Bu Kemal Usta.', 'line'), (16.2, '28 yıldır her sabah 07:00\'de kapıyı açıyor.', 'line'),
-                               (19.2, 'Son haftalarda kimse uğramıyor.', 'line')]),
-    ('black', 22.0, 25.2, False, [(22.2, 'O zaman reklamını biz yapalım.', 'big')]),
-    ('c05', 25.2, 31.4, True, [(25.8, 'Her fincan, elde.', 'ad')]),
-    ('c06', 31.4, 37.6, True, [(32.0, 'Ev yapımı San Sebastian.', 'ad')]),
-    ('c07', 37.6, 44.2, True, [(38.2, 'Yağmurlu akşamların en sıcak köşesi.', 'ad')]),
-    ('c09', 44.2, 52.4, True, [(44.8, 'Kemal Usta seni bekliyor.', 'ad'), (47.6, 'KAHVE DURAĞI', 'brand')]),
-    ('c08', 52.4, 60.4, False, [(53.0, 'Hadi bu kafeyi birlikte dolduralım.', 'line'), (56.4, 'Bugün bir kahve için.', 'line')]),
-    ('cta', 60.4, TOTAL, False, []),
+    ('c01', 0.0, 9.6, False, [(0.15, 'BU KAFENİN GİZLİ REKLAMINI YAPIYORUZ', 'hook'),
+                             (3.2, 'Sahibinin hiç haberi yok...', 'line'),
+                             (5.7, 'Video tutarsa kafeyi etiketleyin, haberi olsun!', 'line')]),
+    ('c03', 9.6, 15.2, False, [(9.9, 'Saat 15:00.', 'line'), (12.4, 'İçeride tek bir müşteri yok.', 'line')]),
+    ('c02', 15.2, 25.3, False, [(15.5, 'Bu Kemal Usta.', 'line'), (17.6, '28 yıldır her sabah 07:00\'de kapıyı açıyor.', 'line'),
+                               (21.9, 'Son haftalarda kimse uğramıyor.', 'line')]),
+    ('black', 25.3, 28.6, False, [(25.5, 'O zaman reklamını biz yapalım.', 'big')]),
+    ('c05', 28.6, 33.6, True, [(29.2, 'Her fincan, elde.', 'ad')]),
+    ('c06', 33.6, 38.6, True, [(34.2, 'Ev yapımı San Sebastian.', 'ad')]),
+    ('c07', 38.6, 44.0, True, [(39.2, 'Yağmurlu akşamların en sıcak köşesi.', 'ad')]),
+    ('c09', 44.0, 51.0, True, [(44.6, 'Kemal Usta seni bekliyor.', 'ad'), (47.4, 'KAHVE DURAĞI', 'brand')]),
+    ('c08', 51.0, 58.6, False, [(51.5, 'Hadi bu kafeyi birlikte dolduralım.', 'line'), (54.6, 'Bugün bir kahve için.', 'line')]),
+    ('cta', 58.6, TOTAL, False, []),
 ]
 
 js = []
@@ -89,10 +89,10 @@ C0 = SC[9][1]
 to('#sc9-kb', '{filter:"blur(12px) brightness(0.4)", duration:0.6}', C0)
 st('#sc9-kb', '{filter:"blur(0px) brightness(1)"}', 0)
 fr('#cta-1', '{y:-60, opacity:0, duration:0.5, ease:"back.out(2)"}', C0 + 0.3)
-fr('#cta-2', '{scale:0.5, opacity:0, duration:0.5, ease:"back.out(3)"}', C0 + 2.6)
-fr('#cta-3', '{y:40, opacity:0, duration:0.45, ease:"power3.out"}', C0 + 4.4)
-fr('#cta-4', '{scale:0.3, opacity:0, duration:0.6, ease:"elastic.out(1,0.5)"}', C0 + 6.4)
-to('#cta-2', '{scale:1.06, duration:0.4, yoyo:true, repeat:5, ease:"sine.inOut"}', C0 + 3.3)
+fr('#cta-2', '{scale:0.5, opacity:0, duration:0.5, ease:"back.out(3)"}', C0 + 4.0)
+fr('#cta-3', '{y:40, opacity:0, duration:0.45, ease:"power3.out"}', C0 + 7.0)
+fr('#cta-4', '{scale:0.3, opacity:0, duration:0.6, ease:"elastic.out(1,0.5)"}', C0 + 9.6)
+to('#cta-2', '{scale:1.06, duration:0.4, yoyo:true, repeat:5, ease:"sine.inOut"}', C0 + 4.6)
 to('#fade', '{opacity:1, duration:0.9, ease:"power1.in"}', TOTAL - 0.95)
 
 LAT = "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD"
@@ -180,7 +180,34 @@ for img, s0, s1, ad, texts in SC:
 for c in [s for _, s, _, _, _ in SC[1:4]] + [SC[8][1], SC[9][1]]:
     ev.append((c - 0.15, 'whoosh-short', 0.4))
 ev += [(SC[3][1] - 2.0, 'riser-short-2s', 0.5), (SC[3][1], 'stinger-hit-short', 0.6), (SC[4][1] - 0.9, 'reverse-cymbal-2s', 0.5),
-       (SC[7][1] + 3.4, 'stinger-win-strings', 0.5), (SC[9][1] + 2.6, 'stinger-energetic-hit', 0.5), (SC[9][1] + 6.4, 'pop-2', 0.6)]
+       (SC[7][1] + 3.4, 'stinger-win-strings', 0.5), (SC[9][1] + 4.0, 'stinger-energetic-hit', 0.5), (SC[9][1] + 9.6, 'pop-2', 0.6)]
+# ---- voiceover (free Microsoft Edge Turkish neural voices)
+VO = []
+for img, s0, s1, ad, texts in SC:
+    for t0, txt, kind in texts:
+        if kind == 'brand': continue
+        VO.append((t0 + 0.1, txt, 'tr-TR-EmelNeural' if ad else 'tr-TR-AhmetNeural', '+5%' if ad else '+18%'))
+C0 = SC[9][1]
+VO += [(C0 + 0.3, "Kemal Usta'yı etiketleyin, bu video ona ulaşsın!", 'tr-TR-AhmetNeural', '+18%'),
+       (C0 + 4.1, 'Yarın kimin gizli reklamını yapalım?', 'tr-TR-AhmetNeural', '+18%'),
+       (C0 + 7.1, 'Mahallendeki kafeyi yorumlara yaz!', 'tr-TR-AhmetNeural', '+18%')]
+VO.sort()
+vdir = os.path.join(HERE, 'assets', 'vo'); os.makedirs(vdir, exist_ok=True)
+proxy = os.environ.get('HTTPS_PROXY') or os.environ.get('https_proxy')
+def dur(p): return float(subprocess.check_output(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', p]))
+vox = []
+for k, (t0, txt, voice, rate) in enumerate(VO):
+    mp = os.path.join(vdir, f'{k:02d}.mp3')
+    if not os.path.exists(mp) or os.path.getsize(mp) == 0:
+        cmd = ['edge-tts', '--voice', voice, f'--rate={rate}', '--text', txt.replace('...', '.'), '--write-media', mp]
+        if proxy: cmd[1:1] = ['--proxy', proxy]
+        subprocess.run(cmd, check=True, capture_output=True)
+    slot = (VO[k + 1][0] if k + 1 < len(VO) else TOTAL - 0.5) - t0 - 0.15
+    d = dur(mp); tempo = min(1.35, max(1.0, d / slot))
+    i = add(mp)
+    f.append(f'[{i}]aresample=48000,atempo={tempo:.3f},volume=1.6,adelay={int(t0 * 1000)}[v{k}]'); vox.append(f'[v{k}]')
+    if tempo > 1.0: print(f'vo {k} sped up x{tempo:.2f}: {txt[:40]}')
+f.append(f'{"".join(vox)}amix=inputs={len(vox)}:normalize=0,apad,atrim=0:{TOTAL},asplit=2[vox][key]')
 fx = []
 for k, (t0, n, v) in enumerate(ev):
     i = add(sfx(n)); f.append(f'[{i}]aresample=48000,volume={v},adelay={int(max(0, t0) * 1000)}[s{k}]'); fx.append(f'[s{k}]')
@@ -194,7 +221,9 @@ for k, (a0, a1, p, vol) in enumerate(secs):
     mus.append(f'[m{k}]')
 i = add(os.path.join(LIB, 'sfx', 'ambience-room-tone-30s.wav'))
 f.append(f'[{i}]aresample=48000,aloop=loop=-1:size=2e9,atrim=0:{SC[3][1] - SC[1][1]:.2f},volume=0.4,adelay={int(SC[1][1] * 1000)}[amb]')
-f.append(f'{"".join(mus)}[fx][amb]amix=inputs={len(mus) + 2}:normalize=0,apad,atrim=0:{TOTAL},afade=t=out:st={TOTAL - 1.0}:d=1.0,loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[out]')
+f.append(f'{"".join(mus)}amix=inputs={len(mus)}:normalize=0,apad,atrim=0:{TOTAL}[mus]')
+f.append('[mus][key]sidechaincompress=threshold=0.05:ratio=4:attack=25:release=350[duck]')
+f.append(f'[vox][duck][fx][amb]amix=inputs=4:normalize=0,apad,atrim=0:{TOTAL},afade=t=out:st={TOTAL - 1.0}:d=1.0,loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000[out]')
 out = os.path.join(HERE, 'assets', 'master.m4a')
 subprocess.run(['ffmpeg', '-v', 'error', '-y'] + inputs + ['-filter_complex', ';'.join(f), '-map', '[out]', '-c:a', 'aac', '-b:a', '192k', '-ac', '2', out], check=True)
 print('wrote', out)
