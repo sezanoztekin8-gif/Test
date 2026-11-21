@@ -10,3 +10,12 @@ video-agent/.env
 .claude/skills/short-editing/assets/icons/*.png
 .claude/skills/short-editing/assets/icons/glyph/
 .claude/skills/short-editing/assets/music/*.mp3
+# God Mode kit (claude-video-editing-god-mode): local inputs, renders and keys
+node_modules/
+.env
+raw-media/
+video-projects/
+renders/
+tmp/
+archives/
+CLAUDE.local.md
