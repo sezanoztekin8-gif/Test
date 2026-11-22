@@ -45,7 +45,7 @@ def face(cx, cy, r, who, expr, mid):
     else:
         lip = f'<path d="M{cx - mw * 0.6:.0f} {my:.0f} L{cx + mw * 0.6:.0f} {my:.0f}" stroke="{INK}" stroke-width="5" stroke-linecap="round"/>'
     mouth_ry = r * (0.16 if expr == 'shock' else 0.12)
-    mouth = (f'<g class="lips">{lip}</g><ellipse class="mouth m-{who}{' open' if expr == 'shock' else ''}" id="{mid}" cx="{cx:.0f}" cy="{my + 4:.0f}" rx="{mw * 0.62:.0f}" '
+    mouth = (f'<g class="lips">{lip}</g><ellipse class="mouth m-{who}{(" open" if expr == "shock" else "")}" id="{mid}" cx="{cx:.0f}" cy="{my + 4:.0f}" rx="{mw * 0.62:.0f}" '
              f'ry="{mouth_ry:.0f}" fill="#7a2f3a"/>')
     cheeks = ''
     if c['female'] or who == 'ali':
