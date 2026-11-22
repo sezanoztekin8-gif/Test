@@ -173,7 +173,7 @@
    "who": "defne",
    "inner": true,
    "ex": 0.5,
-   "text": "Defterin son sayfasında bir hesap dökümü var. Maaşın tamamı, her ay."
+   "text": "Defterin son sayfasında bir rakam var. Kenan'ın hesabındaki paranın yarısı."
   },
   {
    "id": "l22",
@@ -181,7 +181,7 @@
    "who": "defne",
    "inner": true,
    "ex": 0.5,
-   "text": "Rakamlar yalan söylemiyor. Ama bir kalem eksik. Onu bulacağım."
+   "text": "Eksik kalem bir kredi kartı. Bu evde kimsenin bilmediği bir kart."
   }
  ]
 }
