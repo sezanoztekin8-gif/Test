@@ -50,7 +50,7 @@ TOTAL = 100.0
 TE = TS + TITLE_LEN
 
 # scenes (table + turn share one kitchen; the camera does the turn)
-SC = [('bedroom', 'l01'), ('mirror', 'l03'), ('door', 'l05'), ('kitchen', 'l08'), ('night', 'l19'), ('diary', 'l21')]
+SC = [('bedroom', 'l01'), ('phone', 'l03'), ('door', 'l05'), ('kitchen', 'l08'), ('salon', 'l13'), ('night', 'l19'), ('diary', 'l21')]
 scenes = []
 for k, (name, first) in enumerate(SC):
     st0 = 0.0 if k == 0 else (TE if name == 'door' else L[first]['start'] - 0.55)
@@ -65,13 +65,17 @@ for l in lines:
 PEOPLE = {
     'bedroom': [('nermin', 850, 1640, 0.92, [('l01', 'angry', 'down')], False),
                 ('zehra', 420, 1800, 1.0, [('l01', 'shock', 'head'), ('l02', 'sad', 'down')], False)],
-    'mirror': [('zehra', 540, 1500, 1.32, [('l03', 'shock', 'down'), ('l04', 'sad', 'down')], False)],
+    'phone': [],
     'door': [('ali', 720, 1740, 1.0, [('l05', 'sad', 'down'), ('l07', 'smile', 'down')], False),
              ('zehra', 330, 1820, 1.0, [('l05', 'neutral', 'down'), ('l06', 'sad', 'down'), ('l07', 'smile', 'down')], False)],
-    'kitchen': [('kenan', 600, 1560, 1.0, [('l08', 'angry', 'down'), ('l13', 'shock', 'down'), ('l16', 'neutral', 'down'), ('l17', 'angry', 'down')], True),
-                ('nermin', 870, 1520, 0.95, [('l08', 'angry', 'down'), ('l13', 'shock', 'down')], True),
-                ('ali', 380, 1440, 1.0, [('l08', 'sad', 'down'), ('l13', 'shock', 'down'), ('l16', 'smile', 'down')], True),
-                ('zehra', 175, 1860, 1.0, [('l08', 'sad', 'down'), ('l13', 'angry', 'cross'), ('l15', 'calm', 'cross'), ('l18', 'calm', 'down')], False)],
+    'kitchen': [('kenan', 600, 1560, 1.0, [('l09', 'angry', 'down'), ('l11', 'angry', 'down')], True),
+                ('nermin', 870, 1520, 0.95, [('l08', 'neutral', 'down')], True),
+                ('ali', 380, 1440, 1.0, [('l08', 'sad', 'down'), ('l12', 'sad', 'down')], True),
+                ('zehra', 175, 1860, 1.0, [('l08', 'calm', 'cross')], False)],
+    'salon': [('kenan', 600, 1560, 1.0, [('l13', 'shock', 'down'), ('l16', 'neutral', 'down'), ('l17', 'angry', 'down')], True),
+              ('nermin', 870, 1520, 0.95, [('l14', 'angry', 'down')], True),
+              ('ali', 380, 1440, 1.0, [('l16', 'sad', 'down')], True),
+              ('zehra', 175, 1860, 1.0, [('l13', 'angry', 'cross'), ('l15', 'calm', 'cross'), ('l18', 'calm', 'down')], False)],
     'night': [('ali', 700, 1620, 1.0, [('l19', 'smile', 'down')], False),
               ('zehra', 360, 1780, 1.0, [('l19', 'calm', 'down'), ('l20', 'smile', 'down')], False)],
     'diary': [],
@@ -118,6 +122,26 @@ def background(name):
         s = wall('#2d3452', floor='#3b3046', paper='#353d5e') + window(560, 260, 400, 460, night=True)
         s += bed(40, 1500, 560, night=True) + '<circle cx="120" cy="1090" r="260" fill="#f6d36b" opacity="0.10"/>'
         s += '<rect x="90" y="1060" width="70" height="140" fill="#e9b96e"/><path d="M60 1060 L190 1060 L160 980 L90 980Z" fill="#f2d39a"/>'
+        return s
+    if name == 'phone':
+        s = '<rect width="1080" height="1920" fill="#0d1729"/>'
+        for k in range(30):
+            s += f'<circle cx="{(k * 97) % 1080}" cy="{(k * 211) % 1920}" r="3" fill="#ffffff" opacity="0.15"/>'
+        s += '<rect x="290" y="200" width="500" height="1060" rx="60" fill="#1b1f2a"/><rect x="318" y="250" width="444" height="960" rx="22" fill="#f4f7fb"/>'
+        s += '<rect x="318" y="250" width="444" height="110" rx="22" fill="#1f4e8c"/>'
+        s += '<text x="540" y="318" text-anchor="middle" font-family="BH Nunito" font-weight="900" font-size="40" fill="#ffffff">Hesap Özeti</text>'
+        s += '<rect x="350" y="400" width="380" height="200" rx="26" fill="#5b6ee1"/>'
+        s += '<text x="380" y="470" font-family="BH Nunito" font-weight="900" font-size="34" fill="#ffffff">KART</text>'
+        s += '<text x="380" y="545" font-family="BH Nunito" font-weight="900" font-size="34" fill="#ffffff">**** **** **** 4821</text>'
+        for k, y in enumerate([680, 760, 840, 920]):
+            s += f'<rect x="350" y="{y}" width="380" height="58" rx="14" fill="#e3e8f2"/><rect x="368" y="{y + 20}" width="{200 - k * 30}" height="18" rx="9" fill="#9aa8c2"/>'
+        return s
+    if name == 'salon':
+        s = wall('#e9d6c6', floor='#8a6349', floor_y=1420, paper='#dcc3b0') + window(90, 220, 360, 440)
+        s += '<rect x="560" y="1000" width="440" height="200" rx="40" fill="#6e5a7a"/><rect x="560" y="1000" width="440" height="60" rx="30" fill="#7d6889"/>'
+        s += '<rect x="560" y="1200" width="440" height="60" fill="#5c4a66"/>'
+        s += '<rect x="960" y="760" width="60" height="660" fill="#4c3a2d"/><ellipse cx="990" cy="700" rx="90" ry="70" fill="#7fa37a"/>'
+        s += frame_pic(560, 300, 260, 200, '#c9d8c6')
         return s
     return diary_page()
 
@@ -197,7 +221,7 @@ for k, sc in enumerate(scenes):
     st(f'#s{k}-cam', '{transformOrigin:"0% 0%", scale:1, x:0, y:0}', 0)
 for l in lines:
     k = scene_idx(l['id'])
-    if scenes[k]['name'] == 'diary':
+    if scenes[k]['name'] in ('diary', 'phone'):
         continue
     who = 'zehra' if l['inner'] else SPK[l['who']]
     hx, hy = pos[(k, who)]
