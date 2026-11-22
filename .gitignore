@@ -22,3 +22,4 @@ CLAUDE.local.md
 video-agent/edits/**/snapshots/
 video-agent/edits/**/output/
 .claude/memory/hook.log
+__pycache__/
