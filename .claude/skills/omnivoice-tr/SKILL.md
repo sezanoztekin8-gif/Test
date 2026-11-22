@@ -7,11 +7,12 @@ description: Free, local, unlimited Turkish voices with OmniVoice (k2-fsa, Apach
 
 Speaks Turkish well (checked with whisper), 600+ languages, runs on CPU (~20-30 s per line), no key, no limit.
 
-## Install (once per session, ~3 min)
+## Install
+The environment setup script installs it at `/opt/omnivoice` on every new session. If missing:
 ```bash
-V=$SCRATCH/omni; mkdir -p $V && cd $V && uv venv -q --python 3.11 .venv && uv pip install -q --python .venv/bin/python omnivoice
+uv venv -q --python 3.11 /opt/omnivoice && uv pip install -q --python /opt/omnivoice/bin/python omnivoice
 ```
-Always run with `HF_HUB_DISABLE_XET=1` (weights come from huggingface.co: `k2-fsa/OmniVoice`).
+Run with `HF_HUB_DISABLE_XET=1 /opt/omnivoice/bin/python ...` (weights: huggingface.co `k2-fsa/OmniVoice`).
 
 ## Use
 ```python
