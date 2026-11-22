@@ -1,46 +1,46 @@
 {
- "total": 88.12,
+ "total": 91.62,
  "title": [
-  15.770999999999999,
-  18.371
+  17.447542,
+  20.047542
  ],
- "end_card": 82.619166,
+ "end_card": 86.116458,
  "scenes": [
   {
    "name": "bedroom",
    "start": 0.0,
    "first": "l01",
-   "end": 6.653
+   "end": 8.33
   },
   {
    "name": "mirror",
-   "start": 6.653,
+   "start": 8.33,
    "first": "l03",
-   "end": 18.371
+   "end": 20.048
   },
   {
    "name": "door",
-   "start": 18.371,
+   "start": 20.048,
    "first": "l05",
-   "end": 28.445
+   "end": 30.122
   },
   {
    "name": "kitchen",
-   "start": 28.445,
+   "start": 30.122,
    "first": "l08",
-   "end": 63.181
+   "end": 66.678
   },
   {
    "name": "night",
-   "start": 63.181,
+   "start": 66.678,
    "first": "l19",
-   "end": 71.118
+   "end": 74.616
   },
   {
    "name": "diary",
-   "start": 71.118,
+   "start": 74.616,
    "first": "l21",
-   "end": 88.12
+   "end": 91.62
   }
  ],
  "lines": [
@@ -49,14 +49,14 @@
    "who": "nermin",
    "scene": "bedroom",
    "start": 0.35,
-   "dur": 3.009708,
+   "dur": 4.68625,
    "text": "Zehra! Saat yedi oldu, kahvaltı hâlâ hazır değil mi?!"
   },
   {
    "id": "l02",
    "who": "defne",
    "scene": "bedroom",
-   "start": 3.64,
+   "start": 5.316,
    "dur": 2.763667,
    "text": "Zehra mı? Benim adım Defne. Burası neresi?"
   },
@@ -64,7 +64,7 @@
    "id": "l03",
    "who": "defne",
    "scene": "mirror",
-   "start": 7.203,
+   "start": 8.88,
    "dur": 3.907958,
    "text": "Bu yüz... benim değil. Dün geceki kazayı hatırlıyorum. Sonra karanlık."
   },
@@ -72,7 +72,7 @@
    "id": "l04",
    "who": "defne",
    "scene": "mirror",
-   "start": 11.391,
+   "start": 13.068,
    "dur": 3.579667,
    "text": "Başka bir kadının hayatında uyandım."
   },
@@ -80,7 +80,7 @@
    "id": "l05",
    "who": "ali",
    "scene": "door",
-   "start": 18.371,
+   "start": 20.048,
    "dur": 2.137875,
    "text": "Anne... çabuk ol. Babam yine kızacak."
   },
@@ -88,7 +88,7 @@
    "id": "l06",
    "who": "defne",
    "scene": "door",
-   "start": 20.789,
+   "start": 22.465,
    "dur": 2.853458,
    "text": "Bu çocuk benden korkmuyor. Ama bir şeyden çok korkuyor."
   },
@@ -96,7 +96,7 @@
    "id": "l07",
    "who": "defne",
    "scene": "door",
-   "start": 23.922,
+   "start": 25.599,
    "dur": 4.272917,
    "text": "Korkma bir tanem. Annen burada."
   },
@@ -104,15 +104,15 @@
    "id": "l08",
    "who": "nermin",
    "scene": "table",
-   "start": 28.995,
-   "dur": 3.951875,
+   "start": 30.672,
+   "dur": 5.208333,
    "text": "Hanımefendi nihayet teşrif etti! Çay soğudu, ekmek bayatladı!"
   },
   {
    "id": "l09",
    "who": "kenan",
    "scene": "table",
-   "start": 33.227,
+   "start": 36.16,
    "dur": 2.802125,
    "text": "Bütün gün evdesin. Bir kahvaltıyı bile beceremiyorsun."
   },
@@ -120,7 +120,7 @@
    "id": "l10",
    "who": "defne",
    "scene": "table",
-   "start": 36.309,
+   "start": 39.242,
    "dur": 4.145792,
    "text": "Demek Zehra her sabah bunu dinliyordu. Başını eğip, susarak."
   },
@@ -128,7 +128,7 @@
    "id": "l11",
    "who": "kenan",
    "scene": "table",
-   "start": 40.735,
+   "start": 43.668,
    "dur": 2.379292,
    "text": "Sana konuşuyorum! Cevap versene!"
   },
@@ -136,7 +136,7 @@
    "id": "l12",
    "who": "ali",
    "scene": "table",
-   "start": 43.394,
+   "start": 46.327,
    "dur": 0.504833,
    "text": "Anne..."
   },
@@ -144,7 +144,7 @@
    "id": "l13",
    "who": "defne",
    "scene": "turn",
-   "start": 44.729,
+   "start": 47.662,
    "dur": 5.105917,
    "text": "Kenan. Bir daha bu evde kimse sesini yükseltmeyecek. Ne ben, ne de oğlum."
   },
@@ -152,15 +152,15 @@
    "id": "l14",
    "who": "nermin",
    "scene": "turn",
-   "start": 50.115,
-   "dur": 1.32325,
+   "start": 53.048,
+   "dur": 1.887542,
    "text": "Sen... Sen ne cüretle..."
   },
   {
    "id": "l15",
    "who": "defne",
    "scene": "turn",
-   "start": 51.718,
+   "start": 55.216,
    "dur": 1.562708,
    "text": "Nermin Hanım, çayınız soğumasın."
   },
@@ -168,7 +168,7 @@
    "id": "l16",
    "who": "defne",
    "scene": "turn",
-   "start": 53.561,
+   "start": 57.058,
    "dur": 5.016708,
    "text": "Herkes donup kaldı. Zehra'nın sesini bu evde ilk kez duyuyorlardı."
   },
@@ -176,7 +176,7 @@
    "id": "l17",
    "who": "kenan",
    "scene": "turn",
-   "start": 58.858,
+   "start": 62.355,
    "dur": 1.216125,
    "text": "Akşam konuşacağız."
   },
@@ -184,7 +184,7 @@
    "id": "l18",
    "who": "defne",
    "scene": "turn",
-   "start": 60.904,
+   "start": 64.401,
    "dur": 2.026708,
    "text": "Konuşuruz. Ama bu sefer ben de konuşacağım."
   },
@@ -192,7 +192,7 @@
    "id": "l19",
    "who": "ali",
    "scene": "night",
-   "start": 63.731,
+   "start": 67.228,
    "dur": 4.147292,
    "text": "Anne, bugün çok cesurdun. Hep böyle mi kalacaksın?"
   },
@@ -200,7 +200,7 @@
    "id": "l20",
    "who": "defne",
    "scene": "night",
-   "start": 68.158,
+   "start": 71.655,
    "dur": 2.710583,
    "text": "Söz veriyorum. Artık kimse bize bağıramayacak."
   },
@@ -208,7 +208,7 @@
    "id": "l21",
    "who": "defne",
    "scene": "diary",
-   "start": 71.668,
+   "start": 75.166,
    "dur": 4.159583,
    "text": "Gece yarısı, yatağın altında bir defter buldum. Zehra'nın el yazısı."
   },
@@ -216,7 +216,7 @@
    "id": "l22",
    "who": "defne",
    "scene": "diary",
-   "start": 76.608,
+   "start": 80.105,
    "dur": 5.511125,
    "text": "Son sayfada tek bir cümle vardı. Yarın her şeyi anlatacağım... Eğer bana bir şey olmazsa."
   }

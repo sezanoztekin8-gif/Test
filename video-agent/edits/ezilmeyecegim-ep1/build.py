@@ -355,17 +355,7 @@ if '--no-mix' in sys.argv:
     sys.exit(0)
 
 # ------------------------------------------------------------------ audio
-sfx = [(L['l01']['start'] - 0.25, 'sfx/impact-soft-1', 0.5), (L['l03']['start'] - 0.5, 'sfx/swell-soft-3s', 0.45),
-       (L['l03']['start'] + 0.2, 'sfx/stinger-serious-low', 0.5), (TS, 'sfx/whoosh-long-2s', 0.4), (TS + 0.55, 'sfx/impact-soft-3', 0.6),
-       (L['l08']['start'] - 0.6, 'sfx/whoosh-soft', 0.3), (L['l11']['start'] + 0.05, 'sfx/impact-wood-light', 0.9),
-       (L['l11']['start'] + 0.12, 'sfx/dry-thud', 0.7), (L['l13']['start'] - 1.9, 'sfx/reverse-cymbal-2s', 0.45),
-       (L['l13']['start'] - 0.12, 'sfx/impact-soft-2', 0.7), (L['l15']['start'] + L['l15']['dur'] + 0.1, 'sfx/stinger-pizzicato-short', 0.4),
-       (L['l19']['start'] - 0.7, 'sfx/whoosh-soft', 0.25), (scenes[-1]['start'] + 0.1, 'sfx/book-open', 0.7),
-       (scenes[-1]['start'] + 1.2, 'sfx/page-turn', 0.6), (L['l22']['start'] - 0.2, 'sfx/riser-medium-4s', 0.3),
-       (L['l22']['start'] + 1.6, 'sfx/stinger-serious-low', 0.6), (CT + 1.6, 'sfx/stinger-outro-soft', 0.5)]
-for s in scenes[1:]:
-    if s['name'] not in ('door', 'diary'):
-        sfx.append((s['start'], 'sfx/whoosh-short', 0.2))
+sfx = [(L['l11']['start'] + 0.05, 'sfx/impact-wood-light', 0.6)]   # only the table slam
 inputs, f = [], []
 def add(p):
     inputs.extend(['-i', p]); return inputs.count('-i') - 1
@@ -379,13 +369,10 @@ for k, (t0, name, vol) in enumerate(sfx):
     i = add(os.path.join(LIB, name + '.wav'))
     f.append(f'[{i}]aresample=48000,volume={vol},adelay={int(t0 * 1000)}:all=1[s{k}]'); fx.append(f'[s{k}]')
 f.append(f'{"".join(fx)}amix=inputs={len(fx)}:normalize=0,apad,atrim=0:{TOTAL}[fx]')
-sec = [  # (start, end, file, volume)
-    (0, TS + 0.3, os.path.join(LIB, 'music/music-tension-soft.mp3'), 0.5),
-    (TE - 0.3, L['l08']['start'] - 0.4, os.path.join(LIB, 'music/music-emotional-piano-loop.mp3'), 0.45),
-    (L['l08']['start'] - 0.6, L['l13']['start'] - 0.2, os.path.join(LIB, 'music/music-tension-22s.mp3'), 0.42),
-    (L['l13']['start'] + 0.6, L['l19']['start'] - 0.3, os.path.join(LIB, 'music/music-inspiring-orchestral.mp3'), 0.45),
-    (L['l19']['start'] - 0.8, scenes[-1]['start'] + 0.3, os.path.join(LIB, 'music/music-emotional-piano-loop.mp3'), 0.42),
-    (scenes[-1]['start'], TOTAL, os.path.join(MUSIC2, 'thriller.mp3'), 0.5)]
+sec = [  # one quiet piano bed; a low tension bed only under the fight
+    (0, L['l08']['start'] - 0.3, os.path.join(LIB, 'music/music-emotional-piano-loop.mp3'), 0.22),
+    (L['l08']['start'] - 0.8, L['l19']['start'] - 0.3, os.path.join(LIB, 'music/music-tension-soft.mp3'), 0.2),
+    (L['l19']['start'] - 0.8, TOTAL, os.path.join(LIB, 'music/music-emotional-piano-loop.mp3'), 0.22)]
 mus = []
 for k, (a0, a1, trk, vol) in enumerate(sec):
     i = add(trk); d0 = a1 - a0
@@ -394,10 +381,10 @@ for k, (a0, a1, trk, vol) in enumerate(sec):
 f.append(f'{"".join(mus)}amix=inputs={len(mus)}:normalize=0,apad,atrim=0:{TOTAL}[mus]')
 f.append('[mus][key]sidechaincompress=threshold=0.05:ratio=4:attack=25:release=350[duck]')
 i = add(os.path.join(LIB, 'sfx/ambience-room-tone-30s.wav'))
-f.append(f'[{i}]aresample=48000,aloop=loop=-1:size=2e9,atrim=0:{TOTAL},volume=0.35[amb]')
+f.append(f'[{i}]aresample=48000,aloop=loop=-1:size=2e9,atrim=0:{TOTAL},volume=0.15[amb]')
 i = add(os.path.join(LIB, 'sfx/clock-tick.wav'))
 nd = scenes[-1]['start'] - scenes[4]['start']
-f.append(f'[{i}]aresample=48000,aloop=loop=-1:size=2e9,atrim=0:{nd:.2f},volume=0.12,adelay={int(scenes[4]["start"] * 1000)}:all=1,apad,atrim=0:{TOTAL}[tick]')
+f.append(f'[{i}]aresample=48000,aloop=loop=-1:size=2e9,atrim=0:{nd:.2f},volume=0.0,adelay={int(scenes[4]["start"] * 1000)}:all=1,apad,atrim=0:{TOTAL}[tick]')
 f.append(f'[vox][fx][duck][amb][tick]amix=inputs=5:normalize=0,afade=t=out:st={TOTAL - 1.0}:d=1.0,loudnorm=I=-14:TP=-1.5:LRA=11,aresample=48000,atrim=0:{TOTAL}[out]')
 out = os.path.join(HERE, 'assets', 'master.m4a')
 subprocess.run(['ffmpeg', '-v', 'error', '-y'] + inputs + ['-filter_complex', ';'.join(f), '-map', '[out]', '-c:a', 'aac', '-b:a', '192k', '-ac', '2', out], check=True)

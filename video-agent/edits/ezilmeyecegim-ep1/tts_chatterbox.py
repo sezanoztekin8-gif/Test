@@ -18,7 +18,7 @@ if not os.path.exists(seed):
     w = m.generate('Merhaba, bugün hava çok güzel. Akşam hep birlikte yemek yiyelim, sonra da biraz yürüyüş yapalım.',
                    language_id='tr', exaggeration=0.5)
     ta.save(seed, w, m.sr)
-shift = {'ref_kenan': (0.80, 1.0), 'ref_nermin': (0.90, 0.95), 'ref_ali': (1.30, 1.0)}
+shift = {'ref_kenan': (0.80, 1.0), 'ref_nermin': (1.25, 0.9), 'ref_ali': (1.30, 1.0)}
 for name, (rate, tempo) in shift.items():
     p = os.path.join(REF, name + '.wav')
     if not os.path.exists(p):
