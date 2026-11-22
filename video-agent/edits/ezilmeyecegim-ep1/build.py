@@ -336,7 +336,7 @@ html = f'''<!doctype html>
  <div id="title" class="clip" data-start="{round(TS, 3)}" data-duration="{round(TE - TS, 3)}" data-track-index="10"><div id="title-in">
   <div id="t1">BU SEFER</div><div id="t2">EZİLMEYECEĞİM</div><div id="t3">1. BÖLÜM · UYANIŞ</div></div></div>
  <div id="end" class="clip" data-start="{round(CT, 3)}" data-duration="{round(TOTAL - CT, 3)}" data-track-index="11"><div id="end-in">
-  <div id="e1">Sizce Zehra'nın <span>sırrı</span> ne?</div><div id="e2">Tahminini yorumlara yaz.<br>Takip et, kaçırma.</div><div id="e3">BÖLÜM 2 YARIN</div></div></div>
+  <div id="e1">Sizce Zehra'nın <span>sırrı</span> ne?</div><div id="e2">Tahminini yorumlara yaz.<br>Takip et, kaçırma.</div><div id="e3">BÖLÜM 2 GELİYOR</div></div></div>
  <div id="fade" class="clip" data-start="0" data-duration="{TOTAL}" data-track-index="12"></div>
  <audio id="mix" data-start="0" data-duration="{TOTAL}" data-track-index="13" src="assets/master.m4a" data-volume="1"></audio>
 </div>

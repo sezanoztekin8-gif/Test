@@ -25,7 +25,8 @@
 - Music/SFX: CC0 library in `.claude/skills/editing-videos/library/` and the generated beds in `.claude/skills/short-editing/assets/music/`.
 
 ## Voices
-- Preferred: ElevenLabs real Turkish voices via the ElevenLabs connector (e.g. Seyfullah Kartal for old men). Free plan credits run out fast; check before a full episode.
+- Free default: OmniVoice (omnivoice-tr skill, /opt/omnivoice), one designed voice per character. Women must sound female.
+- Preferred when credits exist: ElevenLabs real Turkish voices via the ElevenLabs connector (e.g. Seyfullah Kartal for old men). Free plan credits run out fast; check before a full episode.
 - Fallback: ElevenLabs v3 premade voices with emotion tags; or free Edge voices (`edge-tts --proxy "$HTTPS_PROXY"`, tr-TR-AhmetNeural / tr-TR-EmelNeural). The user did not like the Edge voices; use them only when nothing else is available, and say so.
 
 ## Accounts
@@ -33,7 +34,8 @@
 - YouTube: ultimate-youtube skill; OAuth client file goes in `~/.ultimate-youtube/` (not in the repo).
 
 ## Content direction
-- Format the user chose: "Gizli Reklam" (secret free ads for struggling local businesses, ~70 s, "Yarın kimin reklamını yapalım?"). Real businesses need the owner's consent and real footage; never present a made-up business or result as real.
+- Format the user chose: "Gizli Reklam" (secret free ads for struggling local businesses, ~70 s). Posting: 2 videos a day; never promise "yarın" on screen. Real businesses need the owner's consent and real footage; never present a made-up business or result as real.
+- Current series: "Bu Sefer Ezilmeyeceğim" (2D, episodic). End cards say "Bölüm N geliyor", never "yarın".
 - Turkish AI-animation reels that break out: absurd non-human characters + very Turkish daily life + episodic "Bölüm X" with a cliffhanger.
 
 ## Environment
