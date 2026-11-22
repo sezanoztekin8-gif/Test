@@ -1,0 +1,28 @@
+{
+ "title": "Bu Sefer Ezilmeyeceğim — 1. Bölüm",
+ "voices": {"defne": "default", "kenan": "ref_kenan", "nermin": "ref_nermin", "ali": "ref_ali"},
+ "lines": [
+  {"id": "l01", "scene": "bedroom", "who": "nermin", "inner": false, "ex": 0.8, "text": "Zehra! Saat yedi oldu, kahvaltı hâlâ hazır değil mi?!"},
+  {"id": "l02", "scene": "bedroom", "who": "defne", "inner": true, "ex": 0.5, "text": "Zehra mı? Benim adım Defne. Burası neresi?"},
+  {"id": "l03", "scene": "mirror", "who": "defne", "inner": true, "ex": 0.6, "text": "Bu yüz... benim değil. Dün geceki kazayı hatırlıyorum. Sonra karanlık."},
+  {"id": "l04", "scene": "mirror", "who": "defne", "inner": true, "ex": 0.5, "text": "Başka bir kadının hayatında uyandım."},
+  {"id": "l05", "scene": "door", "who": "ali", "inner": false, "ex": 0.6, "text": "Anne... çabuk ol. Babam yine kızacak."},
+  {"id": "l06", "scene": "door", "who": "defne", "inner": true, "ex": 0.5, "text": "Bu çocuk benden korkmuyor. Ama bir şeyden çok korkuyor."},
+  {"id": "l07", "scene": "door", "who": "defne", "inner": false, "ex": 0.4, "text": "Korkma bir tanem. Annen burada."},
+  {"id": "l08", "scene": "table", "who": "nermin", "inner": false, "ex": 0.8, "text": "Hanımefendi nihayet teşrif etti! Çay soğudu, ekmek bayatladı!"},
+  {"id": "l09", "scene": "table", "who": "kenan", "inner": false, "ex": 0.7, "text": "Bütün gün evdesin. Bir kahvaltıyı bile beceremiyorsun."},
+  {"id": "l10", "scene": "table", "who": "defne", "inner": true, "ex": 0.5, "text": "Demek Zehra her sabah bunu dinliyordu. Başını eğip, susarak."},
+  {"id": "l11", "scene": "table", "who": "kenan", "inner": false, "ex": 0.9, "text": "Sana konuşuyorum! Cevap versene!"},
+  {"id": "l12", "scene": "table", "who": "ali", "inner": false, "ex": 0.5, "text": "Anne..."},
+  {"id": "l13", "scene": "turn", "who": "defne", "inner": false, "ex": 0.6, "text": "Kenan. Bir daha bu evde kimse sesini yükseltmeyecek. Ne ben, ne de oğlum."},
+  {"id": "l14", "scene": "turn", "who": "nermin", "inner": false, "ex": 0.9, "text": "Sen... Sen ne cüretle..."},
+  {"id": "l15", "scene": "turn", "who": "defne", "inner": false, "ex": 0.4, "text": "Nermin Hanım, çayınız soğumasın."},
+  {"id": "l16", "scene": "turn", "who": "defne", "inner": true, "ex": 0.5, "text": "Herkes donup kaldı. Zehra'nın sesini bu evde ilk kez duyuyorlardı."},
+  {"id": "l17", "scene": "turn", "who": "kenan", "inner": false, "ex": 0.7, "text": "Akşam konuşacağız."},
+  {"id": "l18", "scene": "turn", "who": "defne", "inner": false, "ex": 0.5, "text": "Konuşuruz. Ama bu sefer ben de konuşacağım."},
+  {"id": "l19", "scene": "night", "who": "ali", "inner": false, "ex": 0.5, "text": "Anne, bugün çok cesurdun. Hep böyle mi kalacaksın?"},
+  {"id": "l20", "scene": "night", "who": "defne", "inner": false, "ex": 0.4, "text": "Söz veriyorum. Artık kimse bize bağıramayacak."},
+  {"id": "l21", "scene": "diary", "who": "defne", "inner": true, "ex": 0.5, "text": "Gece yarısı, yatağın altında bir defter buldum. Zehra'nın el yazısı."},
+  {"id": "l22", "scene": "diary", "who": "defne", "inner": true, "ex": 0.7, "text": "Son sayfada tek bir cümle vardı. Yarın her şeyi anlatacağım... Eğer bana bir şey olmazsa."}
+ ]
+}
