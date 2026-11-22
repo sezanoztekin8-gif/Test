@@ -1,0 +1,187 @@
+{
+ "title": "Bu Sefer Ezilmeyeceğim — 1. Bölüm",
+ "voices": {
+  "defne": "default",
+  "kenan": "ref_kenan",
+  "nermin": "ref_nermin",
+  "ali": "ref_ali"
+ },
+ "lines": [
+  {
+   "id": "l01",
+   "scene": "bedroom",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Bu kartın kime ait olduğunu öğrenmeden uyumayacağım."
+  },
+  {
+   "id": "l02",
+   "scene": "bedroom",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Bu kart benim adıma değil... Peki neden bu defterde benim hesaplarımla birlikte yazıyor?"
+  },
+  {
+   "id": "l03",
+   "scene": "mirror",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Son dört hane: 4821. Bu kart benim adıma değil."
+  },
+  {
+   "id": "l04",
+   "scene": "mirror",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Telefonu masaya bıraktım. Bu sessizliği bozmanın zamanı geldi."
+  },
+  {
+   "id": "l05",
+   "scene": "door",
+   "who": "ali",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Anne... Babam dün gece telefonda bir şey söyledi."
+  },
+  {
+   "id": "l06",
+   "scene": "door",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Başka bir hesaba para göndereceğini söylemiş. Bu çocuk bile bunu duymuş."
+  },
+  {
+   "id": "l07",
+   "scene": "door",
+   "who": "defne",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Ne söyledi bir tanem? Anlat bana, korkma."
+  },
+  {
+   "id": "l08",
+   "scene": "table",
+   "who": "defne",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Kenan, sana bir şey soracağım. 4821 ile biten kredi kartı kimin?"
+  },
+  {
+   "id": "l09",
+   "scene": "table",
+   "who": "kenan",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Ne kartı? Nereden çıkardın şimdi bunu?"
+  },
+  {
+   "id": "l10",
+   "scene": "table",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Bir an duraksadı. Bu duraksama bana yeterdi."
+  },
+  {
+   "id": "l11",
+   "scene": "table",
+   "who": "kenan",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Benim özel işlerimi neden araştırıyorsun?"
+  },
+  {
+   "id": "l12",
+   "scene": "table",
+   "who": "ali",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Anne..."
+  },
+  {
+   "id": "l13",
+   "scene": "turn",
+   "who": "defne",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Çünkü bu defterde benim adıma yazılmış hesapların yanında aynı kart numarası var."
+  },
+  {
+   "id": "l14",
+   "scene": "turn",
+   "who": "nermin",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Bir dakika... Hangi defterden bahsediyorsunuz?"
+  },
+  {
+   "id": "l15",
+   "scene": "turn",
+   "who": "defne",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Defteri masanın üzerine koyuyorum. Okuyun."
+  },
+  {
+   "id": "l16",
+   "scene": "turn",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Masa sustu. Herkes o defterin içinde kendi adını arıyordu."
+  },
+  {
+   "id": "l17",
+   "scene": "turn",
+   "who": "kenan",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Anne, artık yeter. Bu konu kapandı!"
+  },
+  {
+   "id": "l18",
+   "scene": "turn",
+   "who": "defne",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Hayır Kenan. Bu defter kapanmadı. Benim adıma yazılan her kuruşun hesabını öğreneceğim."
+  },
+  {
+   "id": "l19",
+   "scene": "night",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Telefonuma bilinmeyen bir numaradan mesaj geldi."
+  },
+  {
+   "id": "l20",
+   "scene": "night",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Demek bu sırrı bilen başka biri daha var..."
+  },
+  {
+   "id": "l21",
+   "scene": "diary",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Mesajda yazıyor: Yarın saat 10.00'da eski banka şubesinin önünde ol."
+  },
+  {
+   "id": "l22",
+   "scene": "diary",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Bu buluşma tesadüf olamaz."
+  }
+ ]
+}
