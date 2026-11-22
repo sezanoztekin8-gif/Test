@@ -9,7 +9,7 @@
  "lines": [
   {
    "id": "l01",
-   "scene": "bedroom",
+   "scene": "phone",
    "who": "defne",
    "inner": true,
    "ex": 0.5,
@@ -17,7 +17,7 @@
   },
   {
    "id": "l02",
-   "scene": "bedroom",
+   "scene": "phone",
    "who": "defne",
    "inner": true,
    "ex": 0.5,
@@ -41,7 +41,7 @@
   },
   {
    "id": "l05",
-   "scene": "door",
+   "scene": "salon",
    "who": "ali",
    "inner": false,
    "ex": 0.5,
@@ -49,7 +49,7 @@
   },
   {
    "id": "l06",
-   "scene": "door",
+   "scene": "salon",
    "who": "defne",
    "inner": true,
    "ex": 0.5,
@@ -57,7 +57,7 @@
   },
   {
    "id": "l07",
-   "scene": "door",
+   "scene": "salon",
    "who": "defne",
    "inner": false,
    "ex": 0.5,
@@ -65,7 +65,7 @@
   },
   {
    "id": "l08",
-   "scene": "kitchen",
+   "scene": "salon",
    "who": "defne",
    "inner": false,
    "ex": 0.5,
@@ -73,7 +73,7 @@
   },
   {
    "id": "l09",
-   "scene": "kitchen",
+   "scene": "salon",
    "who": "kenan",
    "inner": false,
    "ex": 0.5,
@@ -81,7 +81,7 @@
   },
   {
    "id": "l10",
-   "scene": "kitchen",
+   "scene": "salon",
    "who": "defne",
    "inner": true,
    "ex": 0.5,
@@ -89,7 +89,7 @@
   },
   {
    "id": "l11",
-   "scene": "kitchen",
+   "scene": "salon",
    "who": "kenan",
    "inner": false,
    "ex": 0.5,
@@ -97,7 +97,7 @@
   },
   {
    "id": "l12",
-   "scene": "kitchen",
+   "scene": "salon",
    "who": "ali",
    "inner": false,
    "ex": 0.5,
@@ -105,7 +105,7 @@
   },
   {
    "id": "l13",
-   "scene": "salon",
+   "scene": "street",
    "who": "defne",
    "inner": false,
    "ex": 0.5,
@@ -113,7 +113,7 @@
   },
   {
    "id": "l14",
-   "scene": "salon",
+   "scene": "street",
    "who": "nermin",
    "inner": false,
    "ex": 0.5,
@@ -121,7 +121,7 @@
   },
   {
    "id": "l15",
-   "scene": "salon",
+   "scene": "street",
    "who": "defne",
    "inner": false,
    "ex": 0.5,
@@ -129,7 +129,7 @@
   },
   {
    "id": "l16",
-   "scene": "salon",
+   "scene": "street",
    "who": "defne",
    "inner": true,
    "ex": 0.5,
@@ -137,7 +137,7 @@
   },
   {
    "id": "l17",
-   "scene": "salon",
+   "scene": "street",
    "who": "kenan",
    "inner": false,
    "ex": 0.5,
@@ -145,7 +145,7 @@
   },
   {
    "id": "l18",
-   "scene": "salon",
+   "scene": "street",
    "who": "defne",
    "inner": false,
    "ex": 0.5,
@@ -153,7 +153,7 @@
   },
   {
    "id": "l19",
-   "scene": "night",
+   "scene": "balcony",
    "who": "defne",
    "inner": true,
    "ex": 0.5,
@@ -161,7 +161,7 @@
   },
   {
    "id": "l20",
-   "scene": "night",
+   "scene": "balcony",
    "who": "defne",
    "inner": true,
    "ex": 0.5,
@@ -169,7 +169,7 @@
   },
   {
    "id": "l21",
-   "scene": "diary",
+   "scene": "bank",
    "who": "defne",
    "inner": true,
    "ex": 0.5,
@@ -177,7 +177,7 @@
   },
   {
    "id": "l22",
-   "scene": "diary",
+   "scene": "bank",
    "who": "defne",
    "inner": true,
    "ex": 0.5,

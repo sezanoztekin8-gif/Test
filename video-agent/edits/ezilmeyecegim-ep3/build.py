@@ -1,6 +1,7 @@
 """Bu Sefer Ezilmeyeceğim — Bölüm 1. Trims the Chatterbox lines, plans the timeline, writes index.html
 (flat 2D SVG scenes, HyperFrames) and mixes assets/master.m4a.   Usage: python3 build.py [--no-mix]"""
 import json, os, sys, subprocess
+from scenes_extra import street as street_bg, bank as bank_bg, balcony as balcony_bg
 from art import person, wall, window, frame_pic, table, breakfast, bed, mirror_room, diary_page, CAST
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -50,7 +51,7 @@ TOTAL = 100.0
 TE = TS + TITLE_LEN
 
 # scenes (table + turn share one kitchen; the camera does the turn)
-SC = [('bedroom', 'l01'), ('phone', 'l03'), ('door', 'l05'), ('kitchen', 'l08'), ('salon', 'l13'), ('night', 'l19'), ('diary', 'l21')]
+SC = [('phone', 'l01'), ('salon', 'l05'), ('street', 'l13'), ('balcony', 'l19'), ('bank', 'l21')]
 scenes = []
 for k, (name, first) in enumerate(SC):
     st0 = 0.0 if k == 0 else (TE if name == 'door' else L[first]['start'] - 0.55)
@@ -63,21 +64,17 @@ for l in lines:
 
 # people per scene: who, cx, feet, scale, [(from line, expr, arms)], behind (drawn before table)
 PEOPLE = {
-    'bedroom': [('nermin', 850, 1640, 0.92, [('l01', 'angry', 'down')], False),
-                ('zehra', 420, 1800, 1.0, [('l01', 'shock', 'head'), ('l02', 'sad', 'down')], False)],
     'phone': [],
-    'door': [('ali', 720, 1740, 1.0, [('l05', 'sad', 'down'), ('l07', 'smile', 'down')], False),
-             ('zehra', 330, 1820, 1.0, [('l05', 'neutral', 'down'), ('l06', 'sad', 'down'), ('l07', 'smile', 'down')], False)],
-    'kitchen': [('kenan', 600, 1560, 1.0, [('l09', 'angry', 'down'), ('l11', 'angry', 'down')], True),
-                ('nermin', 870, 1520, 0.95, [('l08', 'neutral', 'down')], True),
-                ('ali', 380, 1440, 1.0, [('l08', 'sad', 'down'), ('l12', 'sad', 'down')], True),
-                ('zehra', 175, 1860, 1.0, [('l08', 'calm', 'cross')], False)],
-    'salon': [('kenan', 600, 1560, 1.0, [('l13', 'shock', 'down'), ('l16', 'neutral', 'down'), ('l17', 'angry', 'down')], True),
-              ('nermin', 870, 1520, 0.95, [('l14', 'angry', 'down')], True),
-              ('ali', 380, 1440, 1.0, [('l16', 'sad', 'down')], True),
-              ('zehra', 175, 1860, 1.0, [('l13', 'angry', 'cross'), ('l15', 'calm', 'cross'), ('l18', 'calm', 'down')], False)],
-    'night': [('ali', 700, 1620, 1.0, [('l19', 'smile', 'down')], False),
-              ('zehra', 360, 1780, 1.0, [('l19', 'calm', 'down'), ('l20', 'smile', 'down')], False)],
+    'salon': [('ali', 380, 1440, 1.0, [('l05', 'sad', 'down'), ('l12', 'sad', 'down')], False),
+              ('kenan', 640, 1560, 1.0, [('l09', 'angry', 'down'), ('l11', 'angry', 'down')], False),
+              ('zehra', 175, 1860, 1.0, [('l05', 'neutral', 'cross'), ('l07', 'calm', 'cross'), ('l08', 'calm', 'cross')], False)],
+    'street': [('kenan', 600, 1560, 1.0, [('l13', 'shock', 'down'), ('l16', 'neutral', 'down'), ('l17', 'angry', 'down')], False),
+               ('nermin', 870, 1520, 0.95, [('l14', 'angry', 'down')], False),
+               ('ali', 380, 1440, 1.0, [('l16', 'sad', 'down')], False),
+               ('zehra', 175, 1860, 1.0, [('l13', 'angry', 'cross'), ('l15', 'calm', 'cross'), ('l18', 'calm', 'down')], False)],
+    'balcony': [('ali', 700, 1620, 1.0, [('l19', 'smile', 'down')], False),
+                ('zehra', 360, 1780, 1.0, [('l19', 'calm', 'down'), ('l20', 'smile', 'down')], False)],
+    'bank': [('zehra', 540, 1820, 1.0, [('l21', 'neutral', 'down'), ('l22', 'sad', 'down')], False)],
     'diary': [],
 }
 SPK = {'defne': 'zehra', 'kenan': 'kenan', 'nermin': 'nermin', 'ali': 'ali'}
@@ -143,6 +140,12 @@ def background(name):
         s += '<rect x="960" y="760" width="60" height="660" fill="#4c3a2d"/><ellipse cx="990" cy="700" rx="90" ry="70" fill="#7fa37a"/>'
         s += frame_pic(560, 300, 260, 200, '#c9d8c6')
         return s
+    if name == 'street':
+        return street_bg()
+    if name == 'bank':
+        return bank_bg()
+    if name == 'balcony':
+        return balcony_bg()
     return diary_page()
 
 
@@ -258,7 +261,7 @@ to('#title-in', '{opacity:0, duration:0.3}', TE - 0.35)
 st('#title-in', '{opacity:0}', TE - 0.04)
 
 # end card
-CT = SPEECH_END + 2.2
+CT = SPEECH_END + 5.5
 to('#end-in', '{opacity:1, duration:0.5}', CT)
 fr('#e1', '{y:60, opacity:0, duration:0.55, ease:"back.out(2)"}', CT + 0.2)
 fr('#e2', '{y:40, opacity:0, duration:0.45, ease:"power3.out"}', CT + 0.9)
@@ -331,7 +334,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
 #t1{font:700 96px/1.02 "BH Fredoka",sans-serif;color:#fff;text-align:center}
 #t2{font:700 132px/1 "BH Fredoka",sans-serif;color:#ff6f91;text-align:center;text-shadow:0 8px 0 #12060f}
 #t3{padding:10px 36px;border-radius:40px;border:4px solid #fff;color:#fff;font:900 46px "BH Nunito",sans-serif}
-#diary{position:absolute;left:170px;top:600px;width:740px;z-index:5;transform:rotate(-3deg);font:800 46px/60px "BH Nunito",sans-serif;font-style:italic;color:#2f3f6b}
+#diary{position:absolute;left:170px;top:250px;width:740px;z-index:5;transform:rotate(-3deg);background:#fffdf5;padding:44px 48px;border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,0.4);font:800 46px/60px "BH Nunito",sans-serif;font-style:italic;color:#2f3f6b}
 .dl{display:block;height:60px}
 #dlast{display:block;margin-top:60px;color:#9b1d3a;font-size:54px;line-height:66px}
 #torch{position:absolute;left:-200px;top:200px;width:1500px;height:1500px;z-index:6;pointer-events:none;background:radial-gradient(circle at 50% 50%,rgba(255,230,160,0.0) 0%,rgba(255,230,160,0) 30%,rgba(10,6,14,0.55) 60%)}

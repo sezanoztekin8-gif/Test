@@ -1,50 +1,38 @@
 {
  "total": 100.0,
  "title": [
-  18.309167,
-  20.909167
+  17.609167,
+  20.209167
  ],
- "end_card": 86.38008300000001,
+ "end_card": 88.280083,
  "scenes": [
   {
-   "name": "bedroom",
+   "name": "phone",
    "start": 0.0,
    "first": "l01",
-   "end": 9.378
-  },
-  {
-   "name": "phone",
-   "start": 9.378,
-   "first": "l03",
-   "end": 20.909
-  },
-  {
-   "name": "door",
-   "start": 20.909,
-   "first": "l05",
-   "end": 31.323
-  },
-  {
-   "name": "kitchen",
-   "start": 31.323,
-   "first": "l08",
-   "end": 46.271
+   "end": 19.659
   },
   {
    "name": "salon",
-   "start": 46.271,
+   "start": 19.659,
+   "first": "l05",
+   "end": 44.871
+  },
+  {
+   "name": "street",
+   "start": 44.871,
    "first": "l13",
-   "end": 69.909
+   "end": 68.509
   },
   {
-   "name": "night",
-   "start": 69.909,
+   "name": "balcony",
+   "start": 68.509,
    "first": "l19",
-   "end": 76.756
+   "end": 75.356
   },
   {
-   "name": "diary",
-   "start": 76.756,
+   "name": "bank",
+   "start": 75.356,
    "first": "l21",
    "end": 100.0
   }
@@ -53,7 +41,7 @@
   {
    "id": "l01",
    "who": "defne",
-   "scene": "bedroom",
+   "scene": "phone",
    "start": 0.35,
    "dur": 3.101083,
    "text": "Bu kartın kime ait olduğunu öğrenmeden uyumayacağım."
@@ -61,7 +49,7 @@
   {
    "id": "l02",
    "who": "defne",
-   "scene": "bedroom",
+   "scene": "phone",
    "start": 3.951,
    "dur": 4.777292,
    "text": "Bu kart benim adıma değil... Peki neden bu defterde benim hesaplarımla birlikte yazıyor?"
@@ -70,7 +58,7 @@
    "id": "l03",
    "who": "defne",
    "scene": "phone",
-   "start": 9.928,
+   "start": 9.228,
    "dur": 3.036292,
    "text": "Son dört hane: 4821. Bu kart benim adıma değil."
   },
@@ -78,151 +66,151 @@
    "id": "l04",
    "who": "defne",
    "scene": "phone",
-   "start": 13.465,
+   "start": 12.765,
    "dur": 3.6445,
    "text": "Telefonu masaya bıraktım. Bu sessizliği bozmanın zamanı geldi."
   },
   {
    "id": "l05",
    "who": "ali",
-   "scene": "door",
-   "start": 20.909,
+   "scene": "salon",
+   "start": 20.209,
    "dur": 2.5915,
    "text": "Anne... Babam dün gece telefonda bir şey söyledi."
   },
   {
    "id": "l06",
    "who": "defne",
-   "scene": "door",
-   "start": 24.001,
+   "scene": "salon",
+   "start": 23.301,
    "dur": 3.994917,
    "text": "Başka bir hesaba para göndereceğini söylemiş. Bu çocuk bile bunu duymuş."
   },
   {
    "id": "l07",
    "who": "defne",
-   "scene": "door",
-   "start": 28.496,
+   "scene": "salon",
+   "start": 27.796,
    "dur": 2.177417,
    "text": "Ne söyledi bir tanem? Anlat bana, korkma."
   },
   {
    "id": "l08",
    "who": "defne",
-   "scene": "kitchen",
-   "start": 31.873,
+   "scene": "salon",
+   "start": 30.473,
    "dur": 4.055042,
    "text": "Kenan, sana bir şey soracağım. 4821 ile biten kredi kartı kimin?"
   },
   {
    "id": "l09",
    "who": "kenan",
-   "scene": "kitchen",
-   "start": 36.428,
+   "scene": "salon",
+   "start": 35.028,
    "dur": 2.034792,
    "text": "Ne kartı? Nereden çıkardın şimdi bunu?"
   },
   {
    "id": "l10",
    "who": "defne",
-   "scene": "kitchen",
-   "start": 38.963,
+   "scene": "salon",
+   "start": 37.563,
    "dur": 2.560792,
    "text": "Bir an duraksadı. Bu duraksama bana yeterdi."
   },
   {
    "id": "l11",
    "who": "kenan",
-   "scene": "kitchen",
-   "start": 42.024,
+   "scene": "salon",
+   "start": 40.624,
    "dur": 1.977625,
    "text": "Benim özel işlerimi neden araştırıyorsun?"
   },
   {
    "id": "l12",
    "who": "ali",
-   "scene": "kitchen",
-   "start": 44.501,
+   "scene": "salon",
+   "start": 43.101,
    "dur": 0.56975,
    "text": "Anne..."
   },
   {
    "id": "l13",
    "who": "defne",
-   "scene": "salon",
-   "start": 46.821,
+   "scene": "street",
+   "start": 45.421,
    "dur": 4.527958,
    "text": "Çünkü bu defterde benim adıma yazılmış hesapların yanında aynı kart numarası var."
   },
   {
    "id": "l14",
    "who": "nermin",
-   "scene": "salon",
-   "start": 51.849,
+   "scene": "street",
+   "start": 50.449,
    "dur": 2.473583,
    "text": "Bir dakika... Hangi defterden bahsediyorsunuz?"
   },
   {
    "id": "l15",
    "who": "defne",
-   "scene": "salon",
-   "start": 54.823,
+   "scene": "street",
+   "start": 53.423,
    "dur": 2.372708,
    "text": "Defteri masanın üzerine koyuyorum. Okuyun."
   },
   {
    "id": "l16",
    "who": "defne",
-   "scene": "salon",
-   "start": 57.695,
+   "scene": "street",
+   "start": 56.295,
    "dur": 3.420083,
    "text": "Masa sustu. Herkes o defterin içinde kendi adını arıyordu."
   },
   {
    "id": "l17",
    "who": "kenan",
-   "scene": "salon",
-   "start": 61.615,
+   "scene": "street",
+   "start": 60.215,
    "dur": 1.757625,
    "text": "Anne, artık yeter. Bu konu kapandı!"
   },
   {
    "id": "l18",
    "who": "defne",
-   "scene": "salon",
-   "start": 64.423,
+   "scene": "street",
+   "start": 63.023,
    "dur": 4.836458,
    "text": "Hayır Kenan. Bu defter kapanmadı. Benim adıma yazılan her kuruşun hesabını öğreneceğim."
   },
   {
    "id": "l19",
    "who": "defne",
-   "scene": "night",
-   "start": 70.459,
+   "scene": "balcony",
+   "start": 69.059,
    "dur": 2.826708,
    "text": "Telefonuma bilinmeyen bir numaradan mesaj geldi."
   },
   {
    "id": "l20",
    "who": "defne",
-   "scene": "night",
-   "start": 73.786,
+   "scene": "balcony",
+   "start": 72.386,
    "dur": 2.320167,
    "text": "Demek bu sırrı bilen başka biri daha var..."
   },
   {
    "id": "l21",
    "who": "defne",
-   "scene": "diary",
-   "start": 77.306,
+   "scene": "bank",
+   "start": 75.906,
    "dur": 4.098958,
    "text": "Mesajda yazıyor: Yarın saat 10.00'da eski banka şubesinin önünde ol."
   },
   {
    "id": "l22",
    "who": "defne",
-   "scene": "diary",
-   "start": 82.405,
+   "scene": "bank",
+   "start": 81.005,
    "dur": 1.774833,
    "text": "Bu buluşma tesadüf olamaz."
   }
