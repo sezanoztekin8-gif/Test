@@ -224,8 +224,8 @@ to('#torch', '{x:60, y:40, duration:3, ease:"sine.inOut", yoyo:true, repeat:%d}'
 
 # series chip + hook + title
 fr('#chip', '{y:-120, duration:0.6, ease:"back.out(2)"}', 0.2)
-fr('#hook', '{scale:0.6, opacity:0, duration:0.45, ease:"back.out(2.5)"}', 0.25)
-to('#hook', '{opacity:0, y:-30, duration:0.35}', L['l02']['start'] + L['l02']['dur'] - 0.2)
+fr('#hook', '{scale:0.6, opacity:0, duration:0.3, ease:"back.out(2.5)"}', 0.0)
+to('#hook', '{opacity:0, y:-30, duration:0.35}', L['l01']['start'] + L['l01']['dur'] + 0.6)
 to('#title-in', '{opacity:1, duration:0.35}', TS)
 fr('#t1', '{y:80, opacity:0, duration:0.55, ease:"power3.out"}', TS + 0.15)
 fr('#t2', '{scale:2.4, opacity:0, duration:0.5, ease:"power4.out"}', TS + 0.55)
@@ -319,7 +319,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
 #e3{padding:18px 50px;border-radius:50px;background:#ff6f91;color:#1d1022;font:700 66px "BH Fredoka",sans-serif;border:6px solid #fff}
 '''
 diary_lines = ['3 Mart — Bugün yine sustum.', 'Ali uyurken ağladım.', 'Kenan telefonu yine kilitledi.', 'O gece duyduklarımı', 'kimseye söyleyemem...']
-hook = 'Ezilen bir kadının<br>bedeninde <em>uyandı</em>'
+hook = 'Bu kadın<br><em>ben değilim</em>'
 html = f'''<!doctype html>
 <html><head><meta charset="utf-8"><meta name="viewport" content="width=1080, height=1920">
 <script src="lib/gsap.min.js"></script><style>{css}</style></head><body>
@@ -331,7 +331,7 @@ html = f'''<!doctype html>
  <div id="grain" class="clip" data-start="0" data-duration="{TOTAL}" data-track-index="5"></div>
  <div id="flash" class="clip" data-start="0" data-duration="{TOTAL}" data-track-index="6"></div>
  <div id="chip" class="clip" data-start="0" data-duration="{round(SPEECH_END, 3)}" data-track-index="7">BU SEFER EZİLMEYECEĞİM · <b>BÖLÜM 1</b></div>
- <div id="hook" class="clip" data-start="0" data-duration="{round(L['l02']['start'] + L['l02']['dur'] + 0.2, 3)}" data-track-index="8">{hook}</div>
+ <div id="hook" class="clip" data-start="0" data-duration="{round(L['l01']['start'] + L['l01']['dur'] + 0.8, 3)}" data-track-index="8">{hook}</div>
  <div id="caps" class="clip" data-start="0" data-duration="{TOTAL}" data-track-index="9" style="position:absolute;inset:0;z-index:70">{''.join(caps)}</div>
  <div id="title" class="clip" data-start="{round(TS, 3)}" data-duration="{round(TE - TS, 3)}" data-track-index="10"><div id="title-in">
   <div id="t1">BU SEFER</div><div id="t2">EZİLMEYECEĞİM</div><div id="t3">1. BÖLÜM · UYANIŞ</div></div></div>
@@ -355,7 +355,16 @@ if '--no-mix' in sys.argv:
     sys.exit(0)
 
 # ------------------------------------------------------------------ audio
-sfx = [(L['l11']['start'] + 0.05, 'sfx/impact-wood-light', 0.6)]   # only the table slam
+sfx = [(0.0, 'sfx/impact-soft-1', 0.6),                       # the shout lands on frame one
+       (L['l03']['start'] - 0.5, 'sfx/swell-soft-3s', 0.4),          # mirror: she sees the face
+       (L['l03']['start'] + 0.2, 'sfx/stinger-serious-low', 0.5),
+       (L['l11']['start'] + 0.05, 'sfx/impact-wood-light', 0.6),     # Kenan slams the table
+       (L['l13']['start'] - 1.9, 'sfx/reverse-cymbal-2s', 0.4),      # held breath before she answers
+       (L['l13']['start'] - 0.12, 'sfx/impact-soft-2', 0.6),
+       (L['l15']['start'] + L['l15']['dur'] + 0.1, 'sfx/stinger-pizzicato-short', 0.35),  # dry comeback
+       (scenes[-1]['start'] + 0.1, 'sfx/book-open', 0.6),
+       (L['l22']['start'] - 0.2, 'sfx/riser-medium-4s', 0.25),
+       (L['l22']['start'] + 1.6, 'sfx/stinger-serious-low', 0.5)]
 inputs, f = [], []
 def add(p):
     inputs.extend(['-i', p]); return inputs.count('-i') - 1
