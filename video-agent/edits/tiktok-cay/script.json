@@ -1,0 +1,9 @@
+{"voices": {"kettle": "ref_kettle", "glass": "ref_glass"},
+ "lines": [
+  {"id": "c01", "who": "kettle", "text": "Bugün son kez kaynıyorum!"},
+  {"id": "c02", "who": "glass", "text": "Yine mi? Üç kere ısıttın bu çayı."},
+  {"id": "c03", "who": "kettle", "text": "Kimse bana teşekkür etmiyor. Sadece çay soğuk diyorlar."},
+  {"id": "c04", "who": "glass", "text": "Tamam, bugün ben demlerim."},
+  {"id": "c05", "who": "kettle", "text": "İyi bakalım. Demlemeyi biliyor musun?"},
+  {"id": "c06", "who": "glass", "text": "Hayır. Ama Youtube'da izledim."}
+ ]}
