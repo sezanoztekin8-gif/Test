@@ -1,0 +1,187 @@
+{
+ "title": "Bu Sefer Ezilmeyeceğim — 1. Bölüm",
+ "voices": {
+  "defne": "default",
+  "kenan": "ref_kenan",
+  "nermin": "ref_nermin",
+  "ali": "ref_ali"
+ },
+ "lines": [
+  {
+   "id": "l01",
+   "scene": "park",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Eski şubeye gittim. Kimse yoktu. Sadece bir zarf bırakmışlar."
+  },
+  {
+   "id": "l02",
+   "scene": "park",
+   "who": "ali",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Anne, o zarfta ne var?"
+  },
+  {
+   "id": "l03",
+   "scene": "park",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "İçinde bir ev belgesi. Zehra'nın adı yazıyor ama imza benim değil."
+  },
+  {
+   "id": "l04",
+   "scene": "park",
+   "who": "defne",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Oğlum, bu konuyu bir avukatla konuşacağım. Tamam mı?"
+  },
+  {
+   "id": "l05",
+   "scene": "park",
+   "who": "ali",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Tamam anne. Babam görmesin ama."
+  },
+  {
+   "id": "l06",
+   "scene": "park",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Bu çocuk bile saklamayı öğrenmiş."
+  },
+  {
+   "id": "l07",
+   "scene": "park",
+   "who": "defne",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Sen merak etme, bu sefer kimse bize yalan söyleyemeyecek."
+  },
+  {
+   "id": "l08",
+   "scene": "park",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Parkın öbür ucunda Kenan'ın arabası duruyordu."
+  },
+  {
+   "id": "l09",
+   "scene": "car",
+   "who": "kenan",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Zehra, arabaya bin. Konuşalım."
+  },
+  {
+   "id": "l10",
+   "scene": "car",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Camı açmadım. Arabanın içi bile bana yabancıydı."
+  },
+  {
+   "id": "l11",
+   "scene": "car",
+   "who": "defne",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Zarfı senin için getirdim. Bu imzanın kime ait olduğunu bilmek istiyorum."
+  },
+  {
+   "id": "l12",
+   "scene": "car",
+   "who": "kenan",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Sen kimin peşinden gidiyorsun? Biz aile değil miyiz?"
+  },
+  {
+   "id": "l13",
+   "scene": "car",
+   "who": "defne",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Aile, para konusunda sessiz kalan değildir."
+  },
+  {
+   "id": "l14",
+   "scene": "car",
+   "who": "kenan",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Beni tehdit mi ediyorsun?"
+  },
+  {
+   "id": "l15",
+   "scene": "car",
+   "who": "defne",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Hayır. Sadece bir avukatla konuşacağım."
+  },
+  {
+   "id": "l16",
+   "scene": "car",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Kenan bir şey söylemeden kapıyı açıp indi."
+  },
+  {
+   "id": "l17",
+   "scene": "office",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Avukat bürosu sakin, duvarlar kitap kokuyor."
+  },
+  {
+   "id": "l18",
+   "scene": "office",
+   "who": "defne",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Bu imza benim değil. Peki bu belgeyi kim hazırladı?"
+  },
+  {
+   "id": "l19",
+   "scene": "office",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Belgenin köşesinde eski bankanın kaşesi var."
+  },
+  {
+   "id": "l20",
+   "scene": "office",
+   "who": "defne",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Tamam. Bu defterle birlikte her şeyi mahkemeye götüreceğim."
+  },
+  {
+   "id": "l21",
+   "scene": "office",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Bu evde ilk kez kendi adıma bir şey imzalıyorum."
+  },
+  {
+   "id": "l22",
+   "scene": "office",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Bu belge sadece bir başlangıç."
+  }
+ ]
+}

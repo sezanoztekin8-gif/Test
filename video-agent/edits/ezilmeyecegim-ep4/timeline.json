@@ -1,0 +1,206 @@
+{
+ "total": 100.0,
+ "title": [
+  13.803624999999998,
+  16.403624999999998
+ ],
+ "end_card": 78.27699999999997,
+ "scenes": [
+  {
+   "name": "park",
+   "start": 0.0,
+   "first": "l01",
+   "end": 28.298
+  },
+  {
+   "name": "car",
+   "start": 28.298,
+   "first": "l09",
+   "end": 52.811
+  },
+  {
+   "name": "office",
+   "start": 52.811,
+   "first": "l17",
+   "end": 100.0
+  }
+ ],
+ "lines": [
+  {
+   "id": "l01",
+   "who": "defne",
+   "scene": "park",
+   "start": 0.35,
+   "dur": 3.444208,
+   "text": "Eski şubeye gittim. Kimse yoktu. Sadece bir zarf bırakmışlar."
+  },
+  {
+   "id": "l02",
+   "who": "ali",
+   "scene": "park",
+   "start": 4.294,
+   "dur": 1.266208,
+   "text": "Anne, o zarfta ne var?"
+  },
+  {
+   "id": "l03",
+   "who": "defne",
+   "scene": "park",
+   "start": 6.06,
+   "dur": 3.772042,
+   "text": "İçinde bir ev belgesi. Zehra'nın adı yazıyor ama imza benim değil."
+  },
+  {
+   "id": "l04",
+   "who": "defne",
+   "scene": "park",
+   "start": 10.332,
+   "dur": 2.971167,
+   "text": "Oğlum, bu konuyu bir avukatla konuşacağım. Tamam mı?"
+  },
+  {
+   "id": "l05",
+   "who": "ali",
+   "scene": "park",
+   "start": 16.404,
+   "dur": 1.874667,
+   "text": "Tamam anne. Babam görmesin ama."
+  },
+  {
+   "id": "l06",
+   "who": "defne",
+   "scene": "park",
+   "start": 18.778,
+   "dur": 1.918125,
+   "text": "Bu çocuk bile saklamayı öğrenmiş."
+  },
+  {
+   "id": "l07",
+   "who": "defne",
+   "scene": "park",
+   "start": 21.196,
+   "dur": 3.241958,
+   "text": "Sen merak etme, bu sefer kimse bize yalan söyleyemeyecek."
+  },
+  {
+   "id": "l08",
+   "who": "defne",
+   "scene": "park",
+   "start": 24.938,
+   "dur": 2.710042,
+   "text": "Parkın öbür ucunda Kenan'ın arabası duruyordu."
+  },
+  {
+   "id": "l09",
+   "who": "kenan",
+   "scene": "car",
+   "start": 28.848,
+   "dur": 1.591833,
+   "text": "Zehra, arabaya bin. Konuşalım."
+  },
+  {
+   "id": "l10",
+   "who": "defne",
+   "scene": "car",
+   "start": 30.94,
+   "dur": 2.8515,
+   "text": "Camı açmadım. Arabanın içi bile bana yabancıydı."
+  },
+  {
+   "id": "l11",
+   "who": "defne",
+   "scene": "car",
+   "start": 34.292,
+   "dur": 3.55675,
+   "text": "Zarfı senin için getirdim. Bu imzanın kime ait olduğunu bilmek istiyorum."
+  },
+  {
+   "id": "l12",
+   "who": "kenan",
+   "scene": "car",
+   "start": 38.349,
+   "dur": 2.767208,
+   "text": "Sen kimin peşinden gidiyorsun? Biz aile değil miyiz?"
+  },
+  {
+   "id": "l13",
+   "who": "defne",
+   "scene": "car",
+   "start": 42.166,
+   "dur": 2.568417,
+   "text": "Aile, para konusunda sessiz kalan değildir."
+  },
+  {
+   "id": "l14",
+   "who": "kenan",
+   "scene": "car",
+   "start": 45.234,
+   "dur": 1.234542,
+   "text": "Beni tehdit mi ediyorsun?"
+  },
+  {
+   "id": "l15",
+   "who": "defne",
+   "scene": "car",
+   "start": 46.969,
+   "dur": 2.26575,
+   "text": "Hayır. Sadece bir avukatla konuşacağım."
+  },
+  {
+   "id": "l16",
+   "who": "defne",
+   "scene": "car",
+   "start": 49.734,
+   "dur": 2.426958,
+   "text": "Kenan bir şey söylemeden kapıyı açıp indi."
+  },
+  {
+   "id": "l17",
+   "who": "defne",
+   "scene": "office",
+   "start": 53.361,
+   "dur": 2.669333,
+   "text": "Avukat bürosu sakin, duvarlar kitap kokuyor."
+  },
+  {
+   "id": "l18",
+   "who": "defne",
+   "scene": "office",
+   "start": 57.081,
+   "dur": 2.746792,
+   "text": "Bu imza benim değil. Peki bu belgeyi kim hazırladı?"
+  },
+  {
+   "id": "l19",
+   "who": "defne",
+   "scene": "office",
+   "start": 60.327,
+   "dur": 2.623833,
+   "text": "Belgenin köşesinde eski bankanın kaşesi var."
+  },
+  {
+   "id": "l20",
+   "who": "defne",
+   "scene": "office",
+   "start": 63.451,
+   "dur": 3.443792,
+   "text": "Tamam. Bu defterle birlikte her şeyi mahkemeye götüreceğim."
+  },
+  {
+   "id": "l21",
+   "who": "defne",
+   "scene": "office",
+   "start": 67.395,
+   "dur": 2.505292,
+   "text": "Bu evde ilk kez kendi adıma bir şey imzalıyorum."
+  },
+  {
+   "id": "l22",
+   "who": "defne",
+   "scene": "office",
+   "start": 70.9,
+   "dur": 1.876583,
+   "text": "Bu belge sadece bir başlangıç."
+  }
+ ]
+}
