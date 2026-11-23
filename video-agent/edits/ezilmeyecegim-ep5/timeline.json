@@ -1,0 +1,206 @@
+{
+ "total": 100.0,
+ "title": [
+  14.534292,
+  17.134292000000002
+ ],
+ "end_card": 79.29487400000002,
+ "scenes": [
+  {
+   "name": "market",
+   "start": 0.0,
+   "first": "l01",
+   "end": 30.925
+  },
+  {
+   "name": "school",
+   "start": 30.925,
+   "first": "l09",
+   "end": 55.138
+  },
+  {
+   "name": "court",
+   "start": 55.138,
+   "first": "l17",
+   "end": 100.0
+  }
+ ],
+ "lines": [
+  {
+   "id": "l01",
+   "who": "defne",
+   "scene": "market",
+   "start": 0.35,
+   "dur": 3.38125,
+   "text": "Pazarda herkes bizi tanıyor. Ama kimse bana yardım etmiyor."
+  },
+  {
+   "id": "l02",
+   "who": "nermin",
+   "scene": "market",
+   "start": 4.231,
+   "dur": 3.051667,
+   "text": "Zehra! Mahalle diyor ki avukata gitmişsin. Ne yapıyorsun?"
+  },
+  {
+   "id": "l03",
+   "who": "defne",
+   "scene": "market",
+   "start": 7.783,
+   "dur": 2.022958,
+   "text": "Mahalle sesini bu sefer duyuruyor."
+  },
+  {
+   "id": "l04",
+   "who": "defne",
+   "scene": "market",
+   "start": 10.306,
+   "dur": 3.728417,
+   "text": "Mahallenin sesini ben de duyuyorum Nermin Hanım. Bu sefer susmayacağım."
+  },
+  {
+   "id": "l05",
+   "who": "nermin",
+   "scene": "market",
+   "start": 17.134,
+   "dur": 1.46125,
+   "text": "Kenan'ın ailesine bu yapılır mı?"
+  },
+  {
+   "id": "l06",
+   "who": "defne",
+   "scene": "market",
+   "start": 19.096,
+   "dur": 2.2755,
+   "text": "Benim hayatım bir mahalle meselesi değil."
+  },
+  {
+   "id": "l07",
+   "who": "defne",
+   "scene": "market",
+   "start": 21.871,
+   "dur": 3.741208,
+   "text": "Bu sabah ekmeğimi kendim aldım. Bir de hesabımı kendim tutacağım."
+  },
+  {
+   "id": "l08",
+   "who": "defne",
+   "scene": "market",
+   "start": 26.112,
+   "dur": 4.162792,
+   "text": "Tezgâhın arkasındaki adam bile bana gülümsedi. Demek herkes bekliyormuş."
+  },
+  {
+   "id": "l09",
+   "who": "ali",
+   "scene": "school",
+   "start": 31.475,
+   "dur": 3.284917,
+   "text": "Anne, öğretmen bugün velileri çağırmış. Sen gelecek misin?"
+  },
+  {
+   "id": "l10",
+   "who": "defne",
+   "scene": "school",
+   "start": 35.26,
+   "dur": 3.354875,
+   "text": "Ali'nin sesi titriyordu. Okul bile bu evin sesini duyuyor."
+  },
+  {
+   "id": "l11",
+   "who": "defne",
+   "scene": "school",
+   "start": 39.115,
+   "dur": 2.187958,
+   "text": "Geleceğim bir tanem. Hem de senin için."
+  },
+  {
+   "id": "l12",
+   "who": "ali",
+   "scene": "school",
+   "start": 41.803,
+   "dur": 2.6395,
+   "text": "Öğretmen 'annen sana yardım ediyor mu' diye sordu."
+  },
+  {
+   "id": "l13",
+   "who": "defne",
+   "scene": "school",
+   "start": 45.492,
+   "dur": 1.379333,
+   "text": "Ne cevap verdin?"
+  },
+  {
+   "id": "l14",
+   "who": "ali",
+   "scene": "school",
+   "start": 47.372,
+   "dur": 0.938958,
+   "text": "'Evet' dedim anne. Yalan değil."
+  },
+  {
+   "id": "l15",
+   "who": "defne",
+   "scene": "school",
+   "start": 48.811,
+   "dur": 3.575833,
+   "text": "Bir çocuğun doğruyu söylemesi bile bu evi değiştirmeye yeter."
+  },
+  {
+   "id": "l16",
+   "who": "defne",
+   "scene": "school",
+   "start": 52.886,
+   "dur": 1.6015,
+   "text": "Bu gece hepimiz konuşacağız."
+  },
+  {
+   "id": "l17",
+   "who": "defne",
+   "scene": "court",
+   "start": 55.688,
+   "dur": 3.696375,
+   "text": "Mahkeme koridoru soğuk. Her kapının arkasında başka bir hayat."
+  },
+  {
+   "id": "l18",
+   "who": "kenan",
+   "scene": "court",
+   "start": 60.434,
+   "dur": 2.431958,
+   "text": "Bu işin bitmesini istiyorum Zehra. Anlaşalım."
+  },
+  {
+   "id": "l19",
+   "who": "defne",
+   "scene": "court",
+   "start": 63.366,
+   "dur": 2.24675,
+   "text": "Anlaşma, hesabı verdikten sonra olur Kenan."
+  },
+  {
+   "id": "l20",
+   "who": "nermin",
+   "scene": "court",
+   "start": 66.113,
+   "dur": 1.73725,
+   "text": "Bunu konuşmak için mahkemeye mi geldik?"
+  },
+  {
+   "id": "l21",
+   "who": "defne",
+   "scene": "court",
+   "start": 68.35,
+   "dur": 1.906833,
+   "text": "Evet. Çünkü evde konuşmak yetmedi."
+  },
+  {
+   "id": "l22",
+   "who": "defne",
+   "scene": "court",
+   "start": 71.257,
+   "dur": 2.537792,
+   "text": "Kapı açıldı. Artık ben de içeri girebilirim."
+  }
+ ]
+}

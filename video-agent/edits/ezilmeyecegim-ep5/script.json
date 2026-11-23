@@ -1,0 +1,187 @@
+{
+ "title": "Bu Sefer Ezilmeyeceğim — 1. Bölüm",
+ "voices": {
+  "defne": "default",
+  "kenan": "ref_kenan",
+  "nermin": "ref_nermin",
+  "ali": "ref_ali"
+ },
+ "lines": [
+  {
+   "id": "l01",
+   "scene": "market",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Pazarda herkes bizi tanıyor. Ama kimse bana yardım etmiyor."
+  },
+  {
+   "id": "l02",
+   "scene": "market",
+   "who": "nermin",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Zehra! Mahalle diyor ki avukata gitmişsin. Ne yapıyorsun?"
+  },
+  {
+   "id": "l03",
+   "scene": "market",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Mahalle sesini bu sefer duyuruyor."
+  },
+  {
+   "id": "l04",
+   "scene": "market",
+   "who": "defne",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Mahallenin sesini ben de duyuyorum Nermin Hanım. Bu sefer susmayacağım."
+  },
+  {
+   "id": "l05",
+   "scene": "market",
+   "who": "nermin",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Kenan'ın ailesine bu yapılır mı?"
+  },
+  {
+   "id": "l06",
+   "scene": "market",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Benim hayatım bir mahalle meselesi değil."
+  },
+  {
+   "id": "l07",
+   "scene": "market",
+   "who": "defne",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Bu sabah ekmeğimi kendim aldım. Bir de hesabımı kendim tutacağım."
+  },
+  {
+   "id": "l08",
+   "scene": "market",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Tezgâhın arkasındaki adam bile bana gülümsedi. Demek herkes bekliyormuş."
+  },
+  {
+   "id": "l09",
+   "scene": "school",
+   "who": "ali",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Anne, öğretmen bugün velileri çağırmış. Sen gelecek misin?"
+  },
+  {
+   "id": "l10",
+   "scene": "school",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Ali'nin sesi titriyordu. Okul bile bu evin sesini duyuyor."
+  },
+  {
+   "id": "l11",
+   "scene": "school",
+   "who": "defne",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Geleceğim bir tanem. Hem de senin için."
+  },
+  {
+   "id": "l12",
+   "scene": "school",
+   "who": "ali",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Öğretmen 'annen sana yardım ediyor mu' diye sordu."
+  },
+  {
+   "id": "l13",
+   "scene": "school",
+   "who": "defne",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Ne cevap verdin?"
+  },
+  {
+   "id": "l14",
+   "scene": "school",
+   "who": "ali",
+   "inner": false,
+   "ex": 0.5,
+   "text": "'Evet' dedim anne. Yalan değil."
+  },
+  {
+   "id": "l15",
+   "scene": "school",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Bir çocuğun doğruyu söylemesi bile bu evi değiştirmeye yeter."
+  },
+  {
+   "id": "l16",
+   "scene": "school",
+   "who": "defne",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Bu gece hepimiz konuşacağız."
+  },
+  {
+   "id": "l17",
+   "scene": "court",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Mahkeme koridoru soğuk. Her kapının arkasında başka bir hayat."
+  },
+  {
+   "id": "l18",
+   "scene": "court",
+   "who": "kenan",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Bu işin bitmesini istiyorum Zehra. Anlaşalım."
+  },
+  {
+   "id": "l19",
+   "scene": "court",
+   "who": "defne",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Anlaşma, hesabı verdikten sonra olur Kenan."
+  },
+  {
+   "id": "l20",
+   "scene": "court",
+   "who": "nermin",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Bunu konuşmak için mahkemeye mi geldik?"
+  },
+  {
+   "id": "l21",
+   "scene": "court",
+   "who": "defne",
+   "inner": false,
+   "ex": 0.5,
+   "text": "Evet. Çünkü evde konuşmak yetmedi."
+  },
+  {
+   "id": "l22",
+   "scene": "court",
+   "who": "defne",
+   "inner": true,
+   "ex": 0.5,
+   "text": "Kapı açıldı. Artık ben de içeri girebilirim."
+  }
+ ]
+}

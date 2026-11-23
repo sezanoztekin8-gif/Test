@@ -1,0 +1,443 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=1080, height=1920">
+<script src="lib/gsap.min.js"></script><style>@font-face{font-family:"BH Fredoka";font-weight:700;font-style:normal;src:url(fonts/fredoka-latin-700-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"BH Fredoka";font-weight:700;font-style:normal;src:url(fonts/fredoka-latin-ext-700-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"BH Nunito";font-weight:900;font-style:normal;src:url(fonts/nunito-latin-900-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"BH Nunito";font-weight:900;font-style:normal;src:url(fonts/nunito-latin-ext-900-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"BH Nunito";font-weight:800;font-style:italic;src:url(fonts/nunito-latin-800-italic.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"BH Nunito";font-weight:800;font-style:italic;src:url(fonts/nunito-latin-ext-800-italic.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;background:#000}
+#stage{position:absolute;inset:0}
+.scene{position:absolute;inset:0;overflow:hidden;background:#000}
+.cam{position:absolute;left:0;top:0;width:1080px;height:1920px;will-change:transform}
+.cam svg{display:block}
+#vig{position:absolute;inset:0;z-index:40;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,0) 55%,rgba(0,0,0,0.45) 100%),linear-gradient(180deg,rgba(0,0,0,0.25) 0%,rgba(0,0,0,0) 14%,rgba(0,0,0,0) 62%,rgba(0,0,0,0.5) 100%)}
+#grain{position:absolute;inset:0;z-index:41;pointer-events:none;opacity:0.06;background:repeating-linear-gradient(0deg,#000 0 2px,transparent 2px 4px)}
+#flash{position:absolute;inset:0;z-index:45;background:#fff;opacity:0}
+#fade{position:absolute;inset:0;z-index:99;background:#000;opacity:0}
+#chip{position:absolute;left:50%;top:150px;margin-left:-400px;width:800px;white-space:nowrap;z-index:60;text-align:center;padding:12px 0;border-radius:40px;background:rgba(30,16,36,0.78);color:#fff;font:700 36px "BH Fredoka",sans-serif;letter-spacing:1px;border:3px solid #ff6f91}
+#chip b{color:#ff6f91}
+#hook{position:absolute;left:70px;right:70px;top:250px;z-index:61;text-align:center;font:900 64px/1.1 "BH Nunito",sans-serif;color:#fff;-webkit-text-stroke:12px #1d1022;paint-order:stroke fill}
+#hook em{font-style:normal;color:#ff6f91}
+.cap{position:absolute;left:46px;right:46px;bottom:400px;opacity:0;display:flex;flex-direction:column;align-items:center;gap:10px}
+.who{padding:5px 22px;border-radius:30px;color:#1d1022;font:700 34px "BH Fredoka",sans-serif;letter-spacing:1px;border:4px solid #1d1022}
+.txt{text-align:center;font:900 68px/1.15 "BH Nunito",sans-serif;color:#fff;-webkit-text-stroke:12px #1d1022;paint-order:stroke fill;max-width:990px}
+.cap.inner .txt{font-style:italic;font-weight:800;color:#ffe3ec}
+.w{display:inline-block}
+#title{position:absolute;inset:0;z-index:80}
+#title-in{position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse at 50% 45%,#5a1f3a 0%,#2a0f22 60%,#12060f 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:0 60px}
+#t1{font:700 96px/1.02 "BH Fredoka",sans-serif;color:#fff;text-align:center}
+#t2{font:700 132px/1 "BH Fredoka",sans-serif;color:#ff6f91;text-align:center;text-shadow:0 8px 0 #12060f}
+#t3{padding:10px 36px;border-radius:40px;border:4px solid #fff;color:#fff;font:900 46px "BH Nunito",sans-serif}
+#diary{position:absolute;left:170px;top:185px;width:740px;z-index:5;transform:rotate(-3deg);background:#fffdf5;padding:44px 48px;border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,0.4);font:800 46px/60px "BH Nunito",sans-serif;font-style:italic;color:#2f3f6b}
+.dl{display:block;height:60px}
+#dlast{display:block;margin-top:60px;color:#9b1d3a;font-size:54px;line-height:66px}
+#torch{position:absolute;left:-200px;top:200px;width:1500px;height:1500px;z-index:6;pointer-events:none;background:radial-gradient(circle at 50% 50%,rgba(255,230,160,0.0) 0%,rgba(255,230,160,0) 30%,rgba(10,6,14,0.55) 60%)}
+#end{position:absolute;inset:0;z-index:85}
+#end-in{position:absolute;inset:0;opacity:0;background:rgba(18,6,15,0.82);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;padding:0 70px}
+#e1{font:700 84px/1.08 "BH Fredoka",sans-serif;color:#fff;text-align:center}
+#e1 span{color:#ff6f91}
+#e2{font:900 54px/1.2 "BH Nunito",sans-serif;color:#ffe3ec;text-align:center}
+#e3{padding:18px 50px;border-radius:50px;background:#ff6f91;color:#1d1022;font:700 66px "BH Fredoka",sans-serif;border:6px solid #fff}
+</style></head><body>
+<div id="root" data-composition-id="ezilmeyecegim-ep1" data-start="0" data-duration="100.0" data-width="1080" data-height="1920">
+ <div id="stage"><div class="scene clip" id="s0" data-start="0.0" data-duration="31.525" data-track-index="1" style="z-index:10"><div class="cam" id="s0-cam"><svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"><rect width="1080" height="1920" fill="#f6e7c8"/><rect x="0" y="160" width="120" height="200" fill="#fff7e8"/><rect x="120" y="160" width="120" height="200" fill="#d9534f"/><rect x="240" y="160" width="120" height="200" fill="#fff7e8"/><rect x="360" y="160" width="120" height="200" fill="#d9534f"/><rect x="480" y="160" width="120" height="200" fill="#fff7e8"/><rect x="600" y="160" width="120" height="200" fill="#d9534f"/><rect x="720" y="160" width="120" height="200" fill="#fff7e8"/><rect x="840" y="160" width="120" height="200" fill="#d9534f"/><rect x="960" y="160" width="120" height="200" fill="#fff7e8"/><rect x="380" y="430" width="320" height="90" rx="14" fill="#2e7a5c"/><rect y="1420" width="1080" height="500" fill="#b5a28a"/><rect x="60" y="1080" width="960" height="80" rx="10" fill="#8b6b4a"/><rect x="90" y="1160" width="30" height="260" fill="#6b4a33"/><rect x="960" y="1160" width="30" height="260" fill="#6b4a33"/><circle cx="120" cy="1060" r="30" fill="#e04848"/><circle cx="200" cy="1060" r="30" fill="#f2b233"/><circle cx="280" cy="1060" r="30" fill="#6cb34a"/><circle cx="360" cy="1060" r="30" fill="#f08a4b"/><circle cx="440" cy="1060" r="30" fill="#e04848"/><circle cx="520" cy="1060" r="30" fill="#f2b233"/><circle cx="600" cy="1060" r="30" fill="#6cb34a"/><circle cx="680" cy="1060" r="30" fill="#f08a4b"/><circle cx="760" cy="1060" r="30" fill="#e04848"/><circle cx="840" cy="1060" r="30" fill="#f2b233"/><circle cx="920" cy="1060" r="30" fill="#6cb34a"/><circle cx="1000" cy="1060" r="30" fill="#f08a4b"/><g id="s0-nermin" class="breathe"><g id="s0-nermin-0" opacity="1" class="who-nermin"><circle cx="860" cy="718" r="38" fill="#a9a5a2"/><rect x="813" y="1163" width="35" height="341" rx="18" fill="#eec3a2"/><ellipse cx="825" cy="1512" rx="30" ry="16" fill="#3b3138"/><rect x="872" y="1163" width="35" height="341" rx="18" fill="#eec3a2"/><ellipse cx="895" cy="1512" rx="30" ry="16" fill="#3b3138"/><path d="M772 895 Q860 879 948 895 L970 1360 L750 1360Z" fill="#7d2f3d"/><rect x="754" y="897" width="30" height="273" rx="15" fill="#7d2f3d"/><circle cx="769" cy="1178" r="17" fill="#eec3a2"/><rect x="936" y="897" width="30" height="273" rx="15" fill="#7d2f3d"/><circle cx="951" cy="1178" r="17" fill="#eec3a2"/><rect x="842" y="864" width="37" height="38" fill="#eec3a2"/><ellipse cx="860" cy="806" rx="80" ry="84" fill="#eec3a2"/><ellipse cx="780" cy="814" rx="10" ry="17" fill="#eec3a2"/><ellipse cx="940" cy="814" rx="10" ry="17" fill="#eec3a2"/><ellipse cx="828" cy="802" rx="12" ry="12" fill="#fff"/><circle cx="828" cy="804" r="7" fill="#2b2233"/><circle cx="831" cy="799" r="2" fill="#fff"/><path d="M831 790 l-14 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><ellipse cx="892" cy="802" rx="12" ry="12" fill="#fff"/><circle cx="892" cy="804" r="7" fill="#2b2233"/><circle cx="895" cy="799" r="2" fill="#fff"/><path d="M889 790 l14 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><path d="M846 787 L814 771" stroke="#7a746f" stroke-width="6" stroke-linecap="round"/><path d="M874 787 L906 771" stroke="#7a746f" stroke-width="6" stroke-linecap="round"/><ellipse cx="814" cy="829" rx="11" ry="7" fill="#e8908a" opacity="0.45"/><ellipse cx="906" cy="829" rx="11" ry="7" fill="#e8908a" opacity="0.45"/><circle cx="828" cy="802" r="20" fill="none" stroke="#5b4a3a" stroke-width="5"/><circle cx="892" cy="802" r="20" fill="none" stroke="#5b4a3a" stroke-width="5"/><path d="M848 802 L872 802" stroke="#5b4a3a" stroke-width="5"/><g class="lips"><path d="M838 848 L882 844" stroke="#2b2233" stroke-width="6" stroke-linecap="round"/></g><ellipse class="mouth m-nermin" id="s0-nermin-0-m" cx="860" cy="850" rx="14" ry="10" fill="#7a2f3a"/><path d="M775 802 Q776 709 860 715 Q944 709 945 802 Q860 747 775 802Z" fill="#a9a5a2"/></g><g id="s0-nermin-1" opacity="0" class="who-nermin"><circle cx="860" cy="718" r="38" fill="#a9a5a2"/><rect x="813" y="1163" width="35" height="341" rx="18" fill="#eec3a2"/><ellipse cx="825" cy="1512" rx="30" ry="16" fill="#3b3138"/><rect x="872" y="1163" width="35" height="341" rx="18" fill="#eec3a2"/><ellipse cx="895" cy="1512" rx="30" ry="16" fill="#3b3138"/><path d="M772 895 Q860 879 948 895 L970 1360 L750 1360Z" fill="#7d2f3d"/><rect x="754" y="897" width="30" height="273" rx="15" fill="#7d2f3d"/><circle cx="769" cy="1178" r="17" fill="#eec3a2"/><rect x="936" y="897" width="30" height="273" rx="15" fill="#7d2f3d"/><circle cx="951" cy="1178" r="17" fill="#eec3a2"/><rect x="842" y="864" width="37" height="38" fill="#eec3a2"/><ellipse cx="860" cy="806" rx="80" ry="84" fill="#eec3a2"/><ellipse cx="780" cy="814" rx="10" ry="17" fill="#eec3a2"/><ellipse cx="940" cy="814" rx="10" ry="17" fill="#eec3a2"/><ellipse cx="828" cy="802" rx="12" ry="12" fill="#fff"/><circle cx="828" cy="804" r="7" fill="#2b2233"/><circle cx="831" cy="799" r="2" fill="#fff"/><path d="M831 790 l-14 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><ellipse cx="892" cy="802" rx="12" ry="12" fill="#fff"/><circle cx="892" cy="804" r="7" fill="#2b2233"/><circle cx="895" cy="799" r="2" fill="#fff"/><path d="M889 790 l14 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><path d="M846 787 L814 771" stroke="#7a746f" stroke-width="6" stroke-linecap="round"/><path d="M874 787 L906 771" stroke="#7a746f" stroke-width="6" stroke-linecap="round"/><ellipse cx="814" cy="829" rx="11" ry="7" fill="#e8908a" opacity="0.45"/><ellipse cx="906" cy="829" rx="11" ry="7" fill="#e8908a" opacity="0.45"/><circle cx="828" cy="802" r="20" fill="none" stroke="#5b4a3a" stroke-width="5"/><circle cx="892" cy="802" r="20" fill="none" stroke="#5b4a3a" stroke-width="5"/><path d="M848 802 L872 802" stroke="#5b4a3a" stroke-width="5"/><g class="lips"><path d="M838 848 L882 844" stroke="#2b2233" stroke-width="6" stroke-linecap="round"/></g><ellipse class="mouth m-nermin" id="s0-nermin-1-m" cx="860" cy="850" rx="14" ry="10" fill="#7a2f3a"/><path d="M775 802 Q776 709 860 715 Q944 709 945 802 Q860 747 775 802Z" fill="#a9a5a2"/></g></g><g id="s0-zehra" class="breathe"><g id="s0-zehra-0" opacity="1" class="who-zehra"><path d="M194 1014 Q175 1273 235 1310 L365 1310 Q425 1273 406 1014Z" fill="#5a3825"/><rect x="248" y="1427" width="39" height="377" rx="19" fill="#e7dcc8"/><ellipse cx="261" cy="1812" rx="33" ry="17" fill="#3b3138"/><rect x="313" y="1427" width="39" height="377" rx="19" fill="#e7dcc8"/><ellipse cx="339" cy="1812" rx="33" ry="17" fill="#3b3138"/><path d="M203 1130 Q300 1114 397 1130 L389 1437 L211 1437Z" fill="#8fae8b"/><path d="M208 1433 L392 1433 L412 1675 L188 1675Z" fill="#e7dcc8"/><rect x="183" y="1132" width="33" height="301" rx="17" fill="#8fae8b"/><circle cx="200" cy="1443" r="18" fill="#f1c7a5"/><rect x="384" y="1132" width="33" height="301" rx="17" fill="#8fae8b"/><circle cx="400" cy="1443" r="18" fill="#f1c7a5"/><rect x="280" y="1097" width="41" height="42" fill="#f1c7a5"/><ellipse cx="300" cy="1032" rx="88" ry="92" fill="#f1c7a5"/><ellipse cx="212" cy="1042" rx="11" ry="18" fill="#f1c7a5"/><ellipse cx="388" cy="1042" rx="11" ry="18" fill="#f1c7a5"/><ellipse cx="265" cy="1028" rx="14" ry="13" fill="#fff"/><circle cx="265" cy="1030" r="8" fill="#2b2233"/><circle cx="268" cy="1025" r="3" fill="#fff"/><path d="M267 1015 l-16 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><ellipse cx="335" cy="1028" rx="14" ry="13" fill="#fff"/><circle cx="335" cy="1030" r="8" fill="#2b2233"/><circle cx="338" cy="1025" r="3" fill="#fff"/><path d="M333 1015 l16 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><path d="M284 1001 L249 1001" stroke="#5a3825" stroke-width="6" stroke-linecap="round"/><path d="M316 1001 L351 1001" stroke="#5a3825" stroke-width="6" stroke-linecap="round"/><ellipse cx="249" cy="1058" rx="12" ry="7" fill="#e8908a" opacity="0.45"/><ellipse cx="351" cy="1058" rx="12" ry="7" fill="#e8908a" opacity="0.45"/><g class="lips"><path d="M286 1077 L314 1077" stroke="#2b2233" stroke-width="5" stroke-linecap="round"/></g><ellipse class="mouth m-zehra" id="s0-zehra-0-m" cx="300" cy="1081" rx="15" ry="11" fill="#7a2f3a"/><path d="M200 1051 Q198 917 300 929 Q402 917 400 1051 Q365 982 305 975 Q254 1000 200 1051Z" fill="#5a3825"/></g><g id="s0-zehra-1" opacity="0" class="who-zehra"><path d="M194 1014 Q175 1273 235 1310 L365 1310 Q425 1273 406 1014Z" fill="#5a3825"/><rect x="248" y="1427" width="39" height="377" rx="19" fill="#e7dcc8"/><ellipse cx="261" cy="1812" rx="33" ry="17" fill="#3b3138"/><rect x="313" y="1427" width="39" height="377" rx="19" fill="#e7dcc8"/><ellipse cx="339" cy="1812" rx="33" ry="17" fill="#3b3138"/><path d="M203 1130 Q300 1114 397 1130 L389 1437 L211 1437Z" fill="#8fae8b"/><path d="M208 1433 L392 1433 L412 1675 L188 1675Z" fill="#e7dcc8"/><rect x="183" y="1132" width="33" height="301" rx="17" fill="#8fae8b"/><circle cx="200" cy="1443" r="18" fill="#f1c7a5"/><rect x="384" y="1132" width="33" height="301" rx="17" fill="#8fae8b"/><circle cx="400" cy="1443" r="18" fill="#f1c7a5"/><rect x="280" y="1097" width="41" height="42" fill="#f1c7a5"/><ellipse cx="300" cy="1032" rx="88" ry="92" fill="#f1c7a5"/><ellipse cx="212" cy="1042" rx="11" ry="18" fill="#f1c7a5"/><ellipse cx="388" cy="1042" rx="11" ry="18" fill="#f1c7a5"/><ellipse cx="265" cy="1028" rx="14" ry="13" fill="#fff"/><circle cx="265" cy="1030" r="8" fill="#2b2233"/><circle cx="268" cy="1025" r="3" fill="#fff"/><path d="M267 1015 l-16 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><ellipse cx="335" cy="1028" rx="14" ry="13" fill="#fff"/><circle cx="335" cy="1030" r="8" fill="#2b2233"/><circle cx="338" cy="1025" r="3" fill="#fff"/><path d="M333 1015 l16 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><path d="M284 999 L249 1003" stroke="#5a3825" stroke-width="6" stroke-linecap="round"/><path d="M316 999 L351 1003" stroke="#5a3825" stroke-width="6" stroke-linecap="round"/><ellipse cx="249" cy="1058" rx="12" ry="7" fill="#e8908a" opacity="0.45"/><ellipse cx="351" cy="1058" rx="12" ry="7" fill="#e8908a" opacity="0.45"/><g class="lips"><path d="M276 1073 Q300 1086 324 1073" fill="none" stroke="#2b2233" stroke-width="5" stroke-linecap="round"/></g><ellipse class="mouth m-zehra" id="s0-zehra-1-m" cx="300" cy="1081" rx="15" ry="11" fill="#7a2f3a"/><path d="M200 1051 Q198 917 300 929 Q402 917 400 1051 Q365 982 305 975 Q254 1000 200 1051Z" fill="#5a3825"/></g><g id="s0-zehra-2" opacity="0" class="who-zehra"><path d="M194 1014 Q175 1273 235 1310 L365 1310 Q425 1273 406 1014Z" fill="#5a3825"/><rect x="248" y="1427" width="39" height="377" rx="19" fill="#e7dcc8"/><ellipse cx="261" cy="1812" rx="33" ry="17" fill="#3b3138"/><rect x="313" y="1427" width="39" height="377" rx="19" fill="#e7dcc8"/><ellipse cx="339" cy="1812" rx="33" ry="17" fill="#3b3138"/><path d="M203 1130 Q300 1114 397 1130 L389 1437 L211 1437Z" fill="#8fae8b"/><path d="M208 1433 L392 1433 L412 1675 L188 1675Z" fill="#e7dcc8"/><rect x="183" y="1132" width="33" height="301" rx="17" fill="#8fae8b"/><circle cx="200" cy="1443" r="18" fill="#f1c7a5"/><rect x="384" y="1132" width="33" height="301" rx="17" fill="#8fae8b"/><circle cx="400" cy="1443" r="18" fill="#f1c7a5"/><rect x="280" y="1097" width="41" height="42" fill="#f1c7a5"/><ellipse cx="300" cy="1032" rx="88" ry="92" fill="#f1c7a5"/><ellipse cx="212" cy="1042" rx="11" ry="18" fill="#f1c7a5"/><ellipse cx="388" cy="1042" rx="11" ry="18" fill="#f1c7a5"/><ellipse cx="265" cy="1028" rx="14" ry="13" fill="#fff"/><circle cx="265" cy="1030" r="8" fill="#2b2233"/><circle cx="268" cy="1025" r="3" fill="#fff"/><path d="M267 1015 l-16 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><ellipse cx="335" cy="1028" rx="14" ry="13" fill="#fff"/><circle cx="335" cy="1030" r="8" fill="#2b2233"/><circle cx="338" cy="1025" r="3" fill="#fff"/><path d="M333 1015 l16 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><path d="M284 999 L249 1003" stroke="#5a3825" stroke-width="6" stroke-linecap="round"/><path d="M316 999 L351 1003" stroke="#5a3825" stroke-width="6" stroke-linecap="round"/><ellipse cx="249" cy="1058" rx="12" ry="7" fill="#e8908a" opacity="0.45"/><ellipse cx="351" cy="1058" rx="12" ry="7" fill="#e8908a" opacity="0.45"/><g class="lips"><path d="M276 1073 Q300 1086 324 1073" fill="none" stroke="#2b2233" stroke-width="5" stroke-linecap="round"/></g><ellipse class="mouth m-zehra" id="s0-zehra-2-m" cx="300" cy="1081" rx="15" ry="11" fill="#7a2f3a"/><path d="M200 1051 Q198 917 300 929 Q402 917 400 1051 Q365 982 305 975 Q254 1000 200 1051Z" fill="#5a3825"/></g></g></svg></div></div><div class="scene clip" id="s1" data-start="30.925" data-duration="24.813" data-track-index="2" style="z-index:11;opacity:0"><div class="cam" id="s1-cam"><svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"><rect width="1080" height="1920" fill="#f2efe3"/><rect y="1420" width="1080" height="500" fill="#c9b38f"/><rect y="1402" width="1080" height="18" fill="#00000022"/><rect x="160" y="280" width="760" height="380" rx="12" fill="#2f4a3a"/><rect x="160" y="280" width="760" height="380" rx="12" fill="none" stroke="#8b6b4a" stroke-width="18"/><circle cx="900" cy="200" r="60" fill="#ffffff" stroke="#333" stroke-width="8"/><line x1="900" y1="200" x2="900" y2="160" stroke="#333" stroke-width="6"/><line x1="900" y1="200" x2="930" y2="200" stroke="#333" stroke-width="6"/><rect x="60" y="200" width="100" height="300" fill="#bfe3f2"/><rect x="920" y="200" width="100" height="300" fill="#bfe3f2"/><rect x="150" y="1210" width="200" height="50" rx="6" fill="#9a7b5a"/><rect x="170" y="1260" width="20" height="150" fill="#6b4a33"/><rect x="540" y="1210" width="200" height="50" rx="6" fill="#9a7b5a"/><rect x="560" y="1260" width="20" height="150" fill="#6b4a33"/><rect x="800" y="1210" width="200" height="50" rx="6" fill="#9a7b5a"/><rect x="820" y="1260" width="20" height="150" fill="#6b4a33"/><g id="s1-ali" class="breathe"><g id="s1-ali-0" opacity="1" class="who-ali"><rect x="719" y="1254" width="31" height="210" rx="15" fill="#4c6ea8"/><ellipse cx="729" cy="1472" rx="26" ry="14" fill="#3b3138"/><rect x="770" y="1254" width="31" height="210" rx="15" fill="#4c6ea8"/><ellipse cx="791" cy="1472" rx="26" ry="14" fill="#3b3138"/><path d="M674 1072 Q760 1056 846 1072 L840 1264 L680 1264Z" fill="#f2c23b"/><rect x="658" y="1074" width="26" height="192" rx="13" fill="#f2c23b"/><circle cx="671" cy="1268" r="14" fill="#f4cfae"/><rect x="836" y="1074" width="26" height="192" rx="13" fill="#f2c23b"/><circle cx="849" cy="1268" r="14" fill="#f4cfae"/><rect x="744" y="1044" width="32" height="33" fill="#f4cfae"/><ellipse cx="760" cy="993" rx="69" ry="73" fill="#f4cfae"/><ellipse cx="691" cy="1000" rx="9" ry="15" fill="#f4cfae"/><ellipse cx="829" cy="1000" rx="9" ry="15" fill="#f4cfae"/><ellipse cx="732" cy="989" rx="13" ry="12" fill="#fff"/><circle cx="732" cy="991" r="8" fill="#2b2233"/><circle cx="735" cy="987" r="2" fill="#fff"/><ellipse cx="788" cy="989" rx="13" ry="12" fill="#fff"/><circle cx="788" cy="991" r="8" fill="#2b2233"/><circle cx="791" cy="987" r="2" fill="#fff"/><path d="M748 955 L720 969" stroke="#6b4429" stroke-width="5" stroke-linecap="round"/><path d="M772 955 L800 969" stroke="#6b4429" stroke-width="5" stroke-linecap="round"/><ellipse cx="720" cy="1013" rx="9" ry="6" fill="#e8908a" opacity="0.45"/><ellipse cx="800" cy="1013" rx="9" ry="6" fill="#e8908a" opacity="0.45"/><g class="lips"><path d="M745 1034 Q760 1020 775 1034" fill="none" stroke="#2b2233" stroke-width="5" stroke-linecap="round"/></g><ellipse class="mouth m-ali" id="s1-ali-0-m" cx="760" cy="1032" rx="12" ry="9" fill="#7a2f3a"/><path d="M684 993 Q680 902 760 909 Q840 902 836 993 Q804 960 775 953 Q738 967 684 993Z" fill="#6b4429"/></g><g id="s1-ali-1" opacity="0" class="who-ali"><rect x="719" y="1254" width="31" height="210" rx="15" fill="#4c6ea8"/><ellipse cx="729" cy="1472" rx="26" ry="14" fill="#3b3138"/><rect x="770" y="1254" width="31" height="210" rx="15" fill="#4c6ea8"/><ellipse cx="791" cy="1472" rx="26" ry="14" fill="#3b3138"/><path d="M674 1072 Q760 1056 846 1072 L840 1264 L680 1264Z" fill="#f2c23b"/><rect x="658" y="1074" width="26" height="192" rx="13" fill="#f2c23b"/><circle cx="671" cy="1268" r="14" fill="#f4cfae"/><rect x="836" y="1074" width="26" height="192" rx="13" fill="#f2c23b"/><circle cx="849" cy="1268" r="14" fill="#f4cfae"/><rect x="744" y="1044" width="32" height="33" fill="#f4cfae"/><ellipse cx="760" cy="993" rx="69" ry="73" fill="#f4cfae"/><ellipse cx="691" cy="1000" rx="9" ry="15" fill="#f4cfae"/><ellipse cx="829" cy="1000" rx="9" ry="15" fill="#f4cfae"/><ellipse cx="732" cy="989" rx="13" ry="12" fill="#fff"/><circle cx="732" cy="991" r="8" fill="#2b2233"/><circle cx="735" cy="987" r="2" fill="#fff"/><ellipse cx="788" cy="989" rx="13" ry="12" fill="#fff"/><circle cx="788" cy="991" r="8" fill="#2b2233"/><circle cx="791" cy="987" r="2" fill="#fff"/><path d="M748 955 L720 969" stroke="#6b4429" stroke-width="5" stroke-linecap="round"/><path d="M772 955 L800 969" stroke="#6b4429" stroke-width="5" stroke-linecap="round"/><ellipse cx="720" cy="1013" rx="9" ry="6" fill="#e8908a" opacity="0.45"/><ellipse cx="800" cy="1013" rx="9" ry="6" fill="#e8908a" opacity="0.45"/><g class="lips"><path d="M745 1034 Q760 1020 775 1034" fill="none" stroke="#2b2233" stroke-width="5" stroke-linecap="round"/></g><ellipse class="mouth m-ali" id="s1-ali-1-m" cx="760" cy="1032" rx="12" ry="9" fill="#7a2f3a"/><path d="M684 993 Q680 902 760 909 Q840 902 836 993 Q804 960 775 953 Q738 967 684 993Z" fill="#6b4429"/></g><g id="s1-ali-2" opacity="0" class="who-ali"><rect x="719" y="1254" width="31" height="210" rx="15" fill="#4c6ea8"/><ellipse cx="729" cy="1472" rx="26" ry="14" fill="#3b3138"/><rect x="770" y="1254" width="31" height="210" rx="15" fill="#4c6ea8"/><ellipse cx="791" cy="1472" rx="26" ry="14" fill="#3b3138"/><path d="M674 1072 Q760 1056 846 1072 L840 1264 L680 1264Z" fill="#f2c23b"/><rect x="658" y="1074" width="26" height="192" rx="13" fill="#f2c23b"/><circle cx="671" cy="1268" r="14" fill="#f4cfae"/><rect x="836" y="1074" width="26" height="192" rx="13" fill="#f2c23b"/><circle cx="849" cy="1268" r="14" fill="#f4cfae"/><rect x="744" y="1044" width="32" height="33" fill="#f4cfae"/><ellipse cx="760" cy="993" rx="69" ry="73" fill="#f4cfae"/><ellipse cx="691" cy="1000" rx="9" ry="15" fill="#f4cfae"/><ellipse cx="829" cy="1000" rx="9" ry="15" fill="#f4cfae"/><ellipse cx="732" cy="989" rx="13" ry="12" fill="#fff"/><circle cx="732" cy="991" r="8" fill="#2b2233"/><circle cx="735" cy="987" r="2" fill="#fff"/><ellipse cx="788" cy="989" rx="13" ry="12" fill="#fff"/><circle cx="788" cy="991" r="8" fill="#2b2233"/><circle cx="791" cy="987" r="2" fill="#fff"/><path d="M748 960 L720 960" stroke="#6b4429" stroke-width="5" stroke-linecap="round"/><path d="M772 960 L800 960" stroke="#6b4429" stroke-width="5" stroke-linecap="round"/><ellipse cx="720" cy="1013" rx="9" ry="6" fill="#e8908a" opacity="0.45"/><ellipse cx="800" cy="1013" rx="9" ry="6" fill="#e8908a" opacity="0.45"/><g class="lips"><path d="M741 1024 Q760 1044 779 1024" fill="none" stroke="#2b2233" stroke-width="5" stroke-linecap="round"/></g><ellipse class="mouth m-ali" id="s1-ali-2-m" cx="760" cy="1032" rx="12" ry="9" fill="#7a2f3a"/><path d="M684 993 Q680 902 760 909 Q840 902 836 993 Q804 960 775 953 Q738 967 684 993Z" fill="#6b4429"/></g></g><g id="s1-zehra" class="breathe"><g id="s1-zehra-0" opacity="1" class="who-zehra"><path d="M194 1014 Q175 1273 235 1310 L365 1310 Q425 1273 406 1014Z" fill="#5a3825"/><rect x="248" y="1427" width="39" height="377" rx="19" fill="#e7dcc8"/><ellipse cx="261" cy="1812" rx="33" ry="17" fill="#3b3138"/><rect x="313" y="1427" width="39" height="377" rx="19" fill="#e7dcc8"/><ellipse cx="339" cy="1812" rx="33" ry="17" fill="#3b3138"/><path d="M203 1130 Q300 1114 397 1130 L389 1437 L211 1437Z" fill="#8fae8b"/><path d="M208 1433 L392 1433 L412 1675 L188 1675Z" fill="#e7dcc8"/><rect x="183" y="1132" width="33" height="301" rx="17" fill="#8fae8b"/><circle cx="200" cy="1443" r="18" fill="#f1c7a5"/><rect x="384" y="1132" width="33" height="301" rx="17" fill="#8fae8b"/><circle cx="400" cy="1443" r="18" fill="#f1c7a5"/><rect x="280" y="1097" width="41" height="42" fill="#f1c7a5"/><ellipse cx="300" cy="1032" rx="88" ry="92" fill="#f1c7a5"/><ellipse cx="212" cy="1042" rx="11" ry="18" fill="#f1c7a5"/><ellipse cx="388" cy="1042" rx="11" ry="18" fill="#f1c7a5"/><ellipse cx="265" cy="1028" rx="14" ry="13" fill="#fff"/><circle cx="265" cy="1030" r="8" fill="#2b2233"/><circle cx="268" cy="1025" r="3" fill="#fff"/><path d="M267 1015 l-16 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><ellipse cx="335" cy="1028" rx="14" ry="13" fill="#fff"/><circle cx="335" cy="1030" r="8" fill="#2b2233"/><circle cx="338" cy="1025" r="3" fill="#fff"/><path d="M333 1015 l16 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><path d="M284 999 L249 1003" stroke="#5a3825" stroke-width="6" stroke-linecap="round"/><path d="M316 999 L351 1003" stroke="#5a3825" stroke-width="6" stroke-linecap="round"/><ellipse cx="249" cy="1058" rx="12" ry="7" fill="#e8908a" opacity="0.45"/><ellipse cx="351" cy="1058" rx="12" ry="7" fill="#e8908a" opacity="0.45"/><g class="lips"><path d="M276 1073 Q300 1086 324 1073" fill="none" stroke="#2b2233" stroke-width="5" stroke-linecap="round"/></g><ellipse class="mouth m-zehra" id="s1-zehra-0-m" cx="300" cy="1081" rx="15" ry="11" fill="#7a2f3a"/><path d="M200 1051 Q198 917 300 929 Q402 917 400 1051 Q365 982 305 975 Q254 1000 200 1051Z" fill="#5a3825"/></g><g id="s1-zehra-1" opacity="0" class="who-zehra"><path d="M194 1014 Q175 1273 235 1310 L365 1310 Q425 1273 406 1014Z" fill="#5a3825"/><rect x="248" y="1427" width="39" height="377" rx="19" fill="#e7dcc8"/><ellipse cx="261" cy="1812" rx="33" ry="17" fill="#3b3138"/><rect x="313" y="1427" width="39" height="377" rx="19" fill="#e7dcc8"/><ellipse cx="339" cy="1812" rx="33" ry="17" fill="#3b3138"/><path d="M203 1130 Q300 1114 397 1130 L389 1437 L211 1437Z" fill="#8fae8b"/><path d="M208 1433 L392 1433 L412 1675 L188 1675Z" fill="#e7dcc8"/><rect x="183" y="1132" width="33" height="301" rx="17" fill="#8fae8b"/><circle cx="200" cy="1443" r="18" fill="#f1c7a5"/><rect x="384" y="1132" width="33" height="301" rx="17" fill="#8fae8b"/><circle cx="400" cy="1443" r="18" fill="#f1c7a5"/><rect x="280" y="1097" width="41" height="42" fill="#f1c7a5"/><ellipse cx="300" cy="1032" rx="88" ry="92" fill="#f1c7a5"/><ellipse cx="212" cy="1042" rx="11" ry="18" fill="#f1c7a5"/><ellipse cx="388" cy="1042" rx="11" ry="18" fill="#f1c7a5"/><ellipse cx="265" cy="1028" rx="14" ry="13" fill="#fff"/><circle cx="265" cy="1030" r="8" fill="#2b2233"/><circle cx="268" cy="1025" r="3" fill="#fff"/><path d="M267 1015 l-16 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><ellipse cx="335" cy="1028" rx="14" ry="13" fill="#fff"/><circle cx="335" cy="1030" r="8" fill="#2b2233"/><circle cx="338" cy="1025" r="3" fill="#fff"/><path d="M333 1015 l16 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><path d="M284 999 L249 1003" stroke="#5a3825" stroke-width="6" stroke-linecap="round"/><path d="M316 999 L351 1003" stroke="#5a3825" stroke-width="6" stroke-linecap="round"/><ellipse cx="249" cy="1058" rx="12" ry="7" fill="#e8908a" opacity="0.45"/><ellipse cx="351" cy="1058" rx="12" ry="7" fill="#e8908a" opacity="0.45"/><g class="lips"><path d="M276 1073 Q300 1086 324 1073" fill="none" stroke="#2b2233" stroke-width="5" stroke-linecap="round"/></g><ellipse class="mouth m-zehra" id="s1-zehra-1-m" cx="300" cy="1081" rx="15" ry="11" fill="#7a2f3a"/><path d="M200 1051 Q198 917 300 929 Q402 917 400 1051 Q365 982 305 975 Q254 1000 200 1051Z" fill="#5a3825"/></g><g id="s1-zehra-2" opacity="0" class="who-zehra"><path d="M194 1014 Q175 1273 235 1310 L365 1310 Q425 1273 406 1014Z" fill="#5a3825"/><rect x="248" y="1427" width="39" height="377" rx="19" fill="#e7dcc8"/><ellipse cx="261" cy="1812" rx="33" ry="17" fill="#3b3138"/><rect x="313" y="1427" width="39" height="377" rx="19" fill="#e7dcc8"/><ellipse cx="339" cy="1812" rx="33" ry="17" fill="#3b3138"/><path d="M203 1130 Q300 1114 397 1130 L389 1437 L211 1437Z" fill="#8fae8b"/><path d="M208 1433 L392 1433 L412 1675 L188 1675Z" fill="#e7dcc8"/><rect x="183" y="1132" width="33" height="301" rx="17" fill="#8fae8b"/><circle cx="200" cy="1443" r="18" fill="#f1c7a5"/><rect x="384" y="1132" width="33" height="301" rx="17" fill="#8fae8b"/><circle cx="400" cy="1443" r="18" fill="#f1c7a5"/><rect x="280" y="1097" width="41" height="42" fill="#f1c7a5"/><ellipse cx="300" cy="1032" rx="88" ry="92" fill="#f1c7a5"/><ellipse cx="212" cy="1042" rx="11" ry="18" fill="#f1c7a5"/><ellipse cx="388" cy="1042" rx="11" ry="18" fill="#f1c7a5"/><ellipse cx="265" cy="1028" rx="14" ry="13" fill="#fff"/><circle cx="265" cy="1030" r="8" fill="#2b2233"/><circle cx="268" cy="1025" r="3" fill="#fff"/><path d="M267 1015 l-16 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><ellipse cx="335" cy="1028" rx="14" ry="13" fill="#fff"/><circle cx="335" cy="1030" r="8" fill="#2b2233"/><circle cx="338" cy="1025" r="3" fill="#fff"/><path d="M333 1015 l16 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><path d="M284 999 L249 1003" stroke="#5a3825" stroke-width="6" stroke-linecap="round"/><path d="M316 999 L351 1003" stroke="#5a3825" stroke-width="6" stroke-linecap="round"/><ellipse cx="249" cy="1058" rx="12" ry="7" fill="#e8908a" opacity="0.45"/><ellipse cx="351" cy="1058" rx="12" ry="7" fill="#e8908a" opacity="0.45"/><g class="lips"><path d="M276 1073 Q300 1086 324 1073" fill="none" stroke="#2b2233" stroke-width="5" stroke-linecap="round"/></g><ellipse class="mouth m-zehra" id="s1-zehra-2-m" cx="300" cy="1081" rx="15" ry="11" fill="#7a2f3a"/><path d="M200 1051 Q198 917 300 929 Q402 917 400 1051 Q365 982 305 975 Q254 1000 200 1051Z" fill="#5a3825"/></g></g></svg></div></div><div class="scene clip" id="s2" data-start="55.138" data-duration="44.862" data-track-index="1" style="z-index:12;opacity:0"><div class="cam" id="s2-cam"><svg width="1080" height="1920" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg"><rect width="1080" height="1920" fill="#ddd3c2"/><rect y="1420" width="1080" height="500" fill="#7a5c44"/><rect y="1402" width="1080" height="18" fill="#00000022"/><rect x="60" y="300" width="50" height="1120" fill="#e9e1d2"/><rect x="970" y="300" width="50" height="1120" fill="#e9e1d2"/><rect x="380" y="500" width="320" height="920" rx="8" fill="#6b4a33"/><rect x="400" y="520" width="280" height="880" rx="6" fill="#7c5a3f"/><rect x="520" y="220" width="40" height="200" fill="#b58a3c"/><rect x="420" y="250" width="240" height="18" rx="8" fill="#b58a3c"/><rect x="120" y="1250" width="220" height="50" rx="8" fill="#5a3d2a"/><rect x="740" y="1250" width="220" height="50" rx="8" fill="#5a3d2a"/><g id="s2-kenan" class="breathe"><g id="s2-kenan-0" opacity="1" class="who-kenan"><rect x="644" y="1132" width="42" height="412" rx="21" fill="#2c2f36"/><ellipse cx="658" cy="1552" rx="36" ry="19" fill="#3b3138"/><rect x="714" y="1132" width="42" height="412" rx="21" fill="#2c2f36"/><ellipse cx="742" cy="1552" rx="36" ry="19" fill="#3b3138"/><path d="M574 807 Q700 791 826 807 L816 1142 L584 1142Z" fill="#4a4f5a"/><rect x="552" y="809" width="36" height="328" rx="18" fill="#4a4f5a"/><circle cx="570" cy="1149" r="20" fill="#d9a882"/><rect x="811" y="809" width="36" height="328" rx="18" fill="#4a4f5a"/><circle cx="830" cy="1149" r="20" fill="#d9a882"/><rect x="678" y="771" width="44" height="45" fill="#d9a882"/><ellipse cx="700" cy="701" rx="96" ry="101" fill="#d9a882"/><ellipse cx="604" cy="711" rx="12" ry="20" fill="#d9a882"/><ellipse cx="796" cy="711" rx="12" ry="20" fill="#d9a882"/><ellipse cx="662" cy="696" rx="15" ry="14" fill="#fff"/><circle cx="662" cy="698" r="9" fill="#2b2233"/><circle cx="665" cy="693" r="3" fill="#fff"/><ellipse cx="738" cy="696" rx="15" ry="14" fill="#fff"/><circle cx="738" cy="698" r="9" fill="#2b2233"/><circle cx="742" cy="693" r="3" fill="#fff"/><path d="M683 666 L644 666" stroke="#1f1a1d" stroke-width="7" stroke-linecap="round"/><path d="M717 666 L756 666" stroke="#1f1a1d" stroke-width="7" stroke-linecap="round"/><ellipse cx="700" cy="763" rx="62" ry="36" fill="#3a3033" opacity="0.14"/><path d="M670 739 Q700 727 730 739 Q700 734 670 739Z" fill="#2a2226"/><g class="lips"><path d="M684 749 L716 749" stroke="#2b2233" stroke-width="5" stroke-linecap="round"/></g><ellipse class="mouth m-kenan" id="s2-kenan-0-m" cx="700" cy="753" rx="16" ry="12" fill="#7a2f3a"/><path d="M597 691 Q594 580 700 588 Q806 580 803 691 L791 650 Q700 625 609 650Z" fill="#1f1a1d"/></g></g><g id="s2-nermin" class="breathe"><g id="s2-nermin-0" opacity="1" class="who-nermin"><circle cx="880" cy="718" r="38" fill="#a9a5a2"/><rect x="833" y="1163" width="35" height="341" rx="18" fill="#eec3a2"/><ellipse cx="845" cy="1512" rx="30" ry="16" fill="#3b3138"/><rect x="892" y="1163" width="35" height="341" rx="18" fill="#eec3a2"/><ellipse cx="915" cy="1512" rx="30" ry="16" fill="#3b3138"/><path d="M792 895 Q880 879 968 895 L990 1360 L770 1360Z" fill="#7d2f3d"/><rect x="774" y="897" width="30" height="273" rx="15" fill="#7d2f3d"/><circle cx="789" cy="1178" r="17" fill="#eec3a2"/><rect x="956" y="897" width="30" height="273" rx="15" fill="#7d2f3d"/><circle cx="971" cy="1178" r="17" fill="#eec3a2"/><rect x="862" y="864" width="37" height="38" fill="#eec3a2"/><ellipse cx="880" cy="806" rx="80" ry="84" fill="#eec3a2"/><ellipse cx="800" cy="814" rx="10" ry="17" fill="#eec3a2"/><ellipse cx="960" cy="814" rx="10" ry="17" fill="#eec3a2"/><ellipse cx="848" cy="802" rx="12" ry="12" fill="#fff"/><circle cx="848" cy="804" r="7" fill="#2b2233"/><circle cx="851" cy="799" r="2" fill="#fff"/><path d="M851 790 l-14 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><ellipse cx="912" cy="802" rx="12" ry="12" fill="#fff"/><circle cx="912" cy="804" r="7" fill="#2b2233"/><circle cx="915" cy="799" r="2" fill="#fff"/><path d="M909 790 l14 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><path d="M866 787 L834 771" stroke="#7a746f" stroke-width="6" stroke-linecap="round"/><path d="M894 787 L926 771" stroke="#7a746f" stroke-width="6" stroke-linecap="round"/><ellipse cx="834" cy="829" rx="11" ry="7" fill="#e8908a" opacity="0.45"/><ellipse cx="926" cy="829" rx="11" ry="7" fill="#e8908a" opacity="0.45"/><circle cx="848" cy="802" r="20" fill="none" stroke="#5b4a3a" stroke-width="5"/><circle cx="912" cy="802" r="20" fill="none" stroke="#5b4a3a" stroke-width="5"/><path d="M868 802 L892 802" stroke="#5b4a3a" stroke-width="5"/><g class="lips"><path d="M858 848 L902 844" stroke="#2b2233" stroke-width="6" stroke-linecap="round"/></g><ellipse class="mouth m-nermin" id="s2-nermin-0-m" cx="880" cy="850" rx="14" ry="10" fill="#7a2f3a"/><path d="M795 802 Q796 709 880 715 Q964 709 965 802 Q880 747 795 802Z" fill="#a9a5a2"/></g></g><g id="s2-zehra" class="breathe"><g id="s2-zehra-0" opacity="1" class="who-zehra"><path d="M194 1014 Q175 1273 235 1310 L365 1310 Q425 1273 406 1014Z" fill="#5a3825"/><rect x="248" y="1427" width="39" height="377" rx="19" fill="#e7dcc8"/><ellipse cx="261" cy="1812" rx="33" ry="17" fill="#3b3138"/><rect x="313" y="1427" width="39" height="377" rx="19" fill="#e7dcc8"/><ellipse cx="339" cy="1812" rx="33" ry="17" fill="#3b3138"/><path d="M203 1130 Q300 1114 397 1130 L389 1437 L211 1437Z" fill="#8fae8b"/><path d="M208 1433 L392 1433 L412 1675 L188 1675Z" fill="#e7dcc8"/><rect x="183" y="1132" width="33" height="301" rx="17" fill="#8fae8b"/><circle cx="200" cy="1443" r="18" fill="#f1c7a5"/><rect x="384" y="1132" width="33" height="301" rx="17" fill="#8fae8b"/><circle cx="400" cy="1443" r="18" fill="#f1c7a5"/><rect x="280" y="1097" width="41" height="42" fill="#f1c7a5"/><ellipse cx="300" cy="1032" rx="88" ry="92" fill="#f1c7a5"/><ellipse cx="212" cy="1042" rx="11" ry="18" fill="#f1c7a5"/><ellipse cx="388" cy="1042" rx="11" ry="18" fill="#f1c7a5"/><ellipse cx="265" cy="1028" rx="14" ry="13" fill="#fff"/><circle cx="265" cy="1030" r="8" fill="#2b2233"/><circle cx="268" cy="1025" r="3" fill="#fff"/><path d="M267 1015 l-16 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><ellipse cx="335" cy="1028" rx="14" ry="13" fill="#fff"/><circle cx="335" cy="1030" r="8" fill="#2b2233"/><circle cx="338" cy="1025" r="3" fill="#fff"/><path d="M333 1015 l16 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><path d="M284 999 L249 1003" stroke="#5a3825" stroke-width="6" stroke-linecap="round"/><path d="M316 999 L351 1003" stroke="#5a3825" stroke-width="6" stroke-linecap="round"/><ellipse cx="249" cy="1058" rx="12" ry="7" fill="#e8908a" opacity="0.45"/><ellipse cx="351" cy="1058" rx="12" ry="7" fill="#e8908a" opacity="0.45"/><g class="lips"><path d="M276 1073 Q300 1086 324 1073" fill="none" stroke="#2b2233" stroke-width="5" stroke-linecap="round"/></g><ellipse class="mouth m-zehra" id="s2-zehra-0-m" cx="300" cy="1081" rx="15" ry="11" fill="#7a2f3a"/><path d="M200 1051 Q198 917 300 929 Q402 917 400 1051 Q365 982 305 975 Q254 1000 200 1051Z" fill="#5a3825"/></g><g id="s2-zehra-1" opacity="0" class="who-zehra"><path d="M194 1014 Q175 1273 235 1310 L365 1310 Q425 1273 406 1014Z" fill="#5a3825"/><rect x="248" y="1427" width="39" height="377" rx="19" fill="#e7dcc8"/><ellipse cx="261" cy="1812" rx="33" ry="17" fill="#3b3138"/><rect x="313" y="1427" width="39" height="377" rx="19" fill="#e7dcc8"/><ellipse cx="339" cy="1812" rx="33" ry="17" fill="#3b3138"/><path d="M203 1130 Q300 1114 397 1130 L389 1437 L211 1437Z" fill="#8fae8b"/><path d="M208 1433 L392 1433 L412 1675 L188 1675Z" fill="#e7dcc8"/><rect x="183" y="1132" width="33" height="301" rx="17" fill="#8fae8b"/><circle cx="200" cy="1443" r="18" fill="#f1c7a5"/><rect x="384" y="1132" width="33" height="301" rx="17" fill="#8fae8b"/><circle cx="400" cy="1443" r="18" fill="#f1c7a5"/><rect x="280" y="1097" width="41" height="42" fill="#f1c7a5"/><ellipse cx="300" cy="1032" rx="88" ry="92" fill="#f1c7a5"/><ellipse cx="212" cy="1042" rx="11" ry="18" fill="#f1c7a5"/><ellipse cx="388" cy="1042" rx="11" ry="18" fill="#f1c7a5"/><ellipse cx="265" cy="1028" rx="14" ry="13" fill="#fff"/><circle cx="265" cy="1030" r="8" fill="#2b2233"/><circle cx="268" cy="1025" r="3" fill="#fff"/><path d="M267 1015 l-16 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><ellipse cx="335" cy="1028" rx="14" ry="13" fill="#fff"/><circle cx="335" cy="1030" r="8" fill="#2b2233"/><circle cx="338" cy="1025" r="3" fill="#fff"/><path d="M333 1015 l16 -6" stroke="#2b2233" stroke-width="4" stroke-linecap="round"/><path d="M284 999 L249 1003" stroke="#5a3825" stroke-width="6" stroke-linecap="round"/><path d="M316 999 L351 1003" stroke="#5a3825" stroke-width="6" stroke-linecap="round"/><ellipse cx="249" cy="1058" rx="12" ry="7" fill="#e8908a" opacity="0.45"/><ellipse cx="351" cy="1058" rx="12" ry="7" fill="#e8908a" opacity="0.45"/><g class="lips"><path d="M276 1073 Q300 1086 324 1073" fill="none" stroke="#2b2233" stroke-width="5" stroke-linecap="round"/></g><ellipse class="mouth m-zehra" id="s2-zehra-1-m" cx="300" cy="1081" rx="15" ry="11" fill="#7a2f3a"/><path d="M200 1051 Q198 917 300 929 Q402 917 400 1051 Q365 982 305 975 Q254 1000 200 1051Z" fill="#5a3825"/></g></g></svg></div></div></div>
+ <div id="diarytext" class="clip" data-start="55.138" data-duration="44.862" data-track-index="3" style="position:absolute;inset:0;z-index:30">
+  <div id="diary"><span class="dl">Duruşma: 14.00</span><span class="dl">Dosyada benim adım var.</span><span class="dl">Bu sefer imza atacağım.</span><span id="dlast">Kapı açıldı.<br>Ben de içeri giriyorum.</span></div><div id="torch"></div></div>
+ <div id="vig" class="clip" data-start="0" data-duration="100.0" data-track-index="4"></div>
+ <div id="grain" class="clip" data-start="0" data-duration="100.0" data-track-index="5"></div>
+ <div id="flash" class="clip" data-start="0" data-duration="100.0" data-track-index="6"></div>
+ <div id="chip" class="clip" data-start="0" data-duration="73.795" data-track-index="7">BU SEFER EZİLMEYECEĞİM · <b>BÖLÜM 5</b></div>
+ <div id="hook" class="clip" data-start="0" data-duration="4.531" data-track-index="8">Bu sefer <em>sesim</em> duyulacak</div>
+ <div id="caps" class="clip" data-start="0" data-duration="100.0" data-track-index="9" style="position:absolute;inset:0;z-index:70"><div class="cap inner" id="cap1"><div class="who" style="background:#ffb4c8">DEFNE · iç ses</div><div class="txt"><span class="w" id="c1w0">Pazarda</span> <span class="w" id="c1w1">herkes</span> <span class="w" id="c1w2">bizi</span> <span class="w" id="c1w3">tanıyor.</span> </div></div><div class="cap inner" id="cap2"><div class="who" style="background:#ffb4c8">DEFNE · iç ses</div><div class="txt"><span class="w" id="c2w4">Ama</span> <span class="w" id="c2w5">kimse</span> <span class="w" id="c2w6">bana</span> <span class="w" id="c2w7">yardım</span> <span class="w" id="c2w8">etmiyor.</span> </div></div><div class="cap" id="cap3"><div class="who" style="background:#ffcf7a">NERMİN HANIM</div><div class="txt"><span class="w" id="c3w0">Zehra!</span> <span class="w" id="c3w1">Mahalle</span> <span class="w" id="c3w2">diyor</span> <span class="w" id="c3w3">ki</span> </div></div><div class="cap" id="cap4"><div class="who" style="background:#ffcf7a">NERMİN HANIM</div><div class="txt"><span class="w" id="c4w4">avukata</span> <span class="w" id="c4w5">gitmişsin.</span> </div></div><div class="cap" id="cap5"><div class="who" style="background:#ffcf7a">NERMİN HANIM</div><div class="txt"><span class="w" id="c5w6">Ne</span> <span class="w" id="c5w7">yapıyorsun?</span> </div></div><div class="cap inner" id="cap6"><div class="who" style="background:#ffb4c8">DEFNE · iç ses</div><div class="txt"><span class="w" id="c6w0">Mahalle</span> <span class="w" id="c6w1">sesini</span> <span class="w" id="c6w2">bu</span> <span class="w" id="c6w3">sefer</span> <span class="w" id="c6w4">duyuruyor.</span> </div></div><div class="cap" id="cap7"><div class="who" style="background:#ffb4c8">ZEHRA</div><div class="txt"><span class="w" id="c7w0">Mahallenin</span> <span class="w" id="c7w1">sesini</span> <span class="w" id="c7w2">ben</span> <span class="w" id="c7w3">de</span> </div></div><div class="cap" id="cap8"><div class="who" style="background:#ffb4c8">ZEHRA</div><div class="txt"><span class="w" id="c8w4">duyuyorum</span> <span class="w" id="c8w5">Nermin</span> <span class="w" id="c8w6">Hanım.</span> </div></div><div class="cap" id="cap9"><div class="who" style="background:#ffb4c8">ZEHRA</div><div class="txt"><span class="w" id="c9w7">Bu</span> <span class="w" id="c9w8">sefer</span> <span class="w" id="c9w9">susmayacağım.</span> </div></div><div class="cap" id="cap10"><div class="who" style="background:#ffcf7a">NERMİN HANIM</div><div class="txt"><span class="w" id="c10w0">Kenan'ın</span> <span class="w" id="c10w1">ailesine</span> <span class="w" id="c10w2">bu</span> <span class="w" id="c10w3">yapılır</span> <span class="w" id="c10w4">mı?</span> </div></div><div class="cap inner" id="cap11"><div class="who" style="background:#ffb4c8">DEFNE · iç ses</div><div class="txt"><span class="w" id="c11w0">Benim</span> <span class="w" id="c11w1">hayatım</span> <span class="w" id="c11w2">bir</span> <span class="w" id="c11w3">mahalle</span> </div></div><div class="cap inner" id="cap12"><div class="who" style="background:#ffb4c8">DEFNE · iç ses</div><div class="txt"><span class="w" id="c12w4">meselesi</span> <span class="w" id="c12w5">değil.</span> </div></div><div class="cap" id="cap13"><div class="who" style="background:#ffb4c8">ZEHRA</div><div class="txt"><span class="w" id="c13w0">Bu</span> <span class="w" id="c13w1">sabah</span> <span class="w" id="c13w2">ekmeğimi</span> <span class="w" id="c13w3">kendim</span> </div></div><div class="cap" id="cap14"><div class="who" style="background:#ffb4c8">ZEHRA</div><div class="txt"><span class="w" id="c14w4">aldım.</span> <span class="w" id="c14w5">Bir</span> <span class="w" id="c14w6">de</span> <span class="w" id="c14w7">hesabımı</span> </div></div><div class="cap" id="cap15"><div class="who" style="background:#ffb4c8">ZEHRA</div><div class="txt"><span class="w" id="c15w8">kendim</span> <span class="w" id="c15w9">tutacağım.</span> </div></div><div class="cap inner" id="cap16"><div class="who" style="background:#ffb4c8">DEFNE · iç ses</div><div class="txt"><span class="w" id="c16w0">Tezgâhın</span> <span class="w" id="c16w1">arkasındaki</span> <span class="w" id="c16w2">adam</span> <span class="w" id="c16w3">bile</span> </div></div><div class="cap inner" id="cap17"><div class="who" style="background:#ffb4c8">DEFNE · iç ses</div><div class="txt"><span class="w" id="c17w4">bana</span> <span class="w" id="c17w5">gülümsedi.</span> </div></div><div class="cap inner" id="cap18"><div class="who" style="background:#ffb4c8">DEFNE · iç ses</div><div class="txt"><span class="w" id="c18w6">Demek</span> <span class="w" id="c18w7">herkes</span> <span class="w" id="c18w8">bekliyormuş.</span> </div></div><div class="cap" id="cap19"><div class="who" style="background:#a6f0c6">ALİ</div><div class="txt"><span class="w" id="c19w0">Anne,</span> <span class="w" id="c19w1">öğretmen</span> <span class="w" id="c19w2">bugün</span> <span class="w" id="c19w3">velileri</span> </div></div><div class="cap" id="cap20"><div class="who" style="background:#a6f0c6">ALİ</div><div class="txt"><span class="w" id="c20w4">çağırmış.</span> <span class="w" id="c20w5">Sen</span> <span class="w" id="c20w6">gelecek</span> <span class="w" id="c20w7">misin?</span> </div></div><div class="cap inner" id="cap21"><div class="who" style="background:#ffb4c8">DEFNE · iç ses</div><div class="txt"><span class="w" id="c21w0">Ali'nin</span> <span class="w" id="c21w1">sesi</span> <span class="w" id="c21w2">titriyordu.</span> </div></div><div class="cap inner" id="cap22"><div class="who" style="background:#ffb4c8">DEFNE · iç ses</div><div class="txt"><span class="w" id="c22w3">Okul</span> <span class="w" id="c22w4">bile</span> <span class="w" id="c22w5">bu</span> <span class="w" id="c22w6">evin</span> </div></div><div class="cap inner" id="cap23"><div class="who" style="background:#ffb4c8">DEFNE · iç ses</div><div class="txt"><span class="w" id="c23w7">sesini</span> <span class="w" id="c23w8">duyuyor.</span> </div></div><div class="cap" id="cap24"><div class="who" style="background:#ffb4c8">ZEHRA</div><div class="txt"><span class="w" id="c24w0">Geleceğim</span> <span class="w" id="c24w1">bir</span> <span class="w" id="c24w2">tanem.</span> </div></div><div class="cap" id="cap25"><div class="who" style="background:#ffb4c8">ZEHRA</div><div class="txt"><span class="w" id="c25w3">Hem</span> <span class="w" id="c25w4">de</span> <span class="w" id="c25w5">senin</span> <span class="w" id="c25w6">için.</span> </div></div><div class="cap" id="cap26"><div class="who" style="background:#a6f0c6">ALİ</div><div class="txt"><span class="w" id="c26w0">Öğretmen</span> <span class="w" id="c26w1">'annen</span> <span class="w" id="c26w2">sana</span> <span class="w" id="c26w3">yardım</span> </div></div><div class="cap" id="cap27"><div class="who" style="background:#a6f0c6">ALİ</div><div class="txt"><span class="w" id="c27w4">ediyor</span> <span class="w" id="c27w5">mu'</span> <span class="w" id="c27w6">diye</span> <span class="w" id="c27w7">sordu.</span> </div></div><div class="cap" id="cap28"><div class="who" style="background:#ffb4c8">ZEHRA</div><div class="txt"><span class="w" id="c28w0">Ne</span> <span class="w" id="c28w1">cevap</span> <span class="w" id="c28w2">verdin?</span> </div></div><div class="cap" id="cap29"><div class="who" style="background:#a6f0c6">ALİ</div><div class="txt"><span class="w" id="c29w0">'Evet'</span> <span class="w" id="c29w1">dedim</span> <span class="w" id="c29w2">anne.</span> </div></div><div class="cap" id="cap30"><div class="who" style="background:#a6f0c6">ALİ</div><div class="txt"><span class="w" id="c30w3">Yalan</span> <span class="w" id="c30w4">değil.</span> </div></div><div class="cap inner" id="cap31"><div class="who" style="background:#ffb4c8">DEFNE · iç ses</div><div class="txt"><span class="w" id="c31w0">Bir</span> <span class="w" id="c31w1">çocuğun</span> <span class="w" id="c31w2">doğruyu</span> <span class="w" id="c31w3">söylemesi</span> </div></div><div class="cap inner" id="cap32"><div class="who" style="background:#ffb4c8">DEFNE · iç ses</div><div class="txt"><span class="w" id="c32w4">bile</span> <span class="w" id="c32w5">bu</span> <span class="w" id="c32w6">evi</span> <span class="w" id="c32w7">değiştirmeye</span> <span class="w" id="c32w8">yeter.</span> </div></div><div class="cap" id="cap33"><div class="who" style="background:#ffb4c8">ZEHRA</div><div class="txt"><span class="w" id="c33w0">Bu</span> <span class="w" id="c33w1">gece</span> <span class="w" id="c33w2">hepimiz</span> <span class="w" id="c33w3">konuşacağız.</span> </div></div><div class="cap inner" id="cap34"><div class="who" style="background:#ffb4c8">DEFNE · iç ses</div><div class="txt"><span class="w" id="c34w0">Mahkeme</span> <span class="w" id="c34w1">koridoru</span> <span class="w" id="c34w2">soğuk.</span> </div></div><div class="cap inner" id="cap35"><div class="who" style="background:#ffb4c8">DEFNE · iç ses</div><div class="txt"><span class="w" id="c35w3">Her</span> <span class="w" id="c35w4">kapının</span> <span class="w" id="c35w5">arkasında</span> <span class="w" id="c35w6">başka</span> </div></div><div class="cap inner" id="cap36"><div class="who" style="background:#ffb4c8">DEFNE · iç ses</div><div class="txt"><span class="w" id="c36w7">bir</span> <span class="w" id="c36w8">hayat.</span> </div></div><div class="cap" id="cap37"><div class="who" style="background:#9fc4ff">KENAN</div><div class="txt"><span class="w" id="c37w0">Bu</span> <span class="w" id="c37w1">işin</span> <span class="w" id="c37w2">bitmesini</span> <span class="w" id="c37w3">istiyorum</span> </div></div><div class="cap" id="cap38"><div class="who" style="background:#9fc4ff">KENAN</div><div class="txt"><span class="w" id="c38w4">Zehra.</span> <span class="w" id="c38w5">Anlaşalım.</span> </div></div><div class="cap" id="cap39"><div class="who" style="background:#ffb4c8">ZEHRA</div><div class="txt"><span class="w" id="c39w0">Anlaşma,</span> <span class="w" id="c39w1">hesabı</span> <span class="w" id="c39w2">verdikten</span> <span class="w" id="c39w3">sonra</span> </div></div><div class="cap" id="cap40"><div class="who" style="background:#ffb4c8">ZEHRA</div><div class="txt"><span class="w" id="c40w4">olur</span> <span class="w" id="c40w5">Kenan.</span> </div></div><div class="cap" id="cap41"><div class="who" style="background:#ffcf7a">NERMİN HANIM</div><div class="txt"><span class="w" id="c41w0">Bunu</span> <span class="w" id="c41w1">konuşmak</span> <span class="w" id="c41w2">için</span> <span class="w" id="c41w3">mahkemeye</span> </div></div><div class="cap" id="cap42"><div class="who" style="background:#ffcf7a">NERMİN HANIM</div><div class="txt"><span class="w" id="c42w4">mi</span> <span class="w" id="c42w5">geldik?</span> </div></div><div class="cap" id="cap43"><div class="who" style="background:#ffb4c8">ZEHRA</div><div class="txt"><span class="w" id="c43w0">Evet.</span> <span class="w" id="c43w1">Çünkü</span> <span class="w" id="c43w2">evde</span> <span class="w" id="c43w3">konuşmak</span> <span class="w" id="c43w4">yetmedi.</span> </div></div><div class="cap inner" id="cap44"><div class="who" style="background:#ffb4c8">DEFNE · iç ses</div><div class="txt"><span class="w" id="c44w0">Kapı</span> <span class="w" id="c44w1">açıldı.</span> </div></div><div class="cap inner" id="cap45"><div class="who" style="background:#ffb4c8">DEFNE · iç ses</div><div class="txt"><span class="w" id="c45w2">Artık</span> <span class="w" id="c45w3">ben</span> <span class="w" id="c45w4">de</span> <span class="w" id="c45w5">içeri</span> <span class="w" id="c45w6">girebilirim.</span> </div></div></div>
+ <div id="title" class="clip" data-start="14.534" data-duration="2.6" data-track-index="10"><div id="title-in">
+  <div id="t1">BU SEFER</div><div id="t2">EZİLMEYECEĞİM</div><div id="t3">5. BÖLÜM · MAHKEME</div></div></div>
+ <div id="end" class="clip" data-start="79.295" data-duration="20.705" data-track-index="11"><div id="end-in">
+  <div id="e1">Bu duruşmayı <span>kim</span> kazanacak?</div><div id="e2">Sizce Zehra kazanacak mı? Yorumlara yazın 👇</div><div id="e3">6. BÖLÜM YAKINDA</div></div></div>
+ <div id="fade" class="clip" data-start="0" data-duration="100.0" data-track-index="12"></div>
+ <audio id="mix" data-start="0" data-duration="100.0" data-track-index="13" src="assets/master.m4a" data-volume="1"></audio>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+tl.set("#s0-nermin-1", {opacity:1}, 17.014);
+tl.set("#s0-nermin-0", {opacity:0}, 17.014);
+tl.set("#s0-nermin", {transformOrigin:"50% 100%"}, 0);
+tl.to("#s0-nermin", {scaleY:1.012, scaleX:0.996, duration:0.85, ease:"sine.inOut", yoyo:true, repeat:35}, 0.0);
+tl.set("#s0-zehra-1", {opacity:1}, 10.186);
+tl.set("#s0-zehra-0", {opacity:0}, 10.186);
+tl.set("#s0-zehra-2", {opacity:1}, 21.751);
+tl.set("#s0-zehra-1", {opacity:0}, 21.751);
+tl.set("#s0-zehra", {transformOrigin:"50% 100%"}, 0);
+tl.to("#s0-zehra", {scaleY:1.012, scaleX:0.996, duration:0.85, ease:"sine.inOut", yoyo:true, repeat:35}, 0.0);
+tl.set("#s1-ali-1", {opacity:1}, 41.683);
+tl.set("#s1-ali-0", {opacity:0}, 41.683);
+tl.set("#s1-ali-2", {opacity:1}, 47.252);
+tl.set("#s1-ali-1", {opacity:0}, 47.252);
+tl.set("#s1-ali", {transformOrigin:"50% 100%"}, 0);
+tl.to("#s1-ali", {scaleY:1.012, scaleX:0.996, duration:0.85, ease:"sine.inOut", yoyo:true, repeat:27}, 31.225);
+tl.set("#s1-zehra-1", {opacity:1}, 45.372);
+tl.set("#s1-zehra-0", {opacity:0}, 45.372);
+tl.set("#s1-zehra-2", {opacity:1}, 52.766);
+tl.set("#s1-zehra-1", {opacity:0}, 52.766);
+tl.set("#s1-zehra", {transformOrigin:"50% 100%"}, 0);
+tl.to("#s1-zehra", {scaleY:1.012, scaleX:0.996, duration:0.85, ease:"sine.inOut", yoyo:true, repeat:27}, 31.225);
+tl.to("#s1", {opacity:1, duration:0.55, ease:"sine.inOut"}, 30.925);
+tl.set("#s2-kenan", {transformOrigin:"50% 100%"}, 0);
+tl.to("#s2-kenan", {scaleY:1.012, scaleX:0.996, duration:0.85, ease:"sine.inOut", yoyo:true, repeat:51}, 55.138);
+tl.set("#s2-nermin", {transformOrigin:"50% 100%"}, 0);
+tl.to("#s2-nermin", {scaleY:1.012, scaleX:0.996, duration:0.85, ease:"sine.inOut", yoyo:true, repeat:51}, 55.138);
+tl.set("#s2-zehra-1", {opacity:1}, 68.23);
+tl.set("#s2-zehra-0", {opacity:0}, 68.23);
+tl.set("#s2-zehra", {transformOrigin:"50% 100%"}, 0);
+tl.to("#s2-zehra", {scaleY:1.012, scaleX:0.996, duration:0.85, ease:"sine.inOut", yoyo:true, repeat:51}, 55.138);
+tl.to("#s2", {opacity:1, duration:0.55, ease:"sine.inOut"}, 55.138);
+tl.set(".mouth", {scaleY:0, transformOrigin:"50% 50%"}, 0);
+tl.set(".mouth.open", {scaleY:1}, 0);
+tl.to("#s0 .m-nermin", {scaleY:1, duration:0.08, ease:"sine.inOut", yoyo:true, repeat:37}, 4.281);
+tl.to("#s0 .m-nermin", {scaleY:0, duration:0.06}, 7.283);
+tl.to("#s0 .m-zehra", {scaleY:1, duration:0.08, ease:"sine.inOut", yoyo:true, repeat:45}, 10.356);
+tl.to("#s0 .m-zehra", {scaleY:0, duration:0.06}, 14.034);
+tl.to("#s0 .m-nermin", {scaleY:1, duration:0.08, ease:"sine.inOut", yoyo:true, repeat:17}, 17.184);
+tl.to("#s0 .m-nermin", {scaleY:0, duration:0.06}, 18.595);
+tl.to("#s0 .m-zehra", {scaleY:1, duration:0.08, ease:"sine.inOut", yoyo:true, repeat:45}, 21.921);
+tl.to("#s0 .m-zehra", {scaleY:0, duration:0.06}, 25.612);
+tl.to("#s1 .m-ali", {scaleY:1, duration:0.08, ease:"sine.inOut", yoyo:true, repeat:39}, 31.525);
+tl.to("#s1 .m-ali", {scaleY:0, duration:0.06}, 34.76);
+tl.to("#s1 .m-zehra", {scaleY:1, duration:0.08, ease:"sine.inOut", yoyo:true, repeat:25}, 39.165);
+tl.to("#s1 .m-zehra", {scaleY:0, duration:0.06}, 41.303);
+tl.to("#s1 .m-ali", {scaleY:1, duration:0.08, ease:"sine.inOut", yoyo:true, repeat:31}, 41.853);
+tl.to("#s1 .m-ali", {scaleY:0, duration:0.06}, 44.442);
+tl.to("#s1 .m-zehra", {scaleY:1, duration:0.08, ease:"sine.inOut", yoyo:true, repeat:15}, 45.542);
+tl.to("#s1 .m-zehra", {scaleY:0, duration:0.06}, 46.871);
+tl.to("#s1 .m-ali", {scaleY:1, duration:0.08, ease:"sine.inOut", yoyo:true, repeat:9}, 47.422);
+tl.to("#s1 .m-ali", {scaleY:0, duration:0.06}, 48.311);
+tl.to("#s1 .m-zehra", {scaleY:1, duration:0.08, ease:"sine.inOut", yoyo:true, repeat:19}, 52.936);
+tl.to("#s1 .m-zehra", {scaleY:0, duration:0.06}, 54.488);
+tl.to("#s2 .m-kenan", {scaleY:1, duration:0.08, ease:"sine.inOut", yoyo:true, repeat:29}, 60.484);
+tl.to("#s2 .m-kenan", {scaleY:0, duration:0.06}, 62.866);
+tl.to("#s2 .m-zehra", {scaleY:1, duration:0.08, ease:"sine.inOut", yoyo:true, repeat:27}, 63.416);
+tl.to("#s2 .m-zehra", {scaleY:0, duration:0.06}, 65.613);
+tl.to("#s2 .m-nermin", {scaleY:1, duration:0.08, ease:"sine.inOut", yoyo:true, repeat:19}, 66.163);
+tl.to("#s2 .m-nermin", {scaleY:0, duration:0.06}, 67.85);
+tl.to("#s2 .m-zehra", {scaleY:1, duration:0.08, ease:"sine.inOut", yoyo:true, repeat:21}, 68.4);
+tl.to("#s2 .m-zehra", {scaleY:0, duration:0.06}, 70.257);
+tl.set("#s0-cam", {transformOrigin:"0% 0%", scale:1, x:0, y:0}, 0);
+tl.set("#s1-cam", {transformOrigin:"0% 0%", scale:1, x:0, y:0}, 0);
+tl.set("#s2-cam", {transformOrigin:"0% 0%", scale:1, x:0, y:0}, 0);
+tl.to("#s0-cam", {scale:1.250, x:0, y:-480, duration:0.8, ease:"power2.inOut"}, 0.0);
+tl.to("#s0-cam", {scale:1.312, x:0, y:-595, duration:3.08, ease:"none"}, 0.8);
+tl.to("#s0-cam", {scale:1.450, x:-486, y:-408, duration:0.8, ease:"power2.inOut"}, 3.881);
+tl.to("#s0-cam", {scale:1.522, x:-564, y:-467, duration:2.75, ease:"none"}, 4.681);
+tl.to("#s0-cam", {scale:1.150, x:0, y:-288, duration:0.8, ease:"power2.inOut"}, 7.433);
+tl.to("#s0-cam", {scale:1.208, x:0, y:-398, duration:1.72, ease:"none"}, 8.233);
+tl.to("#s0-cam", {scale:1.400, x:0, y:-685, duration:0.8, ease:"power2.inOut"}, 9.956);
+tl.to("#s0-cam", {scale:1.470, x:0, y:-758, duration:3.43, ease:"none"}, 10.756);
+tl.to("#s0-cam", {scale:1.300, x:-324, y:-288, duration:0.8, ease:"power2.inOut"}, 16.784);
+tl.to("#s0-cam", {scale:1.365, x:-394, y:-340, duration:1.16, ease:"none"}, 17.584);
+tl.to("#s0-cam", {scale:1.180, x:0, y:-346, duration:0.8, ease:"power2.inOut"}, 18.746);
+tl.to("#s0-cam", {scale:1.239, x:0, y:-459, duration:1.98, ease:"none"}, 19.546);
+tl.to("#s0-cam", {scale:1.300, x:0, y:-576, duration:0.8, ease:"power2.inOut"}, 21.521);
+tl.to("#s0-cam", {scale:1.365, x:0, y:-649, duration:3.44, ease:"none"}, 22.321);
+tl.to("#s0-cam", {scale:1.180, x:0, y:-346, duration:0.8, ease:"power2.inOut"}, 25.762);
+tl.to("#s0-cam", {scale:1.239, x:0, y:-459, duration:3.86, ease:"none"}, 26.562);
+tl.to("#s1-cam", {scale:1.300, x:-324, y:-531, duration:0.8, ease:"power2.inOut"}, 31.125);
+tl.to("#s1-cam", {scale:1.365, x:-394, y:-595, duration:2.98, ease:"none"}, 31.925);
+tl.to("#s1-cam", {scale:1.180, x:0, y:-346, duration:0.8, ease:"power2.inOut"}, 34.91);
+tl.to("#s1-cam", {scale:1.239, x:0, y:-459, duration:3.05, ease:"none"}, 35.71);
+tl.to("#s1-cam", {scale:1.550, x:0, y:-840, duration:0.25, ease:"power4.out"}, 39.065);
+tl.to("#s1-cam", {scale:1.628, x:0, y:-920, duration:1.89, ease:"none"}, 39.315);
+tl.to("#s1-cam", {scale:1.300, x:-324, y:-531, duration:0.8, ease:"power2.inOut"}, 41.453);
+tl.to("#s1-cam", {scale:1.365, x:-394, y:-595, duration:2.34, ease:"none"}, 42.253);
+tl.to("#s1-cam", {scale:1.700, x:0, y:-995, duration:0.25, ease:"power4.out"}, 45.442);
+tl.to("#s1-cam", {scale:1.785, x:0, y:-1083, duration:1.08, ease:"none"}, 45.692);
+tl.to("#s1-cam", {scale:1.600, x:-648, y:-828, duration:0.25, ease:"power4.out"}, 47.322);
+tl.to("#s1-cam", {scale:1.680, x:-734, y:-908, duration:0.64, ease:"none"}, 47.572);
+tl.to("#s1-cam", {scale:1.450, x:0, y:-737, duration:0.8, ease:"power2.inOut"}, 48.461);
+tl.to("#s1-cam", {scale:1.522, x:0, y:-812, duration:3.28, ease:"none"}, 49.261);
+tl.to("#s1-cam", {scale:1.000, x:0, y:0, duration:0.8, ease:"power2.inOut"}, 52.536);
+tl.to("#s1-cam", {scale:1.050, x:-27, y:-38, duration:1.30, ease:"none"}, 53.336);
+tl.to("#s2-cam", {scale:1.450, x:0, y:-737, duration:0.8, ease:"power2.inOut"}, 55.338);
+tl.to("#s2-cam", {scale:1.522, x:0, y:-812, duration:3.40, ease:"none"}, 56.138);
+tl.to("#s2-cam", {scale:1.550, x:-545, y:-326, duration:0.8, ease:"power2.inOut"}, 60.084);
+tl.to("#s2-cam", {scale:1.628, x:-599, y:-381, duration:2.13, ease:"none"}, 60.884);
+tl.to("#s2-cam", {scale:1.350, x:0, y:-634, duration:0.8, ease:"power2.inOut"}, 63.016);
+tl.to("#s2-cam", {scale:1.418, x:0, y:-703, duration:1.95, ease:"none"}, 63.816);
+tl.to("#s2-cam", {scale:1.350, x:-378, y:-328, duration:0.8, ease:"power2.inOut"}, 65.763);
+tl.to("#s2-cam", {scale:1.418, x:-451, y:-382, duration:1.44, ease:"none"}, 66.563);
+tl.to("#s2-cam", {scale:1.300, x:0, y:-576, duration:0.8, ease:"power2.inOut"}, 68.0);
+tl.to("#s2-cam", {scale:1.365, x:0, y:-649, duration:1.61, ease:"none"}, 68.8);
+tl.to("#s2-cam", {scale:1.180, x:0, y:-346, duration:0.8, ease:"power2.inOut"}, 70.907);
+tl.to("#s2-cam", {scale:1.239, x:0, y:-459, duration:2.24, ease:"none"}, 71.707);
+tl.to("#stage", {x:16, duration:0.045, yoyo:true, repeat:9, ease:"none"}, 39.165);
+tl.to("#stage", {x:0, duration:0.04}, 39.635);
+tl.to("#flash", {opacity:0.7, duration:0.06}, 45.372);
+tl.to("#flash", {opacity:0, duration:0.5}, 45.432);
+tl.to("#s5-cam", {scale:1.08, x:-40, y:-60, duration:44.86, ease:"sine.inOut"}, 55.138);
+tl.from(".dl", {opacity:0, x:-20, duration:0.5, ease:"power2.out", stagger:0.55}, 55.738);
+tl.from("#dlast", {opacity:0, scale:1.15, duration:0.8, ease:"power2.out"}, 72.857);
+tl.to("#torch", {x:60, y:40, duration:3, ease:"sine.inOut", yoyo:true, repeat:14}, 55.138);
+tl.from("#chip", {y:-120, duration:0.6, ease:"back.out(2)"}, 0.2);
+tl.from("#hook", {scale:0.6, opacity:0, duration:0.3, ease:"back.out(2.5)"}, 0.0);
+tl.to("#hook", {opacity:0, y:-30, duration:0.35}, 4.331);
+tl.to("#title-in", {opacity:1, duration:0.35}, 14.534);
+tl.from("#t1", {y:80, opacity:0, duration:0.55, ease:"power3.out"}, 14.684);
+tl.from("#t2", {scale:2.4, opacity:0, duration:0.5, ease:"power4.out"}, 15.084);
+tl.from("#t3", {y:30, opacity:0, duration:0.4, ease:"power2.out"}, 15.634);
+tl.to("#title-in", {opacity:0, duration:0.3}, 16.784);
+tl.set("#title-in", {opacity:0}, 17.094);
+tl.to("#end-in", {opacity:1, duration:0.5}, 79.295);
+tl.from("#e1", {y:60, opacity:0, duration:0.55, ease:"back.out(2)"}, 79.495);
+tl.from("#e2", {y:40, opacity:0, duration:0.45, ease:"power3.out"}, 80.195);
+tl.from("#e3", {scale:0.3, opacity:0, duration:0.55, ease:"back.out(3)"}, 80.895);
+tl.to("#e3", {scale:1.07, duration:0.45, ease:"sine.inOut", yoyo:true, repeat:5}, 81.495);
+tl.to("#fade", {opacity:1, duration:0.9, ease:"power1.in"}, 99.05);
+tl.set("#cap1", {opacity:1}, 0.33);
+tl.from("#c1w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 0.36);
+tl.from("#c1w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 0.779);
+tl.from("#c1w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 1.149);
+tl.from("#c1w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 1.42);
+tl.set("#cap1", {opacity:0}, 1.859);
+tl.set("#cap2", {opacity:1}, 1.859);
+tl.from("#c2w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 1.889);
+tl.from("#c2w5", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 2.111);
+tl.from("#c2w6", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 2.432);
+tl.from("#c2w7", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 2.703);
+tl.from("#c2w8", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 3.073);
+tl.set("#cap2", {opacity:0}, 3.931);
+tl.set("#cap3", {opacity:1}, 4.211);
+tl.from("#c3w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 4.241);
+tl.from("#c3w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 4.586);
+tl.from("#c3w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 4.977);
+tl.from("#c3w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 5.276);
+tl.set("#cap3", {opacity:0}, 5.407);
+tl.set("#cap4", {opacity:1}, 5.407);
+tl.from("#c4w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 5.437);
+tl.from("#c4w5", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 5.828);
+tl.set("#cap4", {opacity:0}, 6.327);
+tl.set("#cap5", {opacity:1}, 6.327);
+tl.from("#c5w6", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 6.357);
+tl.from("#c5w7", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 6.518);
+tl.set("#cap5", {opacity:0}, 7.483);
+tl.set("#cap6", {opacity:1}, 7.763);
+tl.from("#c6w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 7.793);
+tl.from("#c6w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 8.206);
+tl.from("#c6w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 8.571);
+tl.from("#c6w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 8.741);
+tl.from("#c6w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 9.057);
+tl.set("#cap6", {opacity:0}, 10.006);
+tl.set("#cap7", {opacity:1}, 10.286);
+tl.from("#c7w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 10.316);
+tl.from("#c7w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 10.843);
+tl.from("#c7w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 11.187);
+tl.from("#c7w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 11.393);
+tl.set("#cap7", {opacity:0}, 11.523);
+tl.set("#cap8", {opacity:1}, 11.523);
+tl.from("#c8w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 11.553);
+tl.from("#c8w5", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 12.034);
+tl.from("#c8w6", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 12.378);
+tl.set("#cap8", {opacity:0}, 12.692);
+tl.set("#cap9", {opacity:1}, 12.692);
+tl.from("#c9w7", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 12.722);
+tl.from("#c9w8", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 12.882);
+tl.from("#c9w9", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 13.18);
+tl.set("#cap9", {opacity:0}, 14.234);
+tl.set("#cap10", {opacity:1}, 17.114);
+tl.from("#c10w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 17.144);
+tl.from("#c10w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 17.482);
+tl.from("#c10w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 17.819);
+tl.from("#c10w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 17.943);
+tl.from("#c10w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 18.245);
+tl.set("#cap10", {opacity:0}, 18.795);
+tl.set("#cap11", {opacity:1}, 19.076);
+tl.from("#c11w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 19.106);
+tl.from("#c11w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 19.406);
+tl.from("#c11w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 19.798);
+tl.from("#c11w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 20.005);
+tl.set("#cap11", {opacity:0}, 20.367);
+tl.set("#cap12", {opacity:1}, 20.367);
+tl.from("#c12w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 20.397);
+tl.from("#c12w5", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 20.836);
+tl.set("#cap12", {opacity:0}, 21.572);
+tl.set("#cap13", {opacity:1}, 21.851);
+tl.from("#c13w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 21.881);
+tl.from("#c13w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 22.056);
+tl.from("#c13w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 22.38);
+tl.from("#c13w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 22.854);
+tl.set("#cap13", {opacity:0}, 23.198);
+tl.set("#cap14", {opacity:1}, 23.198);
+tl.from("#c14w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 23.228);
+tl.from("#c14w5", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 23.602);
+tl.from("#c14w6", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 23.826);
+tl.from("#c14w7", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 24.001);
+tl.set("#cap14", {opacity:0}, 24.445);
+tl.set("#cap15", {opacity:1}, 24.445);
+tl.from("#c15w8", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 24.475);
+tl.from("#c15w9", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 24.849);
+tl.set("#cap15", {opacity:0}, 25.812);
+tl.set("#cap16", {opacity:1}, 26.092);
+tl.from("#c16w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 26.122);
+tl.from("#c16w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 26.608);
+tl.from("#c16w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 27.247);
+tl.from("#c16w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 27.528);
+tl.set("#cap16", {opacity:0}, 27.779);
+tl.set("#cap17", {opacity:1}, 27.779);
+tl.from("#c17w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 27.809);
+tl.from("#c17w5", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 28.091);
+tl.set("#cap17", {opacity:0}, 28.649);
+tl.set("#cap18", {opacity:1}, 28.649);
+tl.from("#c18w6", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 28.679);
+tl.from("#c18w7", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 29.011);
+tl.from("#c18w8", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 29.394);
+tl.set("#cap18", {opacity:0}, 30.475);
+tl.set("#cap19", {opacity:1}, 31.455);
+tl.from("#c19w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 31.485);
+tl.from("#c19w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 31.803);
+tl.from("#c19w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 32.268);
+tl.from("#c19w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 32.587);
+tl.set("#cap19", {opacity:0}, 33.022);
+tl.set("#cap20", {opacity:1}, 33.022);
+tl.from("#c20w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 33.052);
+tl.from("#c20w5", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 33.566);
+tl.from("#c20w6", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 33.786);
+tl.from("#c20w7", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 34.203);
+tl.set("#cap20", {opacity:0}, 34.96);
+tl.set("#cap21", {opacity:1}, 35.24);
+tl.from("#c21w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 35.27);
+tl.from("#c21w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 35.692);
+tl.from("#c21w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 35.966);
+tl.set("#cap21", {opacity:0}, 36.557);
+tl.set("#cap22", {opacity:1}, 36.557);
+tl.from("#c22w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 36.587);
+tl.from("#c22w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 36.86);
+tl.from("#c22w5", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 37.133);
+tl.from("#c22w6", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 37.307);
+tl.set("#cap22", {opacity:0}, 37.55);
+tl.set("#cap23", {opacity:1}, 37.55);
+tl.from("#c23w7", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 37.58);
+tl.from("#c23w8", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 37.953);
+tl.set("#cap23", {opacity:0}, 38.815);
+tl.set("#cap24", {opacity:1}, 39.095);
+tl.from("#c24w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 39.125);
+tl.from("#c24w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 39.605);
+tl.from("#c24w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 39.811);
+tl.set("#cap24", {opacity:0}, 40.123);
+tl.set("#cap25", {opacity:1}, 40.123);
+tl.from("#c25w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 40.153);
+tl.from("#c25w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 40.359);
+tl.from("#c25w5", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 40.519);
+tl.from("#c25w6", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 40.816);
+tl.set("#cap25", {opacity:0}, 41.503);
+tl.set("#cap26", {opacity:1}, 41.783);
+tl.from("#c26w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 41.813);
+tl.from("#c26w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 42.234);
+tl.from("#c26w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 42.567);
+tl.from("#c26w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 42.811);
+tl.set("#cap26", {opacity:0}, 43.114);
+tl.set("#cap27", {opacity:1}, 43.114);
+tl.from("#c27w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 43.144);
+tl.from("#c27w5", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 43.476);
+tl.from("#c27w6", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 43.676);
+tl.from("#c27w7", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 43.92);
+tl.set("#cap27", {opacity:0}, 44.642);
+tl.set("#cap28", {opacity:1}, 45.472);
+tl.from("#c28w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 45.502);
+tl.from("#c28w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 45.725);
+tl.from("#c28w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 46.139);
+tl.set("#cap28", {opacity:0}, 47.071);
+tl.set("#cap29", {opacity:1}, 47.352);
+tl.from("#c29w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 47.382);
+tl.from("#c29w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 47.543);
+tl.from("#c29w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 47.682);
+tl.set("#cap29", {opacity:0}, 47.791);
+tl.set("#cap30", {opacity:1}, 47.791);
+tl.from("#c30w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 47.821);
+tl.from("#c30w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 47.96);
+tl.set("#cap30", {opacity:0}, 48.511);
+tl.set("#cap31", {opacity:1}, 48.791);
+tl.from("#c31w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 48.821);
+tl.from("#c31w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 49.049);
+tl.from("#c31w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 49.481);
+tl.from("#c31w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 49.912);
+tl.set("#cap31", {opacity:0}, 50.415);
+tl.set("#cap32", {opacity:1}, 50.415);
+tl.from("#c32w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 50.445);
+tl.from("#c32w5", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 50.725);
+tl.from("#c32w6", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 50.902);
+tl.from("#c32w7", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 51.131);
+tl.from("#c32w8", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 51.816);
+tl.set("#cap32", {opacity:0}, 52.587);
+tl.set("#cap33", {opacity:1}, 52.866);
+tl.from("#c33w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 52.896);
+tl.from("#c33w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 53.054);
+tl.from("#c33w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 53.303);
+tl.from("#c33w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 53.687);
+tl.set("#cap33", {opacity:0}, 54.688);
+tl.set("#cap34", {opacity:1}, 55.668);
+tl.from("#c34w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 55.698);
+tl.from("#c34w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 56.138);
+tl.from("#c34w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 56.63);
+tl.set("#cap34", {opacity:0}, 56.989);
+tl.set("#cap35", {opacity:1}, 56.989);
+tl.from("#c35w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 57.019);
+tl.from("#c35w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 57.252);
+tl.from("#c35w5", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 57.692);
+tl.from("#c35w6", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 58.236);
+tl.set("#cap35", {opacity:0}, 58.543);
+tl.set("#cap36", {opacity:1}, 58.543);
+tl.from("#c36w7", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 58.573);
+tl.from("#c36w8", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 58.806);
+tl.set("#cap36", {opacity:0}, 59.584);
+tl.set("#cap37", {opacity:1}, 60.414);
+tl.from("#c37w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 60.444);
+tl.from("#c37w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 60.603);
+tl.from("#c37w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 60.854);
+tl.from("#c37w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 61.332);
+tl.set("#cap37", {opacity:0}, 61.781);
+tl.set("#cap38", {opacity:1}, 61.781);
+tl.from("#c38w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 61.811);
+tl.from("#c38w5", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 62.152);
+tl.set("#cap38", {opacity:0}, 63.066);
+tl.set("#cap39", {opacity:1}, 63.346);
+tl.from("#c39w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 63.376);
+tl.from("#c39w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 63.79);
+tl.from("#c39w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 64.116);
+tl.from("#c39w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 64.574);
+tl.set("#cap39", {opacity:0}, 64.827);
+tl.set("#cap40", {opacity:1}, 64.827);
+tl.from("#c40w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 64.857);
+tl.from("#c40w5", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 65.096);
+tl.set("#cap40", {opacity:0}, 65.813);
+tl.set("#cap41", {opacity:1}, 66.093);
+tl.from("#c41w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 66.123);
+tl.from("#c41w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 66.32);
+tl.from("#c41w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 66.659);
+tl.from("#c41w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 66.856);
+tl.set("#cap41", {opacity:0}, 67.201);
+tl.set("#cap42", {opacity:1}, 67.201);
+tl.from("#c42w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 67.231);
+tl.from("#c42w5", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 67.356);
+tl.set("#cap42", {opacity:0}, 68.05);
+tl.set("#cap43", {opacity:1}, 68.33);
+tl.from("#c43w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 68.36);
+tl.from("#c43w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 68.656);
+tl.from("#c43w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 68.952);
+tl.from("#c43w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 69.202);
+tl.from("#c43w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 69.634);
+tl.set("#cap43", {opacity:0}, 70.457);
+tl.set("#cap44", {opacity:1}, 71.237);
+tl.from("#c44w0", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 71.267);
+tl.from("#c44w1", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 71.532);
+tl.set("#cap44", {opacity:0}, 71.912);
+tl.set("#cap45", {opacity:1}, 71.912);
+tl.from("#c45w2", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 71.942);
+tl.from("#c45w3", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 72.255);
+tl.from("#c45w4", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 72.472);
+tl.from("#c45w5", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 72.641);
+tl.from("#c45w6", {y:14, opacity:0, duration:0.15, ease:"back.out(2)"}, 72.954);
+tl.set("#cap45", {opacity:0}, 73.995);
+window.__timelines["ezilmeyecegim-ep1"] = tl;
+</script></body></html>
