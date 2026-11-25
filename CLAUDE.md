@@ -19,6 +19,7 @@
 - Default branch: `claude/new-session-0db055` (the only branch; push there).
 
 ## Video pipeline (what works)
+- DEFAULT ENGINE: Open-Generative-AI / MuAPI models via the Clodu MCP (`muapi-studio` skill). Check balance first; if 0, fall back to the Figma pipeline below and tell the user.
 - Visuals: 3D animated-film style stills generated in Figma (`generate_image`, gemini-3.1-flash-lite-image, 9:16), upscaled to 1080 wide, animated with Ken Burns + transitions in HyperFrames.
 - Render: `npx --no-install hyperframes render <dir> -o <dir>/output/x.mp4 -f 30 -q high`, then a CRF 21 share copy with ffmpeg. Check with `hyperframes lint` and `hyperframes snapshot --at ...` before rendering.
 - Keep GSAP and fonts local (Chrome cannot reach CDNs); name font families "BH Fredoka" / "BH Nunito" so HyperFrames does not override them.
